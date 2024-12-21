@@ -23,7 +23,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         //Inserting fields data
         $stmt = $conn->prepare("INSERT INTO users (email, firstname, lastname, password) VALUES (?, ?, ?, ?)");
         $stmt->execute([$email, $firstname, $lastname, $password]);
-        echo "Registrazione completata con successo!";
+        /* echo "Registrazione completata con successo!"; */
+        header('Location: ../index.php');
+
     } catch (PDOException $e) {
         if ($e->errorInfo[1] == 1062) { //1062 means mail already existing
             echo "Errore: l'email è già registrata.";   //Error output da rivedere!

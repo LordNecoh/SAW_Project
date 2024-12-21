@@ -3,7 +3,7 @@
 
 <div class="popup-content">
     <span class="close-button" id="closeLoginPopup">&times;</span>
-    <form action="login.php" method="POST">
+    <form action="database/login.php" method="POST">
         <h2> Login Form</h2>
         <label for="email">Email</label> 
         <input type="email" name="email">

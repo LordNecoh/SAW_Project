@@ -12,16 +12,12 @@ document.addEventListener("DOMContentLoaded", () => {
         openLoginPopup.addEventListener("click", () => {
             loginPopup.style.display = "flex";
         });
-    } else {
-        console.error("Element 'openLoginBtn' not found.");
     }
 
     if (closeLoginPopup) {
         closeLoginPopup.addEventListener("click", () => {
             loginPopup.style.display = "none";
         });
-    } else {
-        console.error("Element 'closeLoginPopup' not found.");
     }
 
     window.addEventListener("click", (e) => {
@@ -29,21 +25,23 @@ document.addEventListener("DOMContentLoaded", () => {
             loginPopup.style.display = "none";
         }
     });
-    if (logoutBtn) {
+     if (logoutBtn) {
         logoutBtn.addEventListener('click', function (e) {
             e.preventDefault();
-        
-            fetch('logout.php', {
+            console.log("bottone premuto");
+            fetch('database/logout.php', {
                 method: 'POST'
             })
                 .then(() => {
+                    console.log('logout trovato');
+
                     window.location.href="index.php";
                 })
                 .catch(error => {
                     console.error('Error during logout:', error);
-                });
+                }); 
         });
-    }
+    } 
 
     if(openProfileBtn){
         openProfileBtn.addEventListener("click", () => {

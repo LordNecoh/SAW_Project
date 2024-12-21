@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         session_start();
         $_SESSION['email'] = $user['email'];
         $_SESSION['firstname'] = $user['firstname'];
-        header('Location: index.php');
+        header('Location: ../index.php');
         
     } catch (PDOException $e) {
         echo "Errore: " . $e->getMessage();
