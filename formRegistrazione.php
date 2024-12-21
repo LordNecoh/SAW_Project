@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="css/formRegistrazione.css">
         <link rel="stylesheet" href="css/body.css">
 
-        <script src="gestionePopup.js" ></script>
+        <script src="js/gestionePopup.js" ></script>
         
         
     </head>
@@ -17,7 +17,7 @@
         <?php include 'header.php'; ?>
         
         <div id="registrationForm">
-        <form action="registration.php" method="post" id="registrationForm" class="registrationForm">
+        <form action="database/registration.php" method="post" id="registrationForm" class="registrationForm">
             <h2>Registration Form</h2>
             <label for="firstname">Nome:</label>
             <input type="text" name="firstname" id="firstname" required>

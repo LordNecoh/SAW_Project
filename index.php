@@ -4,18 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cuck the Beaver</title>
-    <script src="gestionePopup.js"></script>
+    <script src="js/gestionePopup.js"></script>
     <link rel="stylesheet" href="css/body.css">
     
 </head>
 <body>
     <?php include 'header.php'?>
-    <div id=loginPopup class="loginPopup">
-        <?php include 'formLogin.php'?>   
-    </div>    
-    <div id=profilePopup class="profilePopup">
-    <?php include 'profilePopup.php'?> 
-    </div> 
+    
 
     
     <div id="mainBody" class="TextBody" >

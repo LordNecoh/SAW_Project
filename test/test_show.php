@@ -22,6 +22,7 @@ function show_logged_user($baseurl) {
     $result = curl_exec($ch);
 
     /* Delete comment below to see what is returned */
+    echo 'risultato: ';
     echo $result;
 
     if (curl_errno($ch)) {
@@ -32,5 +33,5 @@ function show_logged_user($baseurl) {
 } 
 
 function check_correct_user($email, $first_name, $last_name, $show_page) {
-	return strpos($show_page, $email) && strpos($show_page, $first_name) && strpos($show_page, $last_name); 
+	return strpos($show_page, $email)  && strpos($show_page, $first_name) && strpos($show_page, $last_name) ; 
 }

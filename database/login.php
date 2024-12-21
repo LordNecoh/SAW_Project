@@ -3,39 +3,41 @@ require 'connessioneDB.php'; // Collegamento al database
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    //Checking all fields are completed
-    if(empty($_POST["email"]) || empty($_POST["pass"])){
-        echo "<div class='error'>One or more fields are empty, please be sure to fill out all fields</div>";
-        //Output errore da rivedere!!
+    // Controllo che tutti i campi siano compilati
+    if (empty($_POST["email"]) || empty($_POST["pass"])) {
+        echo "<div class='error'>Uno o più campi sono vuoti, compila tutti i campi.</div>";
         exit();
     }
 
-    //Taking values from the fields
+    // Prendi i valori dai campi
     $email = $_POST['email'];
     $password = $_POST['pass'];
 
     try {
-        //Checking the database for user's data
+        // Controllo nel database i dati dell'utente
         $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
         $stmt->execute([$email]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if (!$user || !password_verify($password, $user['password'])) {
-            echo "<div class='failure'>Username or password are incorrect</div>";
-            //Output errore da rivedere
+            echo "<div class='failure'>Email o password non validi.</div>";
             exit();    
         } 
         
-        //Session management
-        session_start();
+        // Gestione della sessione
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
         $_SESSION['email'] = $user['email'];
         $_SESSION['firstname'] = $user['firstname'];
+        
+        // Reindirizza alla home
         header('Location: ../index.php');
+        exit();
         
     } catch (PDOException $e) {
         echo "Errore: " . $e->getMessage();
-        //Output errore da rivedere
+        exit();
     }
-
 }
 ?>

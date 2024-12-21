@@ -1,7 +1,6 @@
-
 .loginPopup {
     display: none;
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
     width: 100%;
@@ -12,7 +11,7 @@
     z-index: 99;
 }
 
-.popup-content {
+.loginPopup-content {
     background-color: #fff;
     padding: 20px;
     margin: 20px;
@@ -23,9 +22,9 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.popup-content h2 {
+.loginPopup-content h2 {
     margin-top: 0;
-    color: #2c3e50;
+    color: #0f0f0f;
 }
 
 .close-button {
@@ -41,7 +40,7 @@
     color: #333;
 }
 
-.popup-content input {
+.loginPopup-content input {
     width: 100%;
     padding: 10px;
     margin: 10px -10px;
@@ -49,7 +48,7 @@
     border-radius: 5px;
 }
 
-.popup-content input[type="submit"] {
+.loginPopup-content input[type="submit"] {
     padding: 10px 20px;
     background-color: #3498db;
     color: #fff;
@@ -59,15 +58,30 @@
     font-size: 16px;
 }
 
-.popup-content input[type="submit"]:hover {
+.loginPopup-content input[type="submit"]:hover {
     background-color: #2980b9;
 }
 
-.popup-content span a {
+.loginPopup-content label {
+    color: #2c3e50; 
+    font-weight: bold; 
+    display: block; 
+    margin-bottom: 5px; 
+    font-size: 16px; 
+}
+
+.loginPopup-content span {
+    display: block; 
+    margin-top: 15px; 
+    color: #7f8c8d; 
+    font-size: 14px; 
+}
+
+.loginPopup-content span a {
     color: #3498db;
     text-decoration: none;
 }
 
-.popup-content span a:hover {
+.loginPopup-content span a:hover {
     text-decoration: underline;
 }

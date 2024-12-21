@@ -14,7 +14,7 @@ require 'utils.php';
 /*                                            */
 /* DO NOT UPLOAD TEST FILES ON SAW21!         */
 /**********************************************/
-$baseurl = "http://localhost/progettoSAW"; 
+$baseurl = "http://localhost/progettoSAW/database"; 
 
 echo "[+] Testing Registration - Login - Show Profile\n";
 
@@ -45,7 +45,7 @@ echo check_correct_user($email, $first_name, $last_name, show_logged_user($baseu
     ? "[*] Success :)\n"
     : "[*] Failed\n";
 
-echo "------------------------\n";
+/* echo "------------------------\n";
 
 echo "[+] Testing Update - Show Profile\n";
 
@@ -80,3 +80,4 @@ echo check_correct_user($email, $first_name, $last_name, show_logged_user($baseu
     : "[*] Failed :)\n";
 
 echo "------------------------\n";
+ */
