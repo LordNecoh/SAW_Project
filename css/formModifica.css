@@ -1,15 +1,11 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f8f9fa;
-    margin: 0;
-    padding: 0;
-}
-
 .container {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    flex-direction: column;
     justify-content: center;
-    height: 100vh;
+    height: auto; /* Cambiato da 60vh per consentire l'espansione */
+    margin-top: 20px;
+    gap: 20px; /* Spazio tra i contenitori */
 }
 
 .user-icon {
@@ -106,4 +102,20 @@ body {
 
 h2 {
     margin-bottom: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Stile per il nuovo form della password */
+.password-form-container {
+    width: 60%;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
