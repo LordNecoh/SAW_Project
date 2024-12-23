@@ -63,4 +63,13 @@ document.addEventListener("DOMContentLoaded", () => {
             profilePopup.style.display = "none";
         }
     });
+
+    if(document.getElementById('editProfileButton')){
+        document.getElementById('editProfileButton').addEventListener('click', function() {
+            window.location.href = 'formModifica.php';
+        });
+    }
+        
+    
+   
 });

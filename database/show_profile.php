@@ -29,15 +29,13 @@ try {
         $email = $row["email"];
 
         $result = "
-            <div class='profilePopup-content'>
                 <span class='close-button' id='closeProfilePopup'>&times;</span>
                 <h2>Dettagli Utente</h2>
-                <p><strong>Nome:</strong> <span>" . htmlspecialchars($first) . "</span></p>
-                <p><strong>Cognome:</strong> <span>" . htmlspecialchars($last) . "</span></p>
-                <p><strong>Email:</strong> <span>" . htmlspecialchars($email) . "</span></p>
+                <p><strong>Nome:</strong> <span>" . htmlspecialchars($first, ENT_QUOTES) . "</span></p>
+                <p><strong>Cognome:</strong> <span>" . htmlspecialchars($last, ENT_QUOTES) . "</span></p>
+                <p><strong>Email:</strong> <span>" . htmlspecialchars($email, ENT_QUOTES) . "</span></p>
                 
-                <button id='editProfileButton' class='edit-button' onclick=\"location.href='edit_profile.php';\">Modifica Informazioni</button>
-            </div>";
+                <button id='editProfileButton' class='edit-button'>Modifica Informazioni</button>";
         echo $result;  
     }
 } catch (PDOException $e) {

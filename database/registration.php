@@ -1,42 +1,59 @@
 <?php
 
-require 'connessioneDB.php'; // Connessione al database
-
+require 'connessioneDB.php'; 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-    //Cheking all fields are filled
-    if((empty($_POST["firstname"])) ||(empty($_POST["lastname"]))|| 
-    empty($_POST["email"]) || empty($_POST["pass"]) || empty($_POST["confirm"])){
-        echo "<div class='error'>One or more fields are empty, please be sure to fill out all fields </div>";
-        //Output errore da rivedere!!
+    if (empty($_POST["firstname"]) || empty($_POST["lastname"]) || 
+        empty($_POST["email"]) || empty($_POST["pass"]) || empty($_POST["confirm"])) {
+        echo "<div class='error'>Uno o più campi sono vuoti. Compilare tutti i campi.</div>";
         exit();
     }
 
-    //Taking values from the fields
-    $email = htmlspecialchars($_POST['email']);
-    $firstname = htmlspecialchars($_POST['firstname']);
-    $lastname = htmlspecialchars($_POST['lastname']);
-    $password = password_hash($_POST['pass'], PASSWORD_DEFAULT); //Password with hash
+    $email = $_POST['email'];
+    $firstname = $_POST['firstname'];
+    $lastname = $_POST['lastname'];
+    $password = $_POST['pass'];
+    $confirm = $_POST['confirm'];
 
-    try {
-        //Inserting fields data
-        $stmt = $conn->prepare("INSERT INTO users (email, firstname, lastname, password) VALUES (?, ?, ?, ?)");
-        $stmt->execute([$email, $firstname, $lastname, $password]);
-        /* echo "Registrazione completata con successo!"; */
-        header('Location: ../index.php');
-
-    } catch (PDOException $e) {
-        if ($e->errorInfo[1] == 1062) { //1062 means mail already existing
-            echo "Errore: l'email è già registrata.";   //Error output da rivedere!
-        } else {
-            echo "Errore: " . $e->getMessage(); //Error output da rivedere!
-        }
+    // Validazione email
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo "L'email non è valida.";
+        exit();
     }
 
-    //Session management
-    session_start();
-    $_SESSION["email"] = $email;
-    $_SESSION['firstname'] = $firstname;
+    // Validazione nome e cognome
+    if (!preg_match("/^[a-zA-Z\s]+$/", $firstname) || !preg_match("/^[a-zA-Z\s]+$/", $lastname)) {
+        echo "Nome e cognome possono contenere solo lettere e spazi.";
+        exit();
+    }
+
+    // Verifica password
+    if ($password !== $confirm) {
+        echo "Le password non corrispondono.";
+        exit();
+    }
+
+    // Hash della password
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+    try {
+        // Inserimento nel database
+        $stmt = $conn->prepare("INSERT INTO users (email, firstname, lastname, password) VALUES (?, ?, ?, ?)");
+        $stmt->execute([$email, $firstname, $lastname, $hashedPassword]);
+        
+        // Reindirizzamento in caso di successo
+        session_start();
+        $_SESSION["email"] = $email;
+        $_SESSION['firstname'] = $firstname;
+        header('Location: ../index.php');
+        exit();
+    } catch (PDOException $e) {
+        if ($e->errorInfo[1] == 1062) { // Email già registrata
+            echo "Errore: l'email è già registrata.";
+        } else {
+            error_log("Errore del database: " . $e->getMessage());
+            echo "Si è verificato un errore. Riprovare più tardi.";
+        }
+    }
 }
 ?>

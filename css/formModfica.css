@@ -1,0 +1,109 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.user-icon {
+    width: 20%;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+}
+
+.user-icon img {
+    border-radius: 50%;
+    width: 150px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.user-icon img.editable {
+    cursor: pointer;
+}
+
+.user-icon img.editable:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.form-container {
+    width: 60%;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.form-control {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: #e9ecef;
+    pointer-events: none;
+}
+
+.form-control.editable {
+    background-color: #ffffff;
+    pointer-events: auto;
+}
+
+.form-control.half-width {
+    flex: 1;
+}
+
+.form-control.large-width {
+    flex: 2;
+}
+
+.form-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.form-button:hover {
+    background-color: #0056b3;
+}
+
+.form-button.hidden {
+    display: none;
+}
+
+.cancel-button {
+    background-color: #dc3545;
+}
+
+.cancel-button:hover {
+    background-color: #c82333;
+}
+
+.confirm-button {
+    background-color: #28a745;
+}
+
+.confirm-button:hover {
+    background-color: #218838;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
