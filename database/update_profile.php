@@ -7,7 +7,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 if (!isset($_SESSION["email"])) {
-    echo json_encode(["success" => false, "message" => "Errore: utente non autenticato."]);
+    header("Location: ../index.php");
     exit();
 }
 

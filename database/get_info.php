@@ -2,12 +2,12 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-include("database/connessioneDB.php");
 
-if (!isset($_SESSION["email"])) { 
-    header("Location: ../login.php");
+if (!isset($_SESSION["email"])) {
+    header("Location: ../index.php");
     exit();
 }
+include("database/connessioneDB.php");
 
 $email = $_SESSION["email"];
 
