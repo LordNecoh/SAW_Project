@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const closeProfilePopup = document.getElementById("closeProfilePopup");
     const profilePopup = document.getElementById("profilePopup");
 
-    // Login popup
     if (openLoginPopup) {
         openLoginPopup.addEventListener("click", () => {
             loginPopup.style.display = "flex";
@@ -28,7 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Logout
     if (logoutBtn) {
         logoutBtn.addEventListener("click", (e) => {
             e.preventDefault();
@@ -44,20 +42,18 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Profile popup
     if (openProfileBtn) {
         openProfileBtn.addEventListener("click", () => {
-            profilePopup.style.display = "flex"; // Mostra il popup
+            profilePopup.style.display = "flex"; 
         });
     }
 
     if (closeProfilePopup) {
         closeProfilePopup.addEventListener("click", () => {
-            profilePopup.style.display = "none"; // Chiudi il popup
+            profilePopup.style.display = "none"; 
         });
     }
 
-    // Chiudi il popup cliccando fuori dal contenuto
     window.addEventListener("click", (e) => {
         if (e.target === profilePopup) {
             profilePopup.style.display = "none";

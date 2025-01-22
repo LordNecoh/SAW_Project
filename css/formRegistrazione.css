@@ -1,26 +1,24 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #ecf0f1; /* Sfondo chiaro */
-    color: #2c3e50; /* Testo scuro */
+    background-color: #ecf0f1; 
+    color: #2c3e50; 
 }
 
-/* Centra il contenuto del form */
 #registrationForm {
     max-width: 400px;
     margin: 50px auto;
     padding: 20px;
-    background-color: #ffffff; /* Sfondo bianco per il form */
+    background-color: #ffffff; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     text-align: left;
 }
 
-/* Titolo del form */
 #registrationForm h2 {
     font-size: 28px;
     margin-bottom: 20px;
-    color: #34495e; /* Colore leggermente più scuro */
+    color: #34495e; 
     text-align: center;
 }
 
@@ -33,7 +31,6 @@ body {
     color: #34495e;
 }
 
-/* Input fields */
 #registrationForm input[type="text"],
 #registrationForm input[type="email"],
 #registrationForm input[type="password"] {
@@ -46,14 +43,12 @@ body {
     transition: border-color 0.3s ease;
 }
 
-/* Effetto hover sui campi di input */
 #registrationForm input[type="text"]:hover,
 #registrationForm input[type="email"]:hover,
 #registrationForm input[type="password"]:hover {
     border-color: #3498db;
 }
 
-/* Effetto focus */
 #registrationForm input[type="text"]:focus,
 #registrationForm input[type="email"]:focus,
 #registrationForm input[type="password"]:focus {
@@ -62,7 +57,6 @@ body {
     box-shadow: 0 0 5px rgba(41, 128, 185, 0.5);
 }
 
-/* Pulsante di invio */
 #registrationForm input[type="submit"] {
     background-color: #3498db;
     color: #ffffff;
@@ -76,12 +70,10 @@ body {
     transition: background-color 0.3s ease;
 }
 
-/* Effetto hover sul pulsante */
 #registrationForm input[type="submit"]:hover {
     background-color: #2980b9;
 }
 
-/* Responsive design */
 @media (max-width: 600px) {
     #registrationForm {
         margin: 20px;

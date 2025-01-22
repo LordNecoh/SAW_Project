@@ -13,7 +13,7 @@ if (!isset($_SESSION["email"])) {
 
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $newPassword = $_POST['password'] ?? '';
+    $newPassword = $_POST['newPassword'] ?? '';
     $confirmPassword = $_POST['confirmPassword'] ?? '';
 
     if (empty($newPassword) || empty($confirmPassword)) {

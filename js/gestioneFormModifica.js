@@ -1,136 +1,100 @@
 document.addEventListener("DOMContentLoaded", () => {
+    const editProfileBtn = document.getElementById("editProfile");
+    const cancelEditBtn = document.getElementById("cancelEdit");
+    const saveProfileBtn = document.getElementById("saveProfile");
+    const formInputs = document.querySelectorAll("#userForm input");
 
-    const editProfileButton = document.getElementById("editProfileButton");
-    const cancelButton = document.getElementById("cancelButton");
-    const confirmInfoButton = document.getElementById("confirmInfoButton");
-    const formControls = document.querySelectorAll(".form-control");
-    const passwordFormControls = document.querySelectorAll(".pasword-form-control");
-
-    const profileImage = document.getElementById("profileImage");
-    const userForm = document.getElementById("userForm");
-
-    const editPasswordButton = document.getElementById("editPasswordButton");
-    const cancelPasswordButton = document.getElementById("cancelPasswordButton");
-    const confirmPasswordButton = document.getElementById("confirmPasswordButton");
+    const editPasswordBtn = document.getElementById("editPassword");
+    const cancelPasswordBtn = document.getElementById("cancelPassword");
+    const savePasswordBtn = document.getElementById("savePassword");
     const passwordForm = document.getElementById("passwordForm");
-    const passwordUpdateForm = document.getElementById("passwordUpdateForm");
 
-    // Salva i valori originali
-    const originalValues = {};
-    formControls.forEach((input) => (originalValues[input.id] = input.value));
+    const originalValues = Object.fromEntries(
+        Array.from(formInputs).map((input) => [input.id, input.value])
+    );
 
-    editProfileButton.addEventListener("click", function () {
-        formControls.forEach((input) => input.classList.add("editable"));
-        formControls.forEach((input) => input.removeAttribute("disabled"));
+    // Disabilita i campi del form all'avvio
+    formInputs.forEach((input) => input.setAttribute("disabled", "true"));
 
-        profileImage.classList.add("editable");
-
-        editProfileButton.classList.add("hidden");
-        cancelButton.classList.remove("hidden");
-        confirmInfoButton.classList.remove("hidden");
-    });
-
-    cancelButton.addEventListener("click", function () {
-        formControls.forEach((input) => {
-            input.value = originalValues[input.id];
-            input.classList.remove("editable");
-            input.setAttribute("disabled", "true");
+    const toggleEditable = (editable) => {
+        formInputs.forEach((input) => {
+            input.disabled = !editable;
+            input.classList.toggle("editable", editable);
         });
+        editProfileBtn.classList.toggle("hidden", editable);
+        cancelEditBtn.classList.toggle("hidden", !editable);
+        saveProfileBtn.classList.toggle("hidden", !editable);
+    };
 
-        profileImage.classList.remove("editable");
+    editProfileBtn.addEventListener("click", () => toggleEditable(true));
 
-        editProfileButton.classList.remove("hidden");
-        cancelButton.classList.add("hidden");
-        confirmInfoButton.classList.add("hidden");
+    cancelEditBtn.addEventListener("click", () => {
+        formInputs.forEach((input) => (input.value = originalValues[input.id]));
+        toggleEditable(false);
     });
 
-    confirmInfoButton.addEventListener("click", function () {
-        const formData = new FormData(userForm);
-
+    saveProfileBtn.addEventListener("click", () => {
+        const formData = new FormData(document.getElementById("userForm"));
         fetch("database/update_profile.php", {
             method: "POST",
             body: formData,
         })
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                return response.json();
-            })
+            .then((res) => res.json())
             .then((data) => {
                 if (data.success) {
-                    formControls.forEach(
-                        (input) => (originalValues[input.id] = input.value)
-                    );
-
-                    formControls.forEach((input) => {
-                        input.classList.remove("editable");
-                        input.setAttribute("disabled", "true");
+                    formInputs.forEach((input) => {
+                        originalValues[input.id] = input.value;
                     });
-
-                    profileImage.classList.remove("editable");
-
-                    editProfileButton.classList.remove("hidden");
-                    cancelButton.classList.add("hidden");
-                    confirmInfoButton.classList.add("hidden");
-
+                    toggleEditable(false);
                     alert(data.message);
                 } else {
-                    alert("Errore durante l'aggiornamento: " + data.message);
+                    alert(`Error: ${data.message}`);
                 }
             })
-            .catch((error) => {
-                console.error("Errore:", error);
-                alert("Si è verificato un errore durante l'aggiornamento del profilo.");
-            });
+            .catch(() => alert("An error occurred while updating the profile."));
     });
 
-    editPasswordButton.addEventListener("click", function () {
+    editPasswordBtn.addEventListener("click", () => {
         passwordForm.classList.remove("hidden");
-        editPasswordButton.classList.add("hidden");
-
-        const passwordInputs = passwordForm.querySelectorAll("input");
-        passwordInputs.forEach((input) => input.removeAttribute("disabled"));
+        editPasswordBtn.classList.add("hidden");
     });
 
-    cancelPasswordButton.addEventListener("click", function () {
+    cancelPasswordBtn.addEventListener("click", () => {
+        passwordForm.reset();
         passwordForm.classList.add("hidden");
-        editPasswordButton.classList.remove("hidden");
-
-        passwordUpdateForm.reset();
+        editPasswordBtn.classList.remove("hidden");
     });
 
-    confirmPasswordButton.addEventListener("click", function () {
-        const passwordInputs = passwordUpdateForm.querySelectorAll("input");
-        passwordInputs.forEach((input) => input.removeAttribute("disabled")); // Abilita gli input
+    savePasswordBtn.addEventListener("click", () => {
+        const newPassword = document.getElementById("newPassword").value;
+        const confirmPassword = document.getElementById("confirmPassword").value;
 
-        const formData = new FormData(passwordUpdateForm);
+        if (!newPassword || !confirmPassword) {
+            alert("Both password fields are required.");
+            return;
+        }
 
+        if (newPassword !== confirmPassword) {
+            alert("Passwords do not match.");
+            return;
+        }
+
+        const formData = new FormData(document.getElementById("passwordForm"));
         fetch("database/update_password.php", {
             method: "POST",
             body: formData,
         })
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                return response.json();
-            })
+            .then((res) => res.json())
             .then((data) => {
                 if (data.success) {
                     alert(data.message);
+                    passwordForm.reset();
                     passwordForm.classList.add("hidden");
-                    editPasswordButton.classList.remove("hidden");
-                    passwordUpdateForm.reset();
+                    editPasswordBtn.classList.remove("hidden");
                 } else {
-                    alert("Errore durante l'aggiornamento: " + data.message);
+                    alert(`Error: ${data.message}`);
                 }
             })
-            .catch((error) => {
-                console.error("Errore:", error);
-                alert(
-                    "Si è verificato un errore durante l'aggiornamento della password."
-                );
-            });
+            .catch(() => alert("An error occurred while updating the password."));
     });
 });

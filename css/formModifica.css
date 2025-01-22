@@ -1,121 +1,83 @@
 .container {
     display: flex;
-    align-items: flex-start;
     flex-direction: column;
-    justify-content: center;
-    height: auto; /* Cambiato da 60vh per consentire l'espansione */
+    align-items: center;
+    gap: 20px;
     margin-top: 20px;
-    gap: 20px; /* Spazio tra i contenitori */
 }
 
-.user-icon {
-    width: 20%;
-    text-align: center;
-    padding: 20px;
-    position: relative;
-}
-
-.user-icon img {
-    border-radius: 50%;
+.profile-picture img {
     width: 150px;
+    border-radius: 50%;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.user-icon img.editable {
     cursor: pointer;
 }
 
-.user-icon img.editable:hover {
+.profile-picture img:hover {
     transform: scale(1.1);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-.form-container {
+.user-info, .password-section {
     width: 60%;
-    background: #ffffff;
+    background: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.form-row {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 15px;
-}
-
-.form-control {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 14px;
-    background-color: #e9ecef;
-    pointer-events: none;
-}
-
-.form-control.editable {
-    background-color: #ffffff;
-    pointer-events: auto;
-}
-
-.form-control.half-width {
-    flex: 1;
-}
-
-.form-control.large-width {
-    flex: 2;
-}
-
-.form-button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    display: inline-block;
-}
-
-.form-button:hover {
-    background-color: #0056b3;
-}
-
-.form-button.hidden {
-    display: none;
-}
-
-.cancel-button {
-    background-color: #dc3545;
-}
-
-.cancel-button:hover {
-    background-color: #c82333;
-}
-
-.confirm-button {
-    background-color: #28a745;
-}
-
-.confirm-button:hover {
-    background-color: #218838;
 }
 
 h2 {
     margin-bottom: 20px;
 }
 
-.hidden {
-    display: none;
+.form-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15px;
 }
 
-/* Stile per il nuovo form della password */
-.password-form-container {
-    width: 60%;
-    background: #ffffff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    flex: 1;
+}
+
+input:disabled {
+    background-color: #e9ecef;
+}
+
+.buttons {
     display: flex;
-    flex-direction: column;
-    gap: 15px;
+    gap: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #fff;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+#editProfile, #saveProfile, #editPassword {
+    background-color: #007bff;
+}
+
+
+#cancelEdit, #cancelPassword {
+    background-color: #dc3545;
+}
+
+#saveProfile, #savePassword {
+    background-color: #28a745;
+}
+
+.hidden {
+    display: none;
 }

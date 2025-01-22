@@ -1,4 +1,10 @@
-/* body.css */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%; /* Assicurati che occupi tutta la larghezza */
+    height: 100%; /* Assicurati che occupi tutta l'altezza */
+    box-sizing: border-box; /* Gestione box-model coerente */
+}
 
 .baseText {
     font-family: 'Open Sans', sans-serif;
