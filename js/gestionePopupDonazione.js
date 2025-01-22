@@ -2,12 +2,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     //    ----    Variabili    ----    //
 
-    // Popup Donazione
     const openDonationPopup = document.getElementById("openDonationBtn");
     const closeDonationPopup = document.getElementById("closeDonationPopup");
     const donationPopup = document.getElementById("donationPopup");
 
-    // Aggiungi Event Listener per il Popup Donazione
+    //   ----    Popup Donazione    ----    //
     if (openDonationPopup) {
         openDonationPopup.addEventListener("click", () => {
             donationPopup.style.display = "flex"; // Mostra il popup
@@ -20,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Chiusura Popup Donazione quando si clicca all'esterno
+    //Chiusura Popup Donazione quando si clicca all'esterno
     window.addEventListener("click", (e) => {
         if (e.target === donationPopup) {
             donationPopup.style.display = "none"; // Nascondi il popup se cliccato fuori
@@ -35,13 +34,12 @@ document.addEventListener("DOMContentLoaded", () => {
             e.preventDefault();
             const donationAmount = document.getElementById("donationAmount").value;
 
-            // Verifica che l'importo sia valido
             if (donationAmount <= 0) {
                 alert("Per favore, inserisci un importo valido.");
                 return;
             }
 
-            // Esegui la logica per inviare la donazione
+            //Logica donazione
             fetch("database/donate.php", {
                 method: "POST",
                 body: JSON.stringify({ amount: donationAmount }),
@@ -52,9 +50,8 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    // Mostra un messaggio di successo
                     alert("Donazione effettuata con successo!");
-                    donationPopup.style.display = "none"; // Nascondi il popup dopo la donazione
+                    donationPopup.style.display = "none";
                 } else {
                     alert("Errore durante la donazione.");
                 }
