@@ -1,39 +1,41 @@
+<?php
+// Avvio sessione PHP prima di qualsiasi output
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
 <link rel="stylesheet" href="css/header.css">
 <header>
-    <h1>Chuck the Beaver</h1>
-    <div id="logInfo">
-        <?php
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
+    <nav class="navbar">
+        <!-- Sinistra: Titolo -->
+        <div class="navbar-left">
+            <h1 class="top-left-title">Chuck the Beaver</h1>
+        </div>
 
-        // Verifica se siamo sulla pagina formModifica.php
-        if (basename($_SERVER['PHP_SELF']) === 'formModifica.php'||basename($_SERVER['PHP_SELF']) === 'formRegistrazione.php') {
-
-            echo '<button type="button" id="backToIndexBtn" class="login-button" onclick="window.location.href=\'index.php\'">Home</button>';
-        } else {
-            // Controlla se l'utente è autenticato
-            if (isset($_SESSION['firstname'])) {
-                // Utente autenticato: includi solo profilePopup
-                echo '<div id="profilePopup" class="profilePopup">';
-                include 'profilePopup.php';
-                echo '</div>';
-                
-                // Mostra messaggio di benvenuto, pulsante profilo e logout
-                echo '<span>Benvenuto, ' . htmlspecialchars($_SESSION['firstname']) . '!</span>';
-                echo '<button type="button" id="openProfileBtn" class="profile-button">Profilo</button>';
-                echo '<button type="button" id="logoutBtn" class="login-button">Logout</button>';
+        <!-- Destra: Login e Profilo -->
+        <div class="navbar-right" id="logInfo">
+            <?php
+            $currentPage = basename($_SERVER['PHP_SELF']);
+            if ($currentPage === 'formModifica.php' || $currentPage === 'formRegistrazione.php') {
+                echo '<button type="button" id="backToIndexBtn" class="login-button" onclick="window.location.href=\'index.php\'">Home</button>';
             } else {
-                // Utente non autenticato: includi solo loginPopup
-                echo '<div id="loginPopup" class="loginPopup">';
-                include 'loginPopup.php';
-                echo '</div>';
-                
-                if (basename($_SERVER['PHP_SELF']) !== 'formRegistrazione.php') {
-                    echo '<button type="button" id="openLoginBtn" class="login-button">Accedi</button>';
+                if (isset($_SESSION['firstname'])) {
+                    echo '<div id="profilePopup" class="profilePopup">';
+                    include 'profilePopup.php';
+                    echo '</div>';
+                    echo '<span>Benvenuto, ' . htmlspecialchars($_SESSION['firstname']) . '!</span>';
+                    echo '<button type="button" id="openProfileBtn" class="profile-button">Profilo</button>';
+                    echo '<button type="button" id="logoutBtn" class="login-button">Logout</button>';
+                } else {
+                    echo '<div id="loginPopup" class="loginPopup">';
+                    include 'loginPopup.php';
+                    echo '</div>';
+                    if ($currentPage !== 'formRegistrazione.php') {
+                        echo '<button type="button" id="openLoginBtn" class="login-button">Accedi</button>';
+                    }
                 }
             }
-        }
-        ?>
-    </div>
+            ?>
+        </div>
+    </nav>
 </header>

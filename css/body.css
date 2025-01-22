@@ -1,33 +1,96 @@
-html, body {
+/* body {
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    width: 100%; /* Assicurati che occupi tutta la larghezza */
-    height: 100%; /* Assicurati che occupi tutta l'altezza */
-    box-sizing: border-box; /* Gestione box-model coerente */
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+header {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+h1 {
+    text-align: center;
+    color: #007bff;
+    margin-top: 20px;
+    font-size: 32px;
 }
 
 .baseText {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 1em;
-    color: #333;
+    width: 90%;
+    max-width: 800px;
+    margin: 20px auto;
     line-height: 1.6;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    font-weight: bold; /* Make text thicker */
-    text-align: center; /* Align text at the center */
-}
-
-
-h1 {
-    font-size: 1.5em; /* Further reduced font size */
-    margin-bottom: 15px; /* Reduced margin */
+    font-size: 18px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .centeredImage {
     display: block;
-    margin-left: auto;
-    margin-right: auto;
-    border: 5px solid #333;
-    border-radius: 10%;
+    margin: 20px auto;
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+.donation-bar {
+    text-align: center;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.donation-container {
+    width: 100%;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 10px 0;
+}
+
+.donation-progress {
+    width: 50%;
+    background-color: #4caf50;
+    height: 20px;
+    border-radius: 5px;
+    transition: width 0.5s ease;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+footer {
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    font-size: 14px;
+} */

@@ -1,96 +1,83 @@
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #ecf0f1; 
-    color: #2c3e50; 
-}
-
-#registrationForm {
+/* Stile generale per il contenitore del modulo */
+.form-container {
+    width: 100%;
     max-width: 400px;
     margin: 50px auto;
     padding: 20px;
-    background-color: #ffffff; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
     border-radius: 8px;
-    text-align: left;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
 }
 
-#registrationForm h2 {
-    font-size: 28px;
-    margin-bottom: 20px;
-    color: #34495e; 
+/* Stile per l'intestazione del modulo */
+.registration-form h2 {
     text-align: center;
+    color: #333;
+    margin-bottom: 20px;
 }
 
-/* Etichette */
-#registrationForm label {
+/* Stile per le etichette */
+.registration-form label {
     display: block;
-    margin: 10px 0 5px;
-    font-size: 14px;
+    margin-bottom: 8px;
     font-weight: bold;
-    color: #34495e;
+    color: #555;
 }
 
-#registrationForm input[type="text"],
-#registrationForm input[type="email"],
-#registrationForm input[type="password"] {
+/* Stile per i campi di input */
+.input-text,
+.input-email,
+.input-password {
     width: 100%;
-    padding: 8px;
+    padding: 10px;
     margin-bottom: 15px;
-    border: 1px solid #bdc3c7;
+    border: 1px solid #ccc;
     border-radius: 4px;
-    font-size: 14px;
-    transition: border-color 0.3s ease;
-}
-
-#registrationForm input[type="text"]:hover,
-#registrationForm input[type="email"]:hover,
-#registrationForm input[type="password"]:hover {
-    border-color: #3498db;
-}
-
-#registrationForm input[type="text"]:focus,
-#registrationForm input[type="email"]:focus,
-#registrationForm input[type="password"]:focus {
-    outline: none;
-    border-color: #2980b9;
-    box-shadow: 0 0 5px rgba(41, 128, 185, 0.5);
-}
-
-#registrationForm input[type="submit"] {
-    background-color: #3498db;
-    color: #ffffff;
     font-size: 16px;
-    font-weight: bold;
-    padding: 10px 15px;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+/* Cambiamento del bordo al focus */
+.input-text:focus,
+.input-email:focus,
+.input-password:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Stile per il pulsante di invio */
+.submit-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
     border: none;
     border-radius: 4px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
-    width: 100%;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s;
 }
 
-#registrationForm input[type="submit"]:hover {
-    background-color: #2980b9;
+/* Cambiamento colore del pulsante al passaggio del mouse */
+.submit-button:hover {
+    background-color: #0056b3;
 }
 
-@media (max-width: 600px) {
-    #registrationForm {
-        margin: 20px;
-        padding: 15px;
-    }
-    #registrationForm h2 {
-        font-size: 24px;
-    }
-}
-
-#registrationForm a {
-    color: #3498db;
+/* Stile per il link alla home */
+.form-container a {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    color: #007bff;
     text-decoration: none;
+    transition: color 0.3s;
 }
 
-#registrationForm a:hover {
-    text-decoration: underline;
+/* Cambiamento colore del link al passaggio del mouse */
+.form-container a:hover {
+    color: #0056b3;
 }
-
-

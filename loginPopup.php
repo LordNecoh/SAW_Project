@@ -9,6 +9,7 @@
         <label for="pass">Password</label>
         <input type="password" id="pass" name="pass">
         <input type="submit" name="submit" value="login">
+        <!-- <div class="error" id="erroreLogin"></div> -->
     </form>
     <span> Non hai un account? <a href="formRegistrazione.php">Registrati!</a></span>
 </div>

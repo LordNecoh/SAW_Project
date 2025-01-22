@@ -1,18 +1,22 @@
 <?php
-//Constants for the connection, need to be changed when the code is ported
-define("DB_SERVER", "localhost");
-define("DB_USER", "root");
-define("DB_NAME", "saw");
-define("DB_PASSWORD", "");
+$configFile = __DIR__ . '/config.php';
 
+if (!file_exists($configFile)) {
+    die("Errore: il file di configurazione non è presente.");
+}
 
+require_once $configFile;
 
 try {
-    //Creating connection with PDO
-    $conn = new PDO("mysql:host=" . DB_SERVER . ";dbname=" . DB_NAME . ";charset=utf8", DB_USER, DB_PASSWORD);
-    // Abilita la gestione degli errori PDO
+    $dsn = "mysql:host=" . DB_SERVER . ";dbname=" . DB_NAME . ";charset=utf8";
+    $conn = new PDO($dsn, DB_USER, DB_PASSWORD);
+
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC); 
+
 } catch (PDOException $e) {
-    die("Errore di connessione: " . $e->getMessage());
+    error_log("Errore di connessione al database: " . $e->getMessage());
+
+    die("Impossibile connettersi al database. Riprova più tardi.");
 }
 ?>

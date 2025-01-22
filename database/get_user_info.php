@@ -24,7 +24,7 @@ try {
         echo "No user found";
         $first = $last = $email = "";
     } else {
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        $row = $stmt->fetch();
         $first = htmlspecialchars($row["firstname"], ENT_QUOTES, 'UTF-8');
         $last = htmlspecialchars($row["lastname"], ENT_QUOTES, 'UTF-8');
         $email = htmlspecialchars($row["email"], ENT_QUOTES, 'UTF-8');

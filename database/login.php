@@ -1,6 +1,7 @@
 <?php
 require 'connessioneDB.php'; // Collegamento al database
 
+// Verifica se il metodo della richiesta è POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Controllo che tutti i campi siano compilati
@@ -9,34 +10,48 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 
-    // Prendi i valori dai campi
-    $email = $_POST['email'];
-    $password = $_POST['pass'];
+    // Sanifica l'email
+    $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+
+    // Controllo se l'email è valida
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo "<div class='error'>L'email non è valida.</div>";
+        exit();
+    }
+
+    $password = $_POST['pass'];  // La password non viene modificata, per sicurezza non è necessario sanitizzare
 
     try {
         // Controllo nel database i dati dell'utente
-        $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
-        $stmt->execute([$email]);
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        $stmt = $conn->prepare("SELECT * FROM users WHERE email = :email");
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->execute();
+        
+        $user = $stmt->fetch();
 
+        // Verifica la correttezza della password
         if (!$user || !password_verify($password, $user['password'])) {
-            echo "<div class='failure'>Email o password non validi.</div>";
-            exit();    
+            echo "<div class='error'>Email o password non corretti.</div>";
+            exit();
         } 
         
         // Gestione della sessione
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
+        
+        // Salvataggio delle informazioni nell sessione
         $_SESSION['email'] = $user['email'];
         $_SESSION['firstname'] = $user['firstname'];
-        
+
         // Reindirizza alla home
         header('Location: ../index.php');
         exit();
         
     } catch (PDOException $e) {
-        echo "Errore: " . $e->getMessage();
+        // Log dell'errore nel caso di problemi con il database
+        error_log("Errore di connessione o query: " . $e->getMessage());
+        echo "<div class='error'>Si è verificato un errore. Riprovare più tardi.</div>";
         exit();
     }
 }

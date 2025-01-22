@@ -1,11 +1,13 @@
 <?php
 
-require 'connessioneDB.php'; 
+require 'connessioneDB.php'; // Collegamento al database
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Controllo che tutti i campi siano compilati
     if (empty($_POST["firstname"]) || empty($_POST["lastname"]) || 
         empty($_POST["email"]) || empty($_POST["pass"]) || empty($_POST["confirm"])) {
-        echo "<div class='error'>Uno o più campi sono vuoti. Compilare tutti i campi.</div>";
+        $_SESSION['error_message'] = "Uno o più campi sono vuoti. Compilare tutti i campi.";
+        header(header: "Location: ../formRegistrazione.php");
         exit();
     }
 
@@ -17,19 +19,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Validazione email
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo "L'email non è valida.";
+        $_SESSION['error_message'] = "L'email non è valida.";
+        header("Location: registration.php");
         exit();
     }
 
-    // Validazione nome e cognome
+    // Validazione nome e cognome (permette solo lettere e spazi)
     if (!preg_match("/^[a-zA-Z\s]+$/", $firstname) || !preg_match("/^[a-zA-Z\s]+$/", $lastname)) {
-        echo "Nome e cognome possono contenere solo lettere e spazi.";
+        $_SESSION['error_message'] = "Nome e cognome possono contenere solo lettere e spazi.";
+        header(header: "Location: ../formRegistrazione.php");
         exit();
     }
 
-    // Verifica password
+    // Verifica che la password e la conferma siano uguali
     if ($password !== $confirm) {
-        echo "Le password non corrispondono.";
+        $_SESSION['error_message'] = "Le password non corrispondono.";
+        header(header: "Location: ../formRegistrazione.php");
+        exit();
+    }
+
+    // Validazione password (minimo 8 caratteri)
+    if (strlen($password) < 8) {
+        $_SESSION['error_message'] = "La password deve essere lunga almeno 8 caratteri.";
+        header(header: "Location: ../formRegistrazione.php");
         exit();
     }
 
@@ -40,20 +52,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Inserimento nel database
         $stmt = $conn->prepare("INSERT INTO users (email, firstname, lastname, password) VALUES (?, ?, ?, ?)");
         $stmt->execute([$email, $firstname, $lastname, $hashedPassword]);
-        
-        // Reindirizzamento in caso di successo
+
+        // Gestione della sessione
         session_start();
         $_SESSION["email"] = $email;
         $_SESSION['firstname'] = $firstname;
+
+        // Reindirizzamento alla home dopo il successo
         header('Location: ../index.php');
         exit();
+
     } catch (PDOException $e) {
-        if ($e->errorInfo[1] == 1062) { // Email già registrata
-            echo "Errore: l'email è già registrata.";
+        // Se l'errore è per un'email già registrata, gestiscilo separatamente
+        if ($e->errorInfo[1] == 1062) {
+            $_SESSION['error_message'] = "Errore: l'email è già registrata.";
         } else {
+            // Log dell'errore per eventuali altri problemi del database
             error_log("Errore del database: " . $e->getMessage());
-            echo "Si è verificato un errore. Riprovare più tardi.";
+            $_SESSION['error_message'] = "Si è verificato un errore. Riprovare più tardi.";
         }
+        header(header: "Location: ../formRegistrazione.php");
+        exit();
     }
 }
 ?>

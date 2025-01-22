@@ -24,7 +24,7 @@ try {
     if ($stmt->rowCount() === 0) {
         echo "No user found";
     } else {
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        $row = $stmt->fetch();
         $first = $row["firstname"];
         $last = $row["lastname"];
         $email = $row["email"];

@@ -1,14 +1,23 @@
 document.addEventListener("DOMContentLoaded", () => {
+
+    //    ----    Variabili    ----    //
+
+    //Login
     const openLoginPopup = document.getElementById("openLoginBtn");
     const closeLoginPopup = document.getElementById("closeLoginPopup");
     const loginPopup = document.getElementById("loginPopup");
 
+    //Logout
     const logoutBtn = document.getElementById("logoutBtn");
 
+    //Profile
     const openProfileBtn = document.getElementById("openProfileBtn"); 
     const closeProfilePopup = document.getElementById("closeProfilePopup");
     const profilePopup = document.getElementById("profilePopup");
+    const editProfile = document.getElementById('editProfileButton');
 
+
+    //    ----    Login Popup    ----    //
     if (openLoginPopup) {
         openLoginPopup.addEventListener("click", () => {
             loginPopup.style.display = "flex";
@@ -27,6 +36,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    //    ----    Logout    ----    //
+
     if (logoutBtn) {
         logoutBtn.addEventListener("click", (e) => {
             e.preventDefault();
@@ -41,6 +52,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
         });
     }
+
+
+    //    ----    Show Profile Popup    ----    //
 
     if (openProfileBtn) {
         openProfileBtn.addEventListener("click", () => {
@@ -61,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     if(document.getElementById('editProfileButton')){
-        document.getElementById('editProfileButton').addEventListener('click', function() {
+        editProfile.addEventListener('click', function() {
             window.location.href = 'formModifica.php';
         });
     }

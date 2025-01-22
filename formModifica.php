@@ -39,23 +39,23 @@
                     <button id="cancelEdit" type="button" class="hidden">Cancel</button>
                     <button id="saveProfile" type="button" class="hidden">Save</button>
                 </div>
-</form>
+            </form>
         </div>
 
         <div class="password-section">
-            <button id="editPassword">Change Password</button>
-            <form id="passwordForm" class="hidden">
-                <div class="form-group">
-                    <input type="password" id="newPassword" name="newPassword" placeholder="New Password" required>
-                    <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required>
+                        <button id="editPassword">Change Password</button>
+                        <form id="passwordForm" class="hidden">
+                            <div class="form-group">
+                                <input type="password" id="newPassword" name="newPassword" placeholder="New Password" required>
+                                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required>
+                            </div>
+                            <div class="buttons">
+                                <button id="cancelPassword" type="button">Cancel</button>
+                                <button id="savePassword" type="button">Save</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <div class="buttons">
-                    <button id="cancelPassword" type="button">Cancel</button>
-                    <button id="savePassword" type="button">Save</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</body>
+            </body>
 
 </html>
