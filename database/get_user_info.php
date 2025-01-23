@@ -7,7 +7,7 @@ if (!isset($_SESSION["email"])) {
     header("Location: ../index.php");
     exit();
 }
-include("database/connessioneDB.php");
+include("connessioneDB.php");
 
 $email = $_SESSION["email"];
 

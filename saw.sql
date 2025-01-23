@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Dic 17, 2024 alle 16:53
+-- Creato il: Gen 23, 2025 alle 00:27
 -- Versione del server: 10.4.32-MariaDB
 -- Versione PHP: 8.2.12
 
@@ -24,6 +24,21 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Struttura della tabella `donations`
+--
+
+CREATE TABLE `donations` (
+  `id` int(11) NOT NULL,
+  `email` varchar(254) DEFAULT NULL,
+  `amount` decimal(10,2) NOT NULL,
+  `public` tinyint(1) NOT NULL DEFAULT 0,
+  `donation_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `deleted_user` varchar(254) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Struttura della tabella `users`
 --
 
@@ -35,13 +50,41 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dump dei dati per la tabella `users`
+-- Indici per le tabelle scaricate
 --
 
-INSERT INTO `users` (`email`, `firstname`, `lastname`, `password`) VALUES
-('federico@a', 'Federico', 'Cerra', '$2y$10$ole2gz0jCfmHQ/g/zjL84u0o/cLdUF7ciwK7JHE.3EX5CEFTRlbFi'),
-('federico@aa', 'Federico', 'Cerra', '$2y$10$CD3pB1FtZYvoN1O17sBfJekJTpYwk99YNRZ/jMCNVOG5r3hLJ/UbK'),
-('f@ce.it', 'fede', 'Cerra', '$2y$10$Y/.Cvr/h6DXz/U83eFvNLuXNSd0Fd.K7pBWNXDTp1FbYgwpnorDe.'),
+--
+-- Indici per le tabelle `donations`
+--
+ALTER TABLE `donations`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `email` (`email`);
+
+--
+-- Indici per le tabelle `users`
+--
+ALTER TABLE `users`
+  ADD KEY `email` (`email`);
+
+--
+-- AUTO_INCREMENT per le tabelle scaricate
+--
+
+--
+-- AUTO_INCREMENT per la tabella `donations`
+--
+ALTER TABLE `donations`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Limiti per le tabelle scaricate
+--
+
+--
+-- Limiti per la tabella `donations`
+--
+ALTER TABLE `donations`
+  ADD CONSTRAINT `donations_ibfk_1` FOREIGN KEY (`email`) REFERENCES `users` (`email`) ON DELETE SET NULL;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
