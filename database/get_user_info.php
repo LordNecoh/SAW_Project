@@ -30,7 +30,6 @@ try {
         $email = htmlspecialchars($row["email"], ENT_QUOTES, 'UTF-8');
     }
 } catch (PDOException $e) {
-    // Log dell'errore
     error_log("Database error: " . $e->getMessage());
     exit("Something went wrong, visit us later");
 }

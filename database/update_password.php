@@ -26,13 +26,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         exit();
     }
 
-    if (strlen($newPassword) < 8 || !preg_match('/[A-Za-z]/', $newPassword) || !preg_match('/[0-9]/', $newPassword)) {
+    if (strlen($newPassword) < 8) {
         echo json_encode([
             "success" => false,
-            "message" => "La password deve contenere almeno 8 caratteri, includere lettere e numeri."
+            "message" => "La password deve contenere almeno 8 caratteri."
         ]);
         exit();
     }
+    
 
     try {
         $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);

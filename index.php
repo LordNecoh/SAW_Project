@@ -17,7 +17,8 @@
 
 </head>
 <body>
-    <?php require "header.php"?>
+    <?php require "database/connessioneDB.php"?>
+    <?php include "header.php"?>
     <?php include('donazionePopup.php'); ?>
 
     <h1> Welcome to Chuck the Beaver's very unofficial website! </h1>
@@ -59,7 +60,6 @@
 <div id="donors-section" class="content-container">
     <h2>Our Donors</h2>
     <ul id="donor-list">
-        <!-- L'elenco dei donatori verrà inserito qui dinamicamente -->
     </ul>
 </div>
     

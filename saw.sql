@@ -64,6 +64,7 @@ ALTER TABLE `donations`
 -- Indici per le tabelle `users`
 --
 ALTER TABLE `users`
+  ADD PRIMARY KEY (`email`),
   ADD KEY `email` (`email`);
 
 --

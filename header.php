@@ -1,5 +1,4 @@
 <?php
-// Avvio sessione PHP prima di qualsiasi output
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }

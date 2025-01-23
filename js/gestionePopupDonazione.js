@@ -1,11 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const openDonationPopup = document.getElementById("openDonationBtn"); // Bottone per aprire il popup
-    const closeDonationPopup = document.getElementById("closeDonationPopup"); // Bottone per chiudere il popup
-    const donationPopup = document.getElementById("donationPopup"); // Contenitore del popup
-    const donationForm = document.getElementById("donationForm"); // Form della donazione
+    const openDonationPopup = document.getElementById("openDonationBtn");
+    const closeDonationPopup = document.getElementById("closeDonationPopup"); 
+    const donationPopup = document.getElementById("donationPopup"); 
+    const donationForm = document.getElementById("donationForm"); 
     const donationAmountInput = document.getElementById("donationAmount"); 
-    const anonymousToggle = document.getElementById("anonymousToggle"); // Check per donazione anonima
-    const presetButtons = document.querySelectorAll(".donation-popup-preset"); // Pulsanti con importi predefiniti
+    const anonymousToggle = document.getElementById("anonymousToggle"); 
+    const presetButtons = document.querySelectorAll(".donation-popup-preset"); 
 
     if (openDonationPopup) {
         openDonationPopup.addEventListener("click", () => {
