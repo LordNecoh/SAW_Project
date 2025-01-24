@@ -1,7 +1,16 @@
-function fetchDonations(donationAmountElement, donorListContainer) {
+function fetchDonations(donationAmountElement) {
+    
+    //   ---    Variaili  ---    //
+
+    //Obbiettivo
     const goal = 1000; // Obiettivo totale delle donazioni (€)
     const donationProgress = document.getElementById("donationProgress");
     const donationGoalElement = document.getElementById("donation-goal");
+
+    //Donatori
+    const donorTable = document.getElementById("donor-table");
+    const donorsSection = document.getElementById("donors-section");
+    const anonParagraph = document.getElementById("anonDonations");
 
     // Imposta l'obiettivo nel DOM
     donationGoalElement.textContent = `€${goal}`;
@@ -18,12 +27,48 @@ function fetchDonations(donationAmountElement, donorListContainer) {
                 donationProgress.style.width = `${percentage}%`;
 
                 // Aggiorna la lista dei donatori
-                donorListContainer.innerHTML = "";
+                donorTable.innerHTML = "";
+
+                let publicDonations = 0;
+
+
+                //Aggiunta Donazioni Pubbliche
                 data.donors.forEach((donor) => {
-                    const donorElement = document.createElement("li");
-                    donorElement.textContent = `${donor.username} - €${donor.amount}`;
-                    donorListContainer.appendChild(donorElement);
+
+                    //Calcolo donazioni non anonime
+                    publicDonations += parseFloat(donor.amount);
+
+                    //Aggiunta riga
+                    const row = document.createElement("tr");
+
+                    const usernameCell = document.createElement("td");
+                    usernameCell.textContent = donor.username;
+
+                    const amountCell = document.createElement("td");
+                    amountCell.textContent = `€${donor.amount}`;
+
+                    row.appendChild(usernameCell);
+                    row.appendChild(amountCell);
+
+                    donorTable.appendChild(row);
                 });
+
+                //Aggiunta Donazioni Anonime
+                anonAmount = data.total - publicDonations;
+
+                if (anonAmount > 0) {
+                    anonParagraph.innerHTML = 
+                    `Also thanks to all the anonymous donors who helped us collect 
+                    <span class="amount">€${anonAmount}</span>!`;
+                }
+
+
+                //Vecchio sistema: elenco puntato
+                // data.donors.forEach((donor) => {
+                //     const donorElement = document.createElement("li");
+                //     donorElement.textContent = `${donor.username} - €${donor.amount}`;
+                //     donorTable.appendChild(donorElement);
+                // });
             } else {
                 console.error("Errore nel recuperare i dati delle donazioni:", data.error);
             }
@@ -36,7 +81,6 @@ function fetchDonations(donationAmountElement, donorListContainer) {
 // Inizializza dopo il caricamento del DOM
 document.addEventListener("DOMContentLoaded", () => {
     const donationAmountElement = document.getElementById("donation-amount");
-    const donorListContainer = document.getElementById("donor-list");
 
-    fetchDonations(donationAmountElement, donorListContainer);
+    fetchDonations(donationAmountElement);
 });

@@ -2,15 +2,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     //    ----    Variabili    ----    //
 
+    //Popup
     const openDonationPopup = document.getElementById("openDonationBtn");
     const closeDonationPopup = document.getElementById("closeDonationPopup"); 
     const donationPopup = document.getElementById("donationPopup"); 
+
+    //Form
     const donationForm = document.getElementById("donationForm"); 
     const donationAmountInput = document.getElementById("donationAmount"); 
     const anonymousToggle = document.getElementById("anonymousToggle"); 
     const presetButtons = document.querySelectorAll(".donation-popup-preset"); 
 
-    //   ----    Popup Donazione    ----    //
+    //   ----    Apertura e chiusura Popup Donazione    ----    //
     if (openDonationPopup) {
         openDonationPopup.addEventListener("click", () => {
             donationPopup.style.display = "flex"; 
@@ -40,6 +43,8 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    //    ----    Invio Donazione    ----    //
+
     if (donationForm) {
         donationForm.addEventListener("submit", (e) => {
             e.preventDefault(); 
@@ -47,7 +52,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const donationAmount = parseFloat(donationAmountInput.value);
             const anonymous = anonymousToggle.checked;
 
-            if (donationAmount <= 0) {
             if (!donationAmount || donationAmount <= 0) {
                 alert("Per favore, inserisci un importo valido.");
                 return;
@@ -63,37 +67,24 @@ document.addEventListener("DOMContentLoaded", () => {
                     "Content-Type": "application/json",
                 },
             })
-            .then(response => response.json())
-            .then(data => {
+            .then((response) => response.json())
+            .then((data) => {
                 if (data.success) {
-                    alert("Donazione effettuata con successo!");
-                    donationPopup.style.display = "none";
+                    alert("Donazione registrata con successo!");
+                    donationForm.reset(); 
+                    donationPopup.style.display = "none"; 
+                    
+                    const donationAmountElement = document.getElementById("donation-amount");
+
+                    fetchDonations(donationAmountElement);
                 } else {
-                    alert("Errore durante la donazione.");
+                    alert("Errore: " + data.error);
                 }
             })
             .catch((error) => {
                 console.error("Errore durante la donazione:", error);
+                alert("Si è verificato un errore. Riprova più tardi.");
             });
-                .then((response) => response.json())
-                .then((data) => {
-                    if (data.success) {
-                        alert("Donazione registrata con successo!");
-                        donationForm.reset(); 
-                        donationPopup.style.display = "none"; 
-                        
-                        const donationAmountElement = document.getElementById("donation-amount");
-                        const donorListContainer = document.getElementById("donor-list");
-
-                        fetchDonations(donationAmountElement, donorListContainer);
-                    } else {
-                        alert("Errore: " + data.error);
-                    }
-                })
-                .catch((error) => {
-                    console.error("Errore durante la donazione:", error);
-                    alert("Si è verificato un errore. Riprova più tardi.");
-                });
         });
     }
 });

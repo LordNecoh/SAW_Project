@@ -6,11 +6,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chuck the Beaver</title>
+
+    <!--    Scripts     -->
     <script src="js/caricaDonazioni.js"></script>
     <script src="js/gestionePopup.js"></script>
     <script src="js/gestionePopupDonazione.js"></script>
 
-    <link rel="stylesheet" href="css/body.css">
+    <!--    Stylesheets     -->
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/donazionePopup.css">
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
@@ -20,6 +22,8 @@
     <?php require "database/connessioneDB.php"?>
     <?php include "header.php"?>
     <?php include "donazionePopup.php" ?>
+
+    <!--    Introduzione    -->
 
     <h1> Welcome to Chuck the Beaver's very unofficial website! </h1>
 
@@ -46,6 +50,8 @@
 
     </div>
 
+    <!--    Donazioni    -->
+
     <div class="donation-bar" id="support">
         <h2>Support Chuck the Beaver!</h2>
         <div class="donation-container">
@@ -57,10 +63,24 @@
         <button id="openDonationBtn">Donate Now</button>
     </div>
 
-<div id="donors-section" class="content-container">
+    <!--    Top Donors   -->
+
+<div id="donors-section" class="top-donors-table">
     <h2>Our Donors</h2>
-    <ul id="donor-list">
-    </ul>
+    <hr>
+    <table id="donor-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Amount (€)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Donors will be loaded here -->
+        </tbody>
+    </table>
+    <hr>
+    <p id="anonDonations"></p>
 </div>
     
     <footer>
