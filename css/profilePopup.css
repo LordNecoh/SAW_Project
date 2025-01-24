@@ -85,7 +85,7 @@
     font-weight: bold;
     color: #2c3e50;
     margin-right: 10px;
-    min-width: 80px; /* Per allineare le etichette */
+    min-width: 80px; 
 }
 
 .profilePopup-content p span {
@@ -102,10 +102,18 @@
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    width: 100%; /* Puoi rimuoverlo se non vuoi che occupi tutta la larghezza */
+    width: 100%; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .edit-button:hover {
     background-color: #219150;
+}
+
+.profile-image {
+    width: 150px;        
+    height: 150px;      
+    border-radius: 50%;
+    object-fit: cover;    
+    margin-bottom: 20px;  
 }

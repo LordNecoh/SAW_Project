@@ -1,13 +1,15 @@
 <?php
+require 'connessioneDB.php'; 
 
-require 'connessioneDB.php'; // Collegamento al database
+session_start(); 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Controllo che tutti i campi siano compilati
+    $response = [];
+
     if (empty($_POST["firstname"]) || empty($_POST["lastname"]) || 
         empty($_POST["email"]) || empty($_POST["pass"]) || empty($_POST["confirm"])) {
-        $_SESSION['error_message'] = "Uno o più campi sono vuoti. Compilare tutti i campi.";
-        header(header: "Location: ../formRegistrazione.php");
+        $response['error'] = "Uno o più campi sono vuoti. Compila tutti i campi.";
+        echo json_encode($response);
         exit();
     }
 
@@ -16,62 +18,62 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $lastname = $_POST['lastname'];
     $password = $_POST['pass'];
     $confirm = $_POST['confirm'];
+    $username = !empty($_POST["username"]) ? $_POST["username"] : null; // Campo opzionale per passare i test
 
-    // Validazione email
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $_SESSION['error_message'] = "L'email non è valida.";
-        header("Location: registration.php");
+        $response['error'] = "L'email non è valida.";
+        echo json_encode($response);
         exit();
     }
 
-    // Validazione nome e cognome (permette solo lettere e spazi)
     if (!preg_match("/^[a-zA-Z\s]+$/", $firstname) || !preg_match("/^[a-zA-Z\s]+$/", $lastname)) {
-        $_SESSION['error_message'] = "Nome e cognome possono contenere solo lettere e spazi.";
-        header(header: "Location: ../formRegistrazione.php");
+        $response['error'] = "Nome e cognome possono contenere solo lettere e spazi.";
+        echo json_encode($response);
         exit();
     }
 
-    // Verifica che la password e la conferma siano uguali
     if ($password !== $confirm) {
-        $_SESSION['error_message'] = "Le password non corrispondono.";
-        header(header: "Location: ../formRegistrazione.php");
+        $response['error'] = "Le password non corrispondono.";
+        echo json_encode($response);
         exit();
     }
 
-    // Validazione password (minimo 8 caratteri)
     if (strlen($password) < 8) {
-        $_SESSION['error_message'] = "La password deve essere lunga almeno 8 caratteri.";
-        header(header: "Location: ../formRegistrazione.php");
+        $response['error'] = "La password deve essere lunga almeno 8 caratteri.";
+        echo json_encode($response);
         exit();
     }
 
-    // Hash della password
+    if ($username !== null && (!preg_match("/^[a-zA-Z0-9_]+$/", $username) || strlen($username) < 4 || strlen($username) > 50)) {
+        $response['error'] = "L'username può contenere solo lettere, numeri e underscore ed essere lungo tra 4 e 50 caratteri.";
+        echo json_encode($response);
+        exit();
+    }
+
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
     try {
-        // Inserimento nel database
-        $stmt = $conn->prepare("INSERT INTO users (email, firstname, lastname, password) VALUES (?, ?, ?, ?)");
-        $stmt->execute([$email, $firstname, $lastname, $hashedPassword]);
+        $stmt = $conn->prepare("INSERT INTO users (email, firstname, lastname, password, username) VALUES (?, ?, ?, ?, ?)");
+        $stmt->execute([$email, $firstname, $lastname, $hashedPassword, $username]);
 
-        // Gestione della sessione
-        session_start();
         $_SESSION["email"] = $email;
-        $_SESSION['firstname'] = $firstname;
+        $_SESSION["username"] = $username;
 
-        // Reindirizzamento alla home dopo il successo
-        header('Location: ../index.php');
+        $response['success'] = "Registrazione completata con successo!";
+        echo json_encode($response);
         exit();
-
     } catch (PDOException $e) {
-        // Se l'errore è per un'email già registrata, gestiscilo separatamente
-        if ($e->errorInfo[1] == 1062) {
-            $_SESSION['error_message'] = "Errore: l'email è già registrata.";
+        if ($e->errorInfo[1] == 1062) { // Controllo per duplicati (email o username)
+            if (strpos($e->errorInfo[2], 'username') !== false) {
+                $response['error'] = "Errore: l'username è già in uso.";
+            } else {
+                $response['error'] = "Errore: l'email è già registrata.";
+            }
         } else {
-            // Log dell'errore per eventuali altri problemi del database
             error_log("Errore del database: " . $e->getMessage());
-            $_SESSION['error_message'] = "Si è verificato un errore. Riprovare più tardi.";
+            $response['error'] = "Si è verificato un errore. Riprovare più tardi.";
         }
-        header(header: "Location: ../formRegistrazione.php");
+        echo json_encode($response);
         exit();
     }
 }

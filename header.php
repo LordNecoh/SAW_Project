@@ -1,5 +1,4 @@
 <?php
-// Avvio sessione PHP prima di qualsiasi output
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -19,11 +18,11 @@ if (session_status() === PHP_SESSION_NONE) {
             if ($currentPage === 'formModifica.php' || $currentPage === 'formRegistrazione.php') {
                 echo '<button type="button" id="backToIndexBtn" class="login-button" onclick="window.location.href=\'index.php\'">Home</button>';
             } else {
-                if (isset($_SESSION['firstname'])) {
+                if (isset($_SESSION['username'])) {
                     echo '<div id="profilePopup" class="profilePopup">';
                     include 'profilePopup.php';
                     echo '</div>';
-                    echo '<span>Benvenuto, ' . htmlspecialchars($_SESSION['firstname']) . '!</span>';
+                    echo '<span>Benvenuto, ' . htmlspecialchars($_SESSION['username']) . '!</span>';
                     echo '<button type="button" id="openProfileBtn" class="profile-button">Profilo</button>';
                     echo '<button type="button" id="logoutBtn" class="login-button">Logout</button>';
                 } else {

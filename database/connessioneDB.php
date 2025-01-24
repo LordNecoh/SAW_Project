@@ -16,7 +16,6 @@ try {
 
 } catch (PDOException $e) {
     error_log("Errore di connessione al database: " . $e->getMessage());
-
     die("Impossibile connettersi al database. Riprova più tardi.");
 }
 ?>

@@ -3,7 +3,8 @@
 
     <?php
     echo "<div class='profilePopup-content'>";
-        require 'database/show_profile.php';
+    echo   "<img src='images/profilePicture.png' alt='Profilo' class='profile-image'>";
+    require 'database/show_profile.php';
     echo "</div>";
 
     ?>

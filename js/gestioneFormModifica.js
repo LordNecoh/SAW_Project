@@ -13,7 +13,6 @@ document.addEventListener("DOMContentLoaded", () => {
         Array.from(formInputs).map((input) => [input.id, input.value])
     );
 
-    // Disabilita i campi del form all'avvio
     formInputs.forEach((input) => input.setAttribute("disabled", "true"));
 
     const toggleEditable = (editable) => {

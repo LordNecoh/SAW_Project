@@ -1,13 +1,32 @@
-<!-- donazionePopup.php -->
-<div id="donationPopup" class="popup-container">
-    <div class="popup-content">
-        <button id="closeDonationPopup" class="close-btn">X</button>
-        <h2>Fai una Donazione</h2>
-        <hr>
-        <form id="donationForm" action="javascript:void(0);">
-            <label for="donationAmount">Importo della Donazione (€):</label>
-            <input type="number" id="donationAmount" name="donationAmount" min="1" required>
-            <button type="submit" id="donateBtn" class="donate-btn">Dona Ora</button>
+<div id="donationPopup" class="donation-popup hidden">
+    <div class="donation-popup-content">
+        <span id="closeDonationPopup" class="donation-popup-close-btn">×</span>
+        <h2>Support Chuck the Beaver!</h2>
+        <form id="donationForm">
+            <label for="donationAmount">Donation Amount (€):</label>
+            <div class="donation-popup-buttons">
+                <button type="button" class="donation-popup-preset" data-value="1">€1</button>
+                <button type="button" class="donation-popup-preset" data-value="2">€2</button>
+                <button type="button" class="donation-popup-preset" data-value="5">€5</button>
+                <button type="button" class="donation-popup-preset" data-value="10">€10</button>
+                <button type="button" class="donation-popup-preset" data-value="20">€20</button>
+            </div>
+            
+            <input 
+                type="number" 
+                id="donationAmount" 
+                name="donationAmount" 
+ 
+                placeholder="Enter custom amount" 
+                required
+            >
+
+            <div class="anonymous-toggle">
+                <label for="anonymousToggle">Donate Anonymously:</label>
+                <input type="checkbox" id="anonymousToggle" name="anonymousToggle">
+            </div>
+            
+            <button type="submit" class="donation-popup-submit">Donate</button>
         </form>
     </div>
 </div>

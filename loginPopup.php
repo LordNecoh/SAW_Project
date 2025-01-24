@@ -3,13 +3,13 @@
 <div class="loginPopup-content">
     <span class="close-button" id="closeLoginPopup">&times;</span>
     <form action="database/login.php" method="POST">
-        <h2> Login Form</h2>
-        <label for="email">Email</label> 
-        <input type="email" id="email" name="email">
+        <h2>Login Form</h2>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
         <label for="pass">Password</label>
-        <input type="password" id="pass" name="pass">
-        <input type="submit" name="submit" value="login">
-        <!-- <div class="error" id="erroreLogin"></div> -->
+        <input type="password" id="pass" name="pass" required>
+        <div id="erroreLogin" class="error-message"></div>
+        <input type="submit" name="submit" value="Login">
+        <span>Non hai un account? <a href="formRegistrazione.php">Registrati!</a></span>
     </form>
-    <span> Non hai un account? <a href="formRegistrazione.php">Registrati!</a></span>
 </div>
