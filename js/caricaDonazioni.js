@@ -36,7 +36,7 @@ function fetchDonations(donationAmountElement) {
                 data.donors.forEach((donor) => {
 
                     //Calcolo donazioni non anonime
-                    publicDonations += parseFloat(donor.amount);
+                    publicDonations += parseFloat(donor.total_donated);
 
                     //Aggiunta riga
                     const row = document.createElement("tr");
@@ -45,7 +45,7 @@ function fetchDonations(donationAmountElement) {
                     usernameCell.textContent = donor.username;
 
                     const amountCell = document.createElement("td");
-                    amountCell.textContent = `€${donor.amount}`;
+                    amountCell.textContent = `€${donor.total_donated}`;
 
                     row.appendChild(usernameCell);
                     row.appendChild(amountCell);

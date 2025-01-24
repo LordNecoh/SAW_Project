@@ -39,6 +39,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $_SESSION['email'] = $user['email'];
         $_SESSION['username'] = $user['username'];
+        $isAdmin = $user['admin'];
+        if($isAdmin == 1){
+            $_SESSION['admin'] = $user['admin'];
+        }
+
 
         $response['success'] = true;
         echo json_encode($response);

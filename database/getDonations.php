@@ -8,10 +8,11 @@ try {
     $totalResult = $totalQuery->fetch();
     $totalDonations = $totalResult['total'] ?? 0;
 
-    $donorsQuery = $conn->query("SELECT u.username, d.email, d.amount 
+    $donorsQuery = $conn->query("SELECT u.username, d.email, SUM(d.amount) AS total_donated
                                 FROM donations d
                                 INNER JOIN users u ON u.email = d.email
-                                WHERE d.public = 1");    
+                                WHERE d.public = 1
+                                GROUP BY u.username, d.email");    
     
     $donors = $donorsQuery->fetchAll();
 

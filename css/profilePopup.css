@@ -104,6 +104,7 @@
     font-size: 16px;
     width: 100%; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: block;
 }
 
 .edit-button:hover {
@@ -116,4 +117,36 @@
     border-radius: 50%;
     object-fit: cover;    
     margin-bottom: 20px;  
+}
+
+
+.profile-image-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.admin-badge {
+    position: absolute;
+    width: 40px; /* Regola la dimensione a piacere */
+    height: 40px;
+}
+
+.admin-link {
+    margin-top: 40px;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 89%; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: block;
+    text-align: center;
+    text-decoration: none;
+}
+
+.admin-link:hover {
+    background-color: #2980b9;
 }

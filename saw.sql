@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Gen 23, 2025 alle 00:27
+-- Creato il: Gen 24, 2025 alle 19:49
 -- Versione del server: 10.4.32-MariaDB
 -- Versione PHP: 8.2.12
 
@@ -46,10 +46,18 @@ CREATE TABLE `users` (
   `email` varchar(254) NOT NULL,
   `firstname` varchar(50) NOT NULL,
   `lastname` varchar(50) NOT NULL,
-  `username` VARCHAR(50) NULL UNIQUE,
-  `admin` TINYINT(1) NOT NULL DEFAULT 0,
+  `username` varchar(50) DEFAULT NULL,
+  `admin` tinyint(1) NOT NULL DEFAULT 0,
   `password` char(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dump dei dati per la tabella `users`
+--
+
+INSERT INTO `users` (`email`, `firstname`, `lastname`, `username`, `admin`, `password`) VALUES
+('leonardo.necordi@gmail.com', 'Leonardo', 'Necordi', 'Necoh', 1, '$2y$10$XE3XrLcaav6xhwRb4S/rP.Ps8ngc7XIvSG09FBZPpueL2U1Us9NsO'),
+('luigimangione@gmail.com', 'Luigi', 'Mangione', 'Luigi', 0, '$2y$10$bNgm1Gm9bvkNJe1xLUL/XOexM6WDx/rHz1mY3hdcC36acLkOU0beO');
 
 --
 -- Indici per le tabelle scaricate
@@ -67,6 +75,7 @@ ALTER TABLE `donations`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`email`),
+  ADD UNIQUE KEY `username` (`username`),
   ADD KEY `email` (`email`);
 
 --
@@ -77,7 +86,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT per la tabella `donations`
 --
 ALTER TABLE `donations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- Limiti per le tabelle scaricate

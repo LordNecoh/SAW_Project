@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/formModifica.css">
-    <link rel="stylesheet" href="css/body.css">
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 
     <title>User Profile</title>
@@ -14,13 +13,21 @@
 
 <body>
     <?php 
-        require 'header.php';
-        require 'database/get_user_info.php';
+        require_once 'header.php';
+        require_once 'database/get_user_info.php';
     ?>
+    
 
     <div class="container">
-        <div class="profile-picture">
-            <img src="images/profilePicture.png" alt="User Icon" id="profileImage">
+        <div class="profile-image-wrapper">
+            <img src="images/profilePicture.png" alt="User Icon" id="profileImage" class="mainImage">
+
+            <?php 
+                if (session_status() === PHP_SESSION_NONE) {
+                    session_start();
+                }
+                if(isset($_SESSION['admin'])) echo "<img src='images/star.png' class='admin-badge' >"; 
+            ?>
         </div>
 
         <div class="user-info">

@@ -4,7 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 if (!isset($_SESSION["email"])) {
-    header("Location: ../index.php");
+    header("Location: ./index.php");
     exit();
 }
 include("connessioneDB.php");

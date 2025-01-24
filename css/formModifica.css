@@ -6,14 +6,14 @@
     margin-top: 20px;
 }
 
-.profile-picture img {
+.mainImage {
     width: 150px;
     border-radius: 50%;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
 }
 
-.profile-picture img:hover {
+.mainImage:hover {
     transform: scale(1.1);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
@@ -104,4 +104,17 @@ footer {
     margin-top: 5px;
     font-size: 16px;
     box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+}
+.profile-image-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.admin-badge {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 40px; /* Regola la dimensione a piacere */
+    height: 40px;
+    border-radius: 90%;
 }

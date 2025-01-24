@@ -7,6 +7,8 @@ X fatto
 [ X ]    Caricamento registrazione 
 [ X ]    Caricamento Donazione 
 [ X ]    No donazioni senza login
+[ X ]    Donazioni raggruppate
+[ X ]    Badge admin
 
 Features
 [  ]    Pagina admin
@@ -16,3 +18,6 @@ Features
 Migliorie
 [  ]    Spostare .php contenenti pagine in cartella apposita
 [  ]    Allineare meglio popup donazioni
+[  ]    Video di gameplay
+[  ]    Aggiungere tooltip/alt
+[ ? ]   Assicurarsi di non avere clone code nei css
