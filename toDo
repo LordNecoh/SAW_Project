@@ -12,7 +12,7 @@ X fatto
 
 Features
 [ X ]    Pagina admin
-[  ]    Funzionalità admin    
+[ / ]    Funzionalità admin    
 [  ]    Motore ricerca
 [  ]    Blog/newsletter
 
@@ -23,3 +23,4 @@ Migliorie
 [  ]    Video di gameplay
 [  ]    Aggiungere tooltip/alt
 [ ? ]   Assicurarsi di non avere clone code nei css
+[ ? ]   Migliorare errori da adminActinos e getDonors
