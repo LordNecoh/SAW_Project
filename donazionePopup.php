@@ -2,6 +2,8 @@
     <div class="donation-popup-content">
         <span id="closeDonationPopup" class="donation-popup-close-btn">×</span>
         <h2>Support Chuck the Beaver!</h2>
+        <div id="loaderWheel" class="loader"></div>
+        <div id="donationMessage" class="message-container"></div> 
         <form id="donationForm">
             <label for="donationAmount">Donation Amount (€):</label>
             <div class="donation-popup-buttons">
@@ -26,7 +28,7 @@
                 <input type="checkbox" id="anonymousToggle" name="anonymousToggle">
             </div>
             
-            <button type="submit" class="donation-popup-submit">Donate</button>
+            <button type="submit" class="donation-popup-submit" id="donationSubmit">Donate</button>
         </form>
     </div>
 </div>

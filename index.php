@@ -2,7 +2,6 @@
 <html lang="it">
 <head>
 
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chuck the Beaver</title>
@@ -60,7 +59,13 @@
         <p class="donation-details">
             Collected: <span id="donation-amount">€0.00</span> / Goal: <span id="donation-goal">€1000</span>
         </p>
-        <button id="openDonationBtn">Donate Now</button>
+        <?php 
+            if(isset($_SESSION['username'])){
+                echo '<button id="openDonationBtn">Donate Now</button>';
+            }else{
+                echo '<button id="logToReg">Login to Donate</button>';
+            }
+        ?>
     </div>
 
     <!--    Top Donors   -->

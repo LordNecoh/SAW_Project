@@ -1,17 +1,18 @@
-il popup di donazione fa cagare.y
-Da fare Donate.php y
-Errori da mettere apposto y, credo sia tutto ok, c e qualche alert di troppo in giro
-Rendere responsive la barra delle donazioni(il verde va in base alle percentuali donate). y
-aggiungere username a database y
-aggiungere modifica username y
-rendere piu bella la roba per la modifica y
+Legenda:
+X fatto
+? da valutare
+/ in progress
 
 
-Fare una tabella vera e propria per i donatori y
-Aggiungere scritta sotto tabella donatori: e un grazie ai donatori anonimi che ci hanno aiutato a raccogliere tot soldi
-raggruppare donazioni in tabella y
-quando si effettua donazione aggiungere simulazione caricamento
-quando si effettua registrazione aggiungere simulazione caricamento
-togliere possibilita di provare a donare se non registrati
-area Admin(con gli account admin) che vede tutte le donazioni singole, anche di anonimi. possibilita di bottone per raggruppare donazioni. funzione ricerca qua
+[ X ]    Caricamento registrazione 
+[ X ]    Caricamento Donazione 
+[ X ]    No donazioni senza login
 
+Features
+[  ]    Pagina admin
+[  ]    Motore ricerca
+[  ]    Blog/newsletter
+
+Migliorie
+[  ]    Spostare .php contenenti pagine in cartella apposita
+[  ]    Allineare meglio popup donazioni

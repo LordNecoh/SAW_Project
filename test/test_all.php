@@ -12,7 +12,6 @@ require 'utils.php';
 /* or with the address on the server          */
 /* https://saw21.dibris.unige.it/~S.....      */
 /*                                            */
-/* DO NOT UPLOAD TEST FILES ON SAW21!         */
 /**********************************************/
 $baseurl = "http://localhost/progettoSAW/database"; 
 

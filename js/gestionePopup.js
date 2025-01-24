@@ -1,18 +1,27 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Login
+    
+    //    ----    Variabili    ----    //
     const openLoginPopup = document.getElementById("openLoginBtn");
+    const logToReg = document.getElementById("logToReg");
     const closeLoginPopup = document.getElementById("closeLoginPopup");
     const loginPopup = document.getElementById("loginPopup");
     const loginForm = loginPopup ? loginPopup.querySelector("form") : null; // Form di login
     const errorElement = loginPopup ? document.createElement("div") : null;
 
 
-
+    //    ----    Apertura/Chiusura Popup    ----    //
     if (openLoginPopup) {
         openLoginPopup.addEventListener("click", () => {
             loginPopup.style.display = "flex";
         });
     }
+
+    if (logToReg) {
+        logToReg.addEventListener("click", () => {
+            loginPopup.style.display = "flex";
+        });
+    }
+
 
     if (closeLoginPopup) {
         closeLoginPopup.addEventListener("click", () => {
@@ -32,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (loginForm) loginForm.appendChild(errorElement);
     }
     
-    // Gestione del form di login
+    //    ----    Login    ----    //
     if (loginForm) {
         const registrationLink = loginForm.querySelector("span"); 
         if (registrationLink && errorElement) {
@@ -67,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     
 
-    // Logout
+    //    ----    Logout    ----    //
     const logoutBtn = document.getElementById("logoutBtn");
 
     if (logoutBtn) {
@@ -85,7 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Profilo
+    //    ----    Profilo    ----    //
     const openProfileBtn = document.getElementById("openProfileBtn");
     const closeProfilePopup = document.getElementById("closeProfilePopup");
     const profilePopup = document.getElementById("profilePopup");
@@ -108,7 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Modifica profilo
+    //    ----    Modifica Profilo    ----    //
     const editProfileButton = document.getElementById("editProfileButton");
 
     if (editProfileButton) {

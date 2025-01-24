@@ -6,6 +6,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const openDonationPopup = document.getElementById("openDonationBtn");
     const closeDonationPopup = document.getElementById("closeDonationPopup"); 
     const donationPopup = document.getElementById("donationPopup"); 
+    const loadingTime = 3000;   // Tempo di caricamento in millisecondi
+    const donationSubmit = document.getElementById("donationSubmit");
+    const donationMessage = document.getElementById("donationMessage");
 
     //Form
     const donationForm = document.getElementById("donationForm"); 
@@ -70,20 +73,27 @@ document.addEventListener("DOMContentLoaded", () => {
             .then((response) => response.json())
             .then((data) => {
                 if (data.success) {
-                    alert("Donazione registrata con successo!");
+                    donationMessage.textContent = "Donazione avvenuta con successo!";
+                    donationMessage.className = "message-container success";
+
+                    //Fake loading
+                    donationSubmit.disabled = true;
+                    setTimeout(() => window.location.href = 'index.php', loadingTime);
+                    const loader = document.getElementById('loaderWheel');
+                    loader.style.display = 'block';
+
                     donationForm.reset(); 
-                    donationPopup.style.display = "none"; 
                     
                     const donationAmountElement = document.getElementById("donation-amount");
 
                     fetchDonations(donationAmountElement);
                 } else {
-                    alert("Errore: " + data.error);
+                    donationMessage.textContent = `Errore verificatosi nella donazione: ${data.error}`;
+                    donationMessage.className = "message-container error";
                 }
             })
             .catch((error) => {
                 console.error("Errore durante la donazione:", error);
-                alert("Si è verificato un errore. Riprova più tardi.");
             });
         });
     }

@@ -1,3 +1,5 @@
+const loadingTime = 2000;   // Tempo di caricamento in millisecondi
+
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById('registrationForm').addEventListener('submit', function(e) {
         e.preventDefault(); 
@@ -17,27 +19,17 @@ document.addEventListener("DOMContentLoaded", () => {
             } else if (data.success) {
                 errorMessage.textContent = data.success;
                 errorMessage.style.color = 'green';
-                setTimeout(() => window.location.href = 'index.php', 2000); 
+
+                //Fake loading
+                const submitButton = registrationForm.querySelector("input[type='submit']");
+                submitButton.disabled = true;
+                setTimeout(() => window.location.href = 'index.php', loadingTime); 
+                const loader = document.getElementById('loaderWheel');
+                loader.style.display = 'block';
             }
         })
         .catch(error => {
             console.error('Errore durante la registrazione:', error);
-        });
-        document.addEventListener("DOMContentLoaded", () => {
-            const registrationForm = document.getElementById("registrationForm");
-            const loadingSpinner = document.getElementById("loadingSpinner");
-        
-            registrationForm.addEventListener("submit", function(event) {
-                loadingSpinner.style.display = "block";
-        
-                const submitButton = registrationForm.querySelector("input[type='submit']");
-                submitButton.disabled = true;
-        
-                setTimeout(() => {
-                    loadingSpinner.style.display = "none";
-                    submitButton.disabled = false;
-                }, 2000); 
-            });
         });
 
     });

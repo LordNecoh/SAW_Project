@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrazione</title>
     <link rel="stylesheet" href="css/formRegistrazione.css">
-    <link rel="stylesheet" href="css/body.css">
     <script src="js/gestioneFormRegistrazione.js"></script>
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 
@@ -17,6 +16,7 @@
     <div class="form-container">
         <form id="registrationForm" method="post" class="registration-form">
             <h2>Registrati</h2>
+            <div id="loaderWheel" class="loader"></div>
             <div id="errorMessage" class="error-message"></div> 
 
             <label for="username">Username:</label>
