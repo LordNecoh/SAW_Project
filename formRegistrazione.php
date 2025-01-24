@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="css/formRegistrazione.css">
     <link rel="stylesheet" href="css/body.css">
     <script src="js/gestioneFormRegistrazione.js"></script>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+
 
 </head>
 <body>
@@ -17,6 +19,9 @@
             <h2>Registrati</h2>
             <div id="errorMessage" class="error-message"></div> 
 
+            <label for="username">Username:</label>
+            <input type="text" name="username" class="input-text" id="username" required>
+            
             <label for="firstname">Nome:</label>
             <input type="text" name="firstname" class="input-text" id="firstname" required>
             
@@ -40,5 +45,8 @@
     </div>
 
 
+    <footer>
+        &copy; 2025 Chuck the Beaver. All rights reserved.
+    </footer>
 </body>
 </html>

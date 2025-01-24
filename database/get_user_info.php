@@ -12,7 +12,7 @@ include("connessioneDB.php");
 $email = $_SESSION["email"];
 
 try {
-    $query = "SELECT firstname, lastname, email FROM users WHERE email = :email";
+    $query = "SELECT username, firstname, lastname, email FROM users WHERE email = :email";
     
     $stmt = $conn->prepare($query);
     
@@ -28,6 +28,8 @@ try {
         $first = htmlspecialchars($row["firstname"], ENT_QUOTES, 'UTF-8');
         $last = htmlspecialchars($row["lastname"], ENT_QUOTES, 'UTF-8');
         $email = htmlspecialchars($row["email"], ENT_QUOTES, 'UTF-8');
+        $username = htmlspecialchars( $row["username"], ENT_QUOTES, 'UTF-8');
+
     }
 } catch (PDOException $e) {
     error_log("Database error: " . $e->getMessage());

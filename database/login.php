@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         $_SESSION['email'] = $user['email'];
-        $_SESSION['firstname'] = $user['firstname'];
+        $_SESSION['username'] = $user['username'];
 
         $response['success'] = true;
         echo json_encode($response);

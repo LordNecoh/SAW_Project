@@ -19,7 +19,7 @@
 <body>
     <?php require "database/connessioneDB.php"?>
     <?php include "header.php"?>
-    <?php include('donazionePopup.php'); ?>
+    <?php include "donazionePopup.php" ?>
 
     <h1> Welcome to Chuck the Beaver's very unofficial website! </h1>
 
@@ -47,15 +47,15 @@
     </div>
 
     <div class="donation-bar" id="support">
-    <h2>Support Chuck the Beaver!</h2>
-    <div class="donation-container">
-        <div class="donation-progress"></div>
+        <h2>Support Chuck the Beaver!</h2>
+        <div class="donation-container">
+            <div class="donation-progress" id="donationProgress"></div>
+        </div>
+        <p class="donation-details">
+            Collected: <span id="donation-amount">€0.00</span> / Goal: <span id="donation-goal">€1000</span>
+        </p>
+        <button id="openDonationBtn">Donate Now</button>
     </div>
-    <p class="donation-details">
-        Collected: <span id="donation-amount">€0.00</span> / Goal: <span id="donation-goal">€10,000</span>
-    </p>
-    <button id="openDonationBtn">Donate Now</button>
-</div>
 
 <div id="donors-section" class="content-container">
     <h2>Our Donors</h2>
@@ -64,7 +64,7 @@
 </div>
     
     <footer>
-        &copy; 2024 Chuck the Beaver. All rights reserved.
+        &copy; 2025 Chuck the Beaver. All rights reserved.
     </footer>
 </body>
 </html>

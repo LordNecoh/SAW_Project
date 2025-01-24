@@ -46,7 +46,9 @@ CREATE TABLE `users` (
   `email` varchar(254) NOT NULL,
   `firstname` varchar(50) NOT NULL,
   `lastname` varchar(50) NOT NULL,
-  `password` char(60) DEFAULT NULL
+  `username` VARCHAR(50) NULL UNIQUE,
+  `admin` TINYINT(1) NOT NULL DEFAULT 0,
+  `password` char(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --

@@ -19,9 +19,10 @@
 }
 
 .user-info, .password-section {
-    width: 60%;
+    max-width: 600px;
+    width: 100%;
     background: #fff;
-    padding: 20px;
+    padding: 25px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -31,17 +32,28 @@ h2 {
 }
 
 .form-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 15px;
+    display: grid;
+    grid-template-columns: 100px 1fr; 
+    gap: 15px; 
+    margin-bottom: 20px;
+    align-items: center; 
 }
 
-input {
-    padding: 10px;
+.form-group label {
+    text-align: right;
+    font-weight: bold;
+    color: #333;
+    white-space: nowrap; 
+    padding-right: 5px; 
+}
+
+.form-group input {
+    padding: 10px; 
+    padding-left: 10px; 
     border: 1px solid #ccc;
     border-radius: 5px;
-    flex: 1;
+    font-size: 16px;
+    width: 90%; 
 }
 
 input:disabled {
@@ -69,7 +81,6 @@ button:hover {
     background-color: #007bff;
 }
 
-
 #cancelEdit, #cancelPassword {
     background-color: #dc3545;
 }
@@ -80,4 +91,17 @@ button:hover {
 
 .hidden {
     display: none;
+}
+
+footer {
+    background-color: #0056b3;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    margin-top: 5px;
+    font-size: 16px;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
 }

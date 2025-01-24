@@ -60,20 +60,23 @@ h1 {
     background-color: #e0e0e0;
     border-radius: 10px;
     overflow: hidden;
+    height: 20px;
     margin: 15px 0;
 }
 
 .donation-progress {
-    width: 50%;
-    background-color: #4caf50;
-    height: 25px;
+    width: 0%; /* Cambia dinamicamente tramite JS */
+    height: 100%;
+    background-color: #007bff;
     border-radius: 10px;
-    transition: width 0.5s ease;
+    transition: width 0.5s ease-in-out;
 }
 
 .donation-details {
-    font-size: 18px;
-    margin: 10px 0;
+    text-align: center;
+    font-size: 16px;
+    color: #333;
+    margin-top: 10px;
 }
 
 .donation-bar button {

@@ -8,7 +8,11 @@ try {
     $totalResult = $totalQuery->fetch();
     $totalDonations = $totalResult['total'] ?? 0;
 
-    $donorsQuery = $conn->query("SELECT email, amount FROM donations WHERE public = 1");
+    $donorsQuery = $conn->query("SELECT u.username, d.email, d.amount 
+                                FROM donations d
+                                INNER JOIN users u ON u.email = d.email
+                                WHERE d.public = 1");    
+    
     $donors = $donorsQuery->fetchAll();
 
     echo json_encode([
