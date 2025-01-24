@@ -11,12 +11,14 @@ X fatto
 [ X ]    Badge admin
 
 Features
-[  ]    Pagina admin
+[ X ]    Pagina admin
+[  ]    Funzionalità admin    
 [  ]    Motore ricerca
 [  ]    Blog/newsletter
 
 Migliorie
 [  ]    Spostare .php contenenti pagine in cartella apposita
+[  ]    Spostare lo script di adminPage in file apposito
 [  ]    Allineare meglio popup donazioni
 [  ]    Video di gameplay
 [  ]    Aggiungere tooltip/alt

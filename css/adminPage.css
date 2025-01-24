@@ -1,0 +1,143 @@
+/* adminPage.css */
+
+/* Reset di base */
+body, ul {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Stile generale del body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9; /* Colore di sfondo chiaro */
+    color: #333; /* Colore del testo */
+    padding: 20px;
+}
+
+/* Stile del box dei bottoni */
+.button-area {
+    text-align: center;
+    margin: 30px auto;
+    padding: 20px;
+    border: 2px solid #007bff;
+    border-radius: 10px;
+    background-color: #f8f9fa;
+    max-width: 600px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: grid; /* Attiva la griglia */
+    grid-template-columns: repeat(2, 1fr); /* Due colonne con larghezza uniforme */
+    grid-gap: 20px; /* Spaziatura tra i bottoni */
+    justify-items: center; /* Centra i bottoni */
+}
+
+/* Stile per i bottoni */
+.button-area button {
+    background-color: #007bff; /* Colore blu */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    margin: 10px; /* Spaziatura tra i bottoni */
+    display: inline-block;
+}
+
+.button-area button:hover {
+    background-color: #0056b3; /* Colore più scuro al passaggio del mouse */
+    transform: scale(1.05); /* Leggera espansione al passaggio del mouse */
+}
+
+.button-area button:active {
+    transform: scale(1); /* Ritorna alla dimensione originale quando cliccato */
+}
+
+.button-area h2 {
+    color: #333;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0 auto 10px auto; /* Rimuove margini non necessari sopra e centra orizzontalmente */
+    text-align: center; /* Centra il testo orizzontalmente */
+    line-height: 1.5; /* Migliora la leggibilità */
+    grid-column: 1 / -1; /* Occupano due colonne della griglia */
+}
+
+
+.button-area hr {
+    border: 0;
+    height: 2px;
+    background-color: #007bff; /* Linea blu */
+    margin: 10px auto; /* Centra la linea */
+    width: 80%; /* Riduce la larghezza */
+    grid-column: 1 / -1; /* Assicura che occupi tutta la larghezza senza influire sulla griglia */
+}
+
+/* Stile dei form */
+.form-container {
+    display: none; /* Nascondi i form per default */
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Leggera ombra */
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.form-container.active {
+    display: block; /* Mostra il form attivo */
+}
+
+.form-container h3 {
+    margin-top: 0;
+    color: #007bff;
+}
+
+.form-container label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.form-container input {
+    width: calc(100% - 20px);
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.form-container button {
+    background-color: #28a745; /* Colore verde per i pulsanti nei form */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.form-container button:hover {
+    background-color: #218838; /* Verde più scuro al passaggio del mouse */
+    transform: scale(1.05);
+}
+
+.form-container button:active {
+    transform: scale(1);
+}
+
+/* Mobile-friendly layout */
+@media (max-width: 600px) {
+    .button-area li {
+        display: block;
+        margin: 10px 0;
+    }
+
+    .form-container {
+        padding: 15px;
+    }
+}

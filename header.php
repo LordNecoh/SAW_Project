@@ -15,7 +15,7 @@ if (session_status() === PHP_SESSION_NONE) {
         <div class="navbar-right" id="logInfo">
             <?php
             $currentPage = basename($_SERVER['PHP_SELF']);
-            if ($currentPage === 'formModifica.php' || $currentPage === 'formRegistrazione.php') {
+            if ($currentPage === 'formModifica.php' || $currentPage === 'formRegistrazione.php' || $currentPage === 'adminPage.php') {
                 echo '<button type="button" id="backToIndexBtn" class="login-button" onclick="window.location.href=\'index.php\'">Home</button>';
             } else {
                 if (isset($_SESSION['username'])) {
