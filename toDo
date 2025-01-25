@@ -5,24 +5,27 @@ X fatto
 H bisogno di aiuto
 
 Features
-[ X ]    Funzionalità admin  
-[ X ]    Informazione sui soldi nel database  
 [  ]    Blog/newsletter
 
-
 Migliorie prioritarie
-[ X ]    Spostare lo script di adminPage in file apposito
 [ ? ]   Migliorare errori da adminActinos e getDonors
 [  ]    Aggiungere "Visualizzando le donazioni di:"
-[  ]    Settare permessi pagina admin
-[ ? ]   Chiudere resultBox in pagina admin
+[ ? ]   Possibilità di chiudere resultBox in pagina admin
 
 Migliorie secondarie
-[ ? ]    Spostare .php contenenti pagine in cartella apposita
 [  ]    Allineare meglio popup donazioni
 [  ]    Video di gameplay
-[ X ]    Aggiungere tooltip/alt
-[ ? ]   Assicurarsi di non avere clone code nei css
-[ ? ]   Accessibilità per non vedenti etc.
+[  ]    Assicurarsi di non avere clone code nei css
+
+Accessibilità
+[ ? ]    Test Accessibilità
+[ ? ]    Rendere navigabile con i tasti
+
+Sicurezza
+[ ? ]   Aggiungere captcha
+[  ]    Settare permessi pagina admin
+
+Se avanza tempo
 [ ? ]   Fare in modo che aggiornando i goal rimanga storia di quelli completati
 [ ? ]   Possibilità di cambiare lingua
+
