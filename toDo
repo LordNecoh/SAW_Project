@@ -21,7 +21,8 @@ Migliorie secondarie
 [ ? ]    Spostare .php contenenti pagine in cartella apposita
 [  ]    Allineare meglio popup donazioni
 [  ]    Video di gameplay
-[  ]    Aggiungere tooltip/alt
+[ X ]    Aggiungere tooltip/alt
 [ ? ]   Assicurarsi di non avere clone code nei css
 [ ? ]   Accessibilità per non vedenti etc.
-[ ? ]    Fare in modo che aggiornando i goal rimanga storia di quelli completati
+[ ? ]   Fare in modo che aggiornando i goal rimanga storia di quelli completati
+[ ? ]   Possibilità di cambiare lingua

@@ -21,6 +21,10 @@
         }
     ?>
 
+    <div class="admin-picture">
+        <img src="images/Security_Beaver_Profile.png" alt="Security Beaver" title="Security Beaver">
+    </div>
+
     <div class="button-area">
         <h2>Administrative area</h2>
         <hr>

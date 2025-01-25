@@ -20,13 +20,13 @@
 
     <div class="container">
         <div class="profile-image-wrapper">
-            <img src="images/profilePicture.png" alt="User Icon" id="profileImage" class="mainImage">
+            <img src="images/profilePicture.png" alt="User Icon" title="User Icon" id="profileImage" class="mainImage">
 
             <?php 
                 if (session_status() === PHP_SESSION_NONE) {
                     session_start();
                 }
-                if(isset($_SESSION['admin'])) echo "<img src='images/star.png' class='admin-badge' >"; 
+                if(isset($_SESSION['admin'])) echo "<img src='images/star.png' class='admin-badge' alt='AdminBadge' title='AdminBadge'>"; 
             ?>
         </div>
 

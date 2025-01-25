@@ -35,7 +35,7 @@
             <p>Join Chuck the Beaver in this thrilling adventure and see if you have what it takes to defend your Dam!</p>
         </div>
 
-        <img src="images/gameImage.png" alt="Chuck the Beaver" class="centeredImage">
+        <img src="images/gameImage.png" alt="Image of the game's protagonist" title="Image of the game's protagonist" class="centeredImage">
     </div>
 
     <div class="content-container">

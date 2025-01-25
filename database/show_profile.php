@@ -33,7 +33,7 @@ try {
         $email = $row["email"];
 
         if(isset($_SESSION['admin'])){
-            $adminBadge = "<img src='images/star.png' alt='AdminBadge' class='admin-badge'>";
+            $adminBadge = "<img src='images/star.png' alt='AdminBadge' title='AdminBadge' class='admin-badge'>";
             $adminArea = "<a href='adminPage.php' class='admin-link'>Admin Area</a>";
         }else{
             $adminBadge = "";
@@ -43,7 +43,7 @@ try {
         $result = "
                 <span class='close-button' id='closeProfilePopup'>&times;</span>
                 <div class='profile-image-wrapper'>
-                    <img src='images/profilePicture.png' alt='Profilo' class='profile-image'>
+                    <img src='images/profilePicture.png' alt='Profile Image' title='Pofile Image' class='profile-image'>
                     $adminBadge
                 </div>
                 <p><strong>Nome:</strong> <span>" . htmlspecialchars($first, ENT_QUOTES) . "</span></p>
