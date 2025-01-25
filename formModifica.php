@@ -76,9 +76,7 @@
                 </form>
             </div>
         </div>
-        <footer>
-            &copy; 2025 Chuck the Beaver. All rights reserved.
-        </footer>   
+        <?php require 'footer.php'; ?>
     </body>
 
 </html>

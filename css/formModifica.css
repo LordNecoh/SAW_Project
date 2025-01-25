@@ -25,10 +25,15 @@
     padding: 25px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
 }
 
 h2 {
     margin-bottom: 20px;
+    position: sticky;
+    top: 0;
+    background: #fff;
+    z-index: 1;
 }
 
 .form-group {
@@ -93,18 +98,7 @@ button:hover {
     display: none;
 }
 
-footer {
-    background-color: #0056b3;
-    color: white;
-    text-align: center;
-    padding: 15px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    margin-top: 5px;
-    font-size: 16px;
-    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
-}
+
 .profile-image-wrapper {
     position: relative;
     display: inline-block;

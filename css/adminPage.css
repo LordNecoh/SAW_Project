@@ -104,9 +104,13 @@ img {
     cursor: pointer;
     color: #888;
     float: right;
+    background: none; /* Rimuove lo sfondo */
+    border: none; /* Rimuove il bordo */
+    padding: 0; /* Rimuove il padding */
+    margin: 0; /* Rimuove il margine */
 }
 
-.formcontainer .close-button:hover {
+.form-container .close-button:hover {
     color: #333;
 }
 
@@ -134,7 +138,7 @@ img {
     font-size: 14px;
 }
 
-.form-container button {
+.form-container button[type="submit"] {
     background-color: #28a745; /* Colore verde per i pulsanti nei form */
     color: white;
     border: none;
@@ -145,12 +149,12 @@ img {
     transition: background-color 0.3s, transform 0.2s;
 }
 
-.form-container button:hover {
+.form-container button[type="submit"]:hover {
     background-color: #218838; /* Verde più scuro al passaggio del mouse */
     transform: scale(1.05);
 }
 
-.form-container button:active {
+.form-container button[type="submit"]:active {
     transform: scale(1);
 }
 

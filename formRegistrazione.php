@@ -44,9 +44,6 @@
         <a href="index.php">Torna alla home</a>
     </div>
 
-
-    <footer>
-        &copy; 2025 Chuck the Beaver. All rights reserved.
-    </footer>
+    <?php require 'footer.php'; ?>
 </body>
 </html>

@@ -38,7 +38,7 @@
 
     <!-- Form per Cercare i Top N Donatori -->
     <div id="topDonorsDiv" class="form-container">
-        <span class='close-button' id='closeTopDonors'>&times;</span>
+        <button class='close-button' id='closeTopDonors'>&times;</button>
         <h3>Find top donors</h3>
         <form id="topDonorsForm">
             <label for="topN">Number of donors to find:</label>
@@ -50,7 +50,7 @@
 
     <!-- Form per Lista Donazioni per Utente -->
     <div id="userDonationsDiv" class="form-container">
-        <span class='close-button' id='closeUserDonations'>&times;</span>
+        <button class='close-button' id='closeUserDonations'>&times;</button>
         <h3>Donations list per user</h3>
         <form id="userDonationsForm">
             <label for="username">Username:</label>
@@ -62,7 +62,7 @@
 
     <!-- Form per Spendere N Soldi -->
     <div id="refundMoneyDiv" class="form-container">
-        <span class='close-button' id='closeRefundMoney'>&times;</span>
+        <button class='close-button' id='closeRefundMoney'>&times;</button>
         <h3>Refund users</h3>
         <form id="refundMoneyForm">
             <label for="refundUsername">User to refund:</label>
@@ -74,7 +74,7 @@
 
     <!-- Form per Impostare l'Obiettivo -->
     <div id="setGoalDiv" class="form-container">
-        <span class='close-button' id='closeSetGoal'>&times;</span>
+        <button class='close-button' id='closeSetGoal'>&times;</button>
         <h3>Set Goal</h3>
         <form id="setGoalForm">
             <label for="goal">New Goal:</label>
@@ -83,6 +83,6 @@
         </form>
     </div>
 
-
+    <?php require 'footer.php'; ?>
 </body>
 </html>

@@ -31,4 +31,5 @@
             <button type="submit" class="donation-popup-submit" id="donationSubmit">Donate</button>
         </form>
     </div>
+    <?php require 'footer.php'; ?>
 </div>
