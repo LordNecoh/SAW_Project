@@ -5,12 +5,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $action = $_POST['action'];
 
     switch ($action) {
-        case 'topDonors':
+        case 'getTopDonors':
 
             //    ---    Query    ---  //
             $topN = $_POST['topN'];
             try{
-                $Query = $conn->query("SELECT u.username, d.email, SUM(d.amount) AS total_donated
+                $Query = $conn->query("SELECT u.username, SUM(d.amount) AS total_donated
                                     FROM donations d
                                     INNER JOIN users u ON u.email = d.email
                                     GROUP BY u.username, d.email
@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
             break;
 
-        case 'userDonations':
+        case 'getUserDonations':
             $username = $_POST['username'];
             
             //    ---    Query    ---  //
@@ -79,9 +79,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             //    ---    Query    ---  //
             try{
-                $conn->exec("UPDATE donations SET goal = $goal WHERE email = '$_SESSION[email]'");
+                $conn->exec("UPDATE campaign_info SET amount = $goal WHERE name = 'goal'");
                 echo json_encode([
-                    'success' => true
+                    'success' => true,
+                    'newGoal' => $goal
                 ]);
             } catch (PDOException $e) {
                 echo json_encode([

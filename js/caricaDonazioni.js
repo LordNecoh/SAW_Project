@@ -1,86 +1,87 @@
 function fetchDonations(donationAmountElement) {
-    
-    //   ---    Variaili  ---    //
-
-    //Obbiettivo
-    const goal = 1000; // Obiettivo totale delle donazioni (€)
+    // Variabili
     const donationProgress = document.getElementById("donationProgress");
     const donationGoalElement = document.getElementById("donation-goal");
-
-    //Donatori
     const donorTable = document.getElementById("donor-table");
-    const donorsSection = document.getElementById("donors-section");
     const anonParagraph = document.getElementById("anonDonations");
 
-    // Imposta l'obiettivo nel DOM
-    donationGoalElement.textContent = `€${goal}`;
+    let goal = 0; // Variabile per il goal, sarà impostata dinamicamente
 
-    fetch("database/getDonations.php")
-        .then((response) => response.json())
-        .then((data) => {
-            if (data.success) {
-                // Aggiorna il totale delle donazioni
-                donationAmountElement.textContent = `€${data.total}`;
-
-                // Calcola la percentuale di completamento
-                const percentage = Math.min((data.total / goal) * 100, 100);
-                donationProgress.style.width = `${percentage}%`;
-
-                // Aggiorna la lista dei donatori
-                donorTable.innerHTML = "";
-
-                let publicDonations = 0;
-
-
-                //Aggiunta Donazioni Pubbliche
-                data.donors.forEach((donor) => {
-
-                    //Calcolo donazioni non anonime
-                    publicDonations += parseFloat(donor.total_donated);
-
-                    //Aggiunta riga
-                    const row = document.createElement("tr");
-
-                    const usernameCell = document.createElement("td");
-                    usernameCell.textContent = donor.username;
-
-                    const amountCell = document.createElement("td");
-                    amountCell.textContent = `€${donor.total_donated}`;
-
-                    row.appendChild(usernameCell);
-                    row.appendChild(amountCell);
-
-                    donorTable.appendChild(row);
-                });
-
-                //Aggiunta Donazioni Anonime
-                anonAmount = data.total - publicDonations;
-
-                if (anonAmount > 0) {
-                    anonParagraph.innerHTML = 
-                    `Also thanks to all the anonymous donors who helped us collect 
-                    <span class="amount">€${anonAmount}</span>!`;
+    // Funzione per caricare il goal
+    function loadGoal() {
+        return fetch("database/getGoal.php")
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.success) {
+                    goal = parseFloat(data.goal); // Imposta il goal dal server
+                    donationGoalElement.textContent = `€${goal}`; // Aggiorna il DOM
+                } else {
+                    console.error("Errore nel recuperare il goal:", data.error);
+                    donationGoalElement.textContent = "Error loading goal";
                 }
+            })
+            .catch((error) => {
+                console.error("Errore nel caricamento del goal:", error);
+                donationGoalElement.textContent = "Error loading goal";
+            });
+    }
 
+    // Funzione per caricare le donazioni
+    function loadDonations() {
+        fetch("database/getDonations.php")
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.success) {
+                    // Aggiorna il totale delle donazioni
+                    donationAmountElement.textContent = `€${data.total}`;
 
-                //Vecchio sistema: elenco puntato
-                // data.donors.forEach((donor) => {
-                //     const donorElement = document.createElement("li");
-                //     donorElement.textContent = `${donor.username} - €${donor.amount}`;
-                //     donorTable.appendChild(donorElement);
-                // });
-            } else {
-                console.error("Errore nel recuperare i dati delle donazioni:", data.error);
-            }
-        })
-        .catch((error) => {
-            console.error("Errore:", error);
-        });
+                    // Calcola la percentuale di completamento
+                    const percentage = goal > 0 ? Math.min((data.total / goal) * 100, 100) : 0;
+                    donationProgress.style.width = `${percentage}%`;
+
+                    // Aggiorna la lista dei donatori
+                    donorTable.innerHTML = "";
+
+                    let publicDonations = 0;
+
+                    // Aggiunta Donazioni Pubbliche
+                    data.donors.forEach((donor) => {
+                        publicDonations += parseFloat(donor.total_donated);
+
+                        const row = document.createElement("tr");
+                        const usernameCell = document.createElement("td");
+                        usernameCell.textContent = donor.username;
+
+                        const amountCell = document.createElement("td");
+                        amountCell.textContent = `€${donor.total_donated}`;
+
+                        row.appendChild(usernameCell);
+                        row.appendChild(amountCell);
+                        donorTable.appendChild(row);
+                    });
+
+                    // Aggiunta Donazioni Anonime
+                    const anonAmount = data.total - publicDonations;
+                    if (anonAmount > 0) {
+                        anonParagraph.innerHTML =
+                            `Also thanks to all the anonymous donors who helped us collect 
+                            <span class="amount">€${anonAmount}</span>!`;
+                    }
+                } else {
+                    console.error("Errore nel recuperare i dati delle donazioni:", data.error);
+                }
+            })
+            .catch((error) => {
+                console.error("Errore nel caricamento delle donazioni:", error);
+            });
+    }
+
+    // Prima carica il goal, poi carica le donazioni
+    loadGoal().then(loadDonations);
 }
 
 // Inizializza dopo il caricamento del DOM
 document.addEventListener("DOMContentLoaded", () => {
     const donationAmountElement = document.getElementById("donation-amount");
-
     fetchDonations(donationAmountElement);
 });

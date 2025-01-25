@@ -2,22 +2,24 @@ Legenda:
 X fatto
 ? da valutare
 / in progress
+H bisogno di aiuto
 
 Features
-[ / ]    Funzionalità admin    
-[ X ]    Motore ricerca
+[ / ]    Funzionalità admin  
+[ X ]    Informazione sui soldi nel database  
 [  ]    Blog/newsletter
-[  ]    Informazione sui soldi nel database
+
 
 Migliorie prioritarie
-[  ]    Spostare lo script di adminPage in file apposito
+[ X ]    Spostare lo script di adminPage in file apposito
 [ ? ]   Migliorare errori da adminActinos e getDonors
-[ X ]    Rendere output adimn una tabella
+[  ]    Aggiungere "Visualizzando le donazioni di:"
 
 Migliorie secondarie
-[  ]    Spostare .php contenenti pagine in cartella apposita
+[ ? ]    Spostare .php contenenti pagine in cartella apposita
 [  ]    Allineare meglio popup donazioni
 [  ]    Video di gameplay
 [  ]    Aggiungere tooltip/alt
 [ ? ]   Assicurarsi di non avere clone code nei css
 [ ? ]   Accessibilità per non vedenti etc.
+[ ? ]    Fare in modo che aggiornando i goal rimanga storia di quelli completati

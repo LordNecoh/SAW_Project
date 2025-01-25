@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Gen 24, 2025 alle 19:49
+-- Creato il: Gen 25, 2025 alle 15:52
 -- Versione del server: 10.4.32-MariaDB
 -- Versione PHP: 8.2.12
 
@@ -24,6 +24,24 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Struttura della tabella `campaign_info`
+--
+
+CREATE TABLE `campaign_info` (
+  `name` varchar(30) NOT NULL COMMENT 'Specifies what the field is',
+  `amount` float NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Information about the startup crowdFunding';
+
+--
+-- Dump dei dati per la tabella `campaign_info`
+--
+
+INSERT INTO `campaign_info` (`name`, `amount`) VALUES
+('goal', 2000);
+
+-- --------------------------------------------------------
+
+--
 -- Struttura della tabella `donations`
 --
 
@@ -35,6 +53,17 @@ CREATE TABLE `donations` (
   `donation_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `deleted_user` varchar(254) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dump dei dati per la tabella `donations`
+--
+
+INSERT INTO `donations` (`id`, `email`, `amount`, `public`, `donation_date`, `deleted_user`) VALUES
+(40, 'leonardo.necordi@gmail.com', 100.00, 1, '2025-01-25 12:04:43', NULL),
+(41, 'luigimangione@gmail.com', 20.00, 1, '2025-01-25 12:05:59', NULL),
+(42, 'luigimangione@gmail.com', 5.00, 0, '2025-01-25 12:06:08', NULL),
+(43, 'leonardo.necordi@gmail.com', 20.00, 0, '2025-01-25 12:56:29', NULL),
+(44, 'leonardo.necordi@gmail.com', 10.00, 0, '2025-01-25 14:49:54', NULL);
 
 -- --------------------------------------------------------
 
@@ -64,6 +93,12 @@ INSERT INTO `users` (`email`, `firstname`, `lastname`, `username`, `admin`, `pas
 --
 
 --
+-- Indici per le tabelle `campaign_info`
+--
+ALTER TABLE `campaign_info`
+  ADD PRIMARY KEY (`name`);
+
+--
 -- Indici per le tabelle `donations`
 --
 ALTER TABLE `donations`
@@ -86,7 +121,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT per la tabella `donations`
 --
 ALTER TABLE `donations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- Limiti per le tabelle scaricate

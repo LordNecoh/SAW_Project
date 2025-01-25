@@ -164,6 +164,16 @@ body {
     display: block; /* Mostra il box quando ha risultati */
 }
 
+.result-box p {
+    font-size: 1.2em;
+    color: #333;	
+    font-weight: bold;
+}
+
+.result-box strong{
+    color: #007bff;
+}
+
 
 /*  ----    Tabelle     ----     */
 

@@ -14,11 +14,11 @@
     <!--    Stylesheets     -->
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/donazionePopup.css">
-    <!-- <link rel="icon" type="image/x-icon" href="images/favicon.ico"> -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 
 </head>
 <body>
-    <?php require "database/connessioneDB.php"?>
+    <?php require_once "database/connessioneDB.php"?>
     <?php include "header.php"?>
     <?php include "donazionePopup.php" ?>
 
@@ -50,6 +50,7 @@
     </div>
 
     <!--    Donazioni    -->
+    
 
     <div class="donation-bar" id="support">
         <h2>Support Chuck the Beaver!</h2>
@@ -57,7 +58,7 @@
             <div class="donation-progress" id="donationProgress"></div>
         </div>
         <p class="donation-details">
-            Collected: <span id="donation-amount">€0.00</span> / Goal: <span id="donation-goal">€1000</span>
+            Collected: <span id="donation-amount">€0.00</span> / Goal: <span id="donation-goal">Loading...</span>
         </p>
         <?php 
             if(isset($_SESSION['username'])){
