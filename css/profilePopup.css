@@ -1,3 +1,5 @@
+/*  ----    Popup   ----    */
+
 .profilePopup {
     display: none;
     position: fixed;
@@ -26,6 +28,30 @@
     margin-top: 0;
     color: #2c3e50;
 }
+
+.profilePopup-content p {
+    margin: 10px 0;
+    font-size: 18px;
+    color: #34495e;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profilePopup-content p strong {
+    font-weight: bold;
+    color: #2c3e50;
+    margin-right: 10px;
+    min-width: 80px; 
+}
+
+.profilePopup-content p span {
+    font-weight: normal;
+    color: #7f8c8d;
+}
+
+/*  ----    Buttons     ----    */
 
 .close-button {
     position: absolute;
@@ -71,28 +97,6 @@
     text-decoration: underline;
 }
 
-.profilePopup-content p {
-    margin: 10px 0;
-    font-size: 18px;
-    color: #34495e;
-    text-align: left;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.profilePopup-content p strong {
-    font-weight: bold;
-    color: #2c3e50;
-    margin-right: 10px;
-    min-width: 80px; 
-}
-
-.profilePopup-content p span {
-    font-weight: normal;
-    color: #7f8c8d;
-}
-
 .edit-button {
     margin-top: 20px;
     padding: 10px 20px;
@@ -106,6 +110,28 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     display: block;
 }
+
+.admin-link {
+    margin-top: 40px;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 89%; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: block;
+    text-align: center;
+    text-decoration: none;
+}
+
+.admin-link:hover {
+    background-color: #2980b9;
+}
+
+/*  ----    Images  ----    */
 
 .edit-button:hover {
     background-color: #219150;
@@ -127,26 +153,6 @@
 
 .admin-badge {
     position: absolute;
-    width: 40px; /* Regola la dimensione a piacere */
+    width: 40px; 
     height: 40px;
-}
-
-.admin-link {
-    margin-top: 40px;
-    padding: 10px 20px;
-    background-color: #3498db;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    width: 89%; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    display: block;
-    text-align: center;
-    text-decoration: none;
-}
-
-.admin-link:hover {
-    background-color: #2980b9;
 }

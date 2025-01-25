@@ -141,3 +141,25 @@ body {
         padding: 15px;
     }
 }
+
+/*  ----    Output  ----     */
+
+.result-box {
+    display: none; /* Inizialmente nascosto */
+    background-color: #fff; /* Sfondo bianco */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 20px auto; /* Spazio sopra e sotto il box, centrato orizzontalmente */
+    max-width: 600px; /* Stessa larghezza del box principale */
+    text-align: center;
+}
+
+.result-box + * {
+    margin-top: 20px; /* Spazio aggiuntivo tra il box e gli elementi sotto di esso */
+}
+
+.result-box.active {
+    display: block; /* Mostra il box quando ha risultati */
+}

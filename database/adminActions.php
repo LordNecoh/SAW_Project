@@ -6,6 +6,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     switch ($action) {
         case 'topDonors':
+
+            //    ---    Query    ---  //
             $topN = $_POST['topN'];
             try{
                 $Query = $conn->query("SELECT u.username, d.email, SUM(d.amount) AS total_donated
@@ -25,25 +27,69 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     'success' => false,
                     'error' => $e->getMessage()
                 ]);
-                exit;
             }
-
-            //Da continuare
+        
             break;
 
         case 'userDonations':
             $username = $_POST['username'];
-            // Logica per cercare le donazioni dell'utente
+            
+            //    ---    Query    ---  //
+            try{
+                $Query = $conn->query("SELECT * 
+                                    FROM donations 
+                                    WHERE email = (SELECT email 
+                                                    FROM users 
+                                                    WHERE username = '$username')");
+                $donations = $Query->fetchAll();
+                echo json_encode([
+                    'success' => true,
+                    'donations' => $donations
+                ]);
+            } catch (PDOException $e) {
+                echo json_encode([
+                    'success' => false,
+                    'error' => $e->getMessage()
+                ]);
+            }
             break;
 
         case 'spendMoney':
             $amount = $_POST['amount'];
-            // Logica per spendere soldi
+            
+            //    ---    Query    ---  //
+            try{
+                $conn->beginTransaction();
+                $conn->exec("UPDATE users SET balance = balance - $amount WHERE email = '$_SESSION[email]'");
+                $conn->exec("INSERT INTO donations (email, amount, public) VALUES ('$_SESSION[email]', $amount, 1)");
+                $conn->commit();
+                echo json_encode([
+                    'success' => true
+                ]);
+            } catch (PDOException $e) {
+                $conn->rollBack();
+                echo json_encode([
+                    'success' => false,
+                    'error' => $e->getMessage()
+                ]);
+            }
             break;
 
         case 'setGoal':
             $goal = $_POST['goal'];
-            // Logica per impostare l'obiettivo
+            
+            //    ---    Query    ---  //
+            try{
+                $conn->exec("UPDATE donations SET goal = $goal WHERE email = '$_SESSION[email]'");
+                echo json_encode([
+                    'success' => true
+                ]);
+            } catch (PDOException $e) {
+                echo json_encode([
+                    'success' => false,
+                    'error' => $e->getMessage()
+                ]);
+            }
             break;
 
         default:

@@ -3,24 +3,21 @@ X fatto
 ? da valutare
 / in progress
 
-
-[ X ]    Caricamento registrazione 
-[ X ]    Caricamento Donazione 
-[ X ]    No donazioni senza login
-[ X ]    Donazioni raggruppate
-[ X ]    Badge admin
-
 Features
-[ X ]    Pagina admin
 [ / ]    Funzionalità admin    
-[  ]    Motore ricerca
+[ / ]    Motore ricerca
 [  ]    Blog/newsletter
+[  ]    Informazione sui soldi nel database
 
-Migliorie
-[  ]    Spostare .php contenenti pagine in cartella apposita
+Migliorie prioritarie
 [  ]    Spostare lo script di adminPage in file apposito
+[ ? ]   Migliorare errori da adminActinos e getDonors
+[  ]    Rendere output adimn una tabella
+
+Migliorie secondarie
+[  ]    Spostare .php contenenti pagine in cartella apposita
 [  ]    Allineare meglio popup donazioni
 [  ]    Video di gameplay
 [  ]    Aggiungere tooltip/alt
 [ ? ]   Assicurarsi di non avere clone code nei css
-[ ? ]   Migliorare errori da adminActinos e getDonors
+[ ? ]   Accessibilità per non vedenti etc.
