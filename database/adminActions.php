@@ -10,13 +10,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             //    ---    Query    ---  //
             $topN = $_POST['topN'];
             try{
-                $Query = $conn->query("SELECT u.username, SUM(d.amount) AS total_donated
-                                    FROM donations d
-                                    INNER JOIN users u ON u.email = d.email
-                                    GROUP BY u.username, d.email
-                                    ORDER BY total_donated DESC
-                                    LIMIT $topN");
-                $donors = $Query->fetchAll();
+                $stmt = $conn->prepare("SELECT u.username, d.email, SUM(d.amount) AS total_donated
+                                        FROM donations d
+                                        INNER JOIN users u ON u.email = d.email
+                                        GROUP BY u.username, d.email
+                                        ORDER BY total_donated DESC
+                                        LIMIT :topN");
+                $stmt->bindParam(':topN', $topN, PDO::PARAM_INT);
+                $stmt->execute();
+                $donors = $stmt->fetchAll();
                 echo json_encode([
                     'success' => true,
                     'donors' => $donors
@@ -35,12 +37,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             //    ---    Query    ---  //
             try{
-                $Query = $conn->query("SELECT * 
-                                    FROM donations 
-                                    WHERE email = (SELECT email 
-                                                    FROM users 
-                                                    WHERE username = '$username')");
-                $donations = $Query->fetchAll();
+                $stmt = $conn->prepare("SELECT * 
+                                        FROM donations 
+                                        WHERE email = (SELECT email 
+                                                       FROM users 
+                                                       WHERE username = :username)");
+                $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+                $stmt->execute();
+                $donations = $stmt->fetchAll();
                 echo json_encode([
                     'success' => true,
                     'donations' => $donations
@@ -53,17 +57,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
             break;
 
-        case 'spendMoney':
-            $amount = $_POST['amount'];
+        case 'refundMoney':
+            $username = $_POST['refundUsername'];
             
             //    ---    Query    ---  //
             try{
                 $conn->beginTransaction();
-                $conn->exec("UPDATE users SET balance = balance - $amount WHERE email = '$_SESSION[email]'");
-                $conn->exec("INSERT INTO donations (email, amount, public) VALUES ('$_SESSION[email]', $amount, 1)");
+                $stmt = $conn->prepare("SELECT SUM(amount) AS total_refunded 
+                                        FROM donations 
+                                        WHERE email = (SELECT email 
+                                                       FROM users 
+                                                       WHERE username = :username)");
+                $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+                $stmt->execute();
+                $totalRefunded = $stmt->fetchColumn();
+
+                $stmt = $conn->prepare("DELETE FROM donations 
+                                        WHERE email = (SELECT email 
+                                                       FROM users 
+                                                       WHERE username = :username)");
+                $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+                $stmt->execute();
+
                 $conn->commit();
                 echo json_encode([
-                    'success' => true
+                    'success' => true,
+                    'totalRefunded' => $totalRefunded
                 ]);
             } catch (PDOException $e) {
                 $conn->rollBack();
@@ -79,7 +98,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             //    ---    Query    ---  //
             try{
-                $conn->exec("UPDATE campaign_info SET amount = $goal WHERE name = 'goal'");
+                $stmt = $conn->prepare("UPDATE campaign_info SET amount = :goal WHERE name = 'goal'");
+                $stmt->bindParam(':goal', $goal, PDO::PARAM_INT);
+                $stmt->execute();
                 echo json_encode([
                     'success' => true,
                     'newGoal' => $goal

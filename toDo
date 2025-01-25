@@ -5,7 +5,7 @@ X fatto
 H bisogno di aiuto
 
 Features
-[ / ]    Funzionalità admin  
+[ X ]    Funzionalità admin  
 [ X ]    Informazione sui soldi nel database  
 [  ]    Blog/newsletter
 
@@ -14,6 +14,8 @@ Migliorie prioritarie
 [ X ]    Spostare lo script di adminPage in file apposito
 [ ? ]   Migliorare errori da adminActinos e getDonors
 [  ]    Aggiungere "Visualizzando le donazioni di:"
+[  ]    Settare permessi pagina admin
+[ ? ]   Chiudere resultBox in pagina admin
 
 Migliorie secondarie
 [ ? ]    Spostare .php contenenti pagine in cartella apposita

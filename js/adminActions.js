@@ -5,11 +5,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const topDonorsButton = document.getElementById('topDonorsButton');
     const userDonationsButton = document.getElementById('userDonationsButton');
     const setGoalButton = document.getElementById('setGoalButton');
+    const refundMoneyButton = document.getElementById('refundMoneyButton');
 
-    //Submit forms
+    //Close Forms
+    const closeTopDonors = document.getElementById('closeTopDonors');
+    const closeUserDonations = document.getElementById('closeUserDonations');
+    const closeSetGoal = document.getElementById('closeSetGoal');
+    const closeRefundMoney = document.getElementById('closeRefundMoney');
+
+    //Submit Forms
     const topDonorsForm = document.getElementById('topDonorsForm');
     const userDonationsForm = document.getElementById('userDonationsForm');
     const setGoalForm = document.getElementById('setGoalForm');
+    const refundMoneyForm = document.getElementById('refundMoneyForm');
 
 
     //    ----    Funzioni    ----    //
@@ -75,12 +83,18 @@ document.addEventListener("DOMContentLoaded", () => {
             return table;
         } else if(data.newGoal){
             return `<p>New goal set: <strong>€${data.newGoal}</strong></p>`;
+        }else if(data.totalRefunded){
+            return `<p>Refunded <strong>${data.totalRefunded}€</strong></p>`;
         } else {
             return '<p>No results found.</p>';
         }
     }
 
         //    ----    Event Listeners    ----    //
+
+
+        // Show Forms
+
         if (topDonorsButton) {
             topDonorsButton.addEventListener('click', () => {
                 toggleForm('topDonorsDiv');
@@ -98,6 +112,41 @@ document.addEventListener("DOMContentLoaded", () => {
                 toggleForm('setGoalDiv');
             });
         }
+
+        if (refundMoneyButton) {
+            refundMoneyButton.addEventListener('click', () => {
+                toggleForm('refundMoneyDiv');
+            });
+        }
+
+        // Close Forms
+
+        if (closeTopDonors) {
+            closeTopDonors.addEventListener('click', () => {
+                document.getElementById('topDonorsDiv').classList.remove('active');
+            });
+        }
+
+        if (closeUserDonations) {
+            closeUserDonations.addEventListener('click', () => {
+                document.getElementById('userDonationsDiv').classList.remove('active');
+            });
+        }
+
+        if (closeSetGoal) {
+            closeSetGoal.addEventListener('click', () => {
+                document.getElementById('setGoalDiv').classList.remove('active');
+            });
+        }
+
+        if (closeRefundMoney) {
+            closeRefundMoney.addEventListener('click', () => {
+                document.getElementById('refundMoneyDiv').classList.remove('active');
+            });
+        }
+        
+
+        // Submit Forms
     
         if (topDonorsForm) {
             topDonorsForm.addEventListener('submit', (e) => {
@@ -117,6 +166,15 @@ document.addEventListener("DOMContentLoaded", () => {
             setGoalForm.addEventListener('submit', (e) => {
                 e.preventDefault();
                 sendFormData('setGoalForm', 'setGoal');
+            });
+        }
+
+        if (refundMoneyForm) {
+            refundMoneyForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                var username = document.getElementById('username').value;
+                var confirmation = confirm('Are you sure you want to refund ' + username + '?');
+                if(confirmation) sendFormData('refundMoneyForm', 'refundMoney');
             });
         }
 });

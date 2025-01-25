@@ -26,7 +26,7 @@
         <hr>
         <button id="topDonorsButton" >Find top donors</button>
         <button id="userDonationsButton" >Donations list per user</button>
-        <button id="spendMoneyButton" >Invest Money</button>
+        <button id="refundMoneyButton" >Refund user</button>
         <button id="setGoalButton" >Set crowdfunding goal</button>
     </div>
 
@@ -34,6 +34,7 @@
 
     <!-- Form per Cercare i Top N Donatori -->
     <div id="topDonorsDiv" class="form-container">
+        <span class='close-button' id='closeTopDonors'>&times;</span>
         <h3>Find top donors</h3>
         <form id="topDonorsForm">
             <label for="topN">Number of donors to find:</label>
@@ -45,6 +46,7 @@
 
     <!-- Form per Lista Donazioni per Utente -->
     <div id="userDonationsDiv" class="form-container">
+        <span class='close-button' id='closeUserDonations'>&times;</span>
         <h3>Donations list per user</h3>
         <form id="userDonationsForm">
             <label for="username">Username:</label>
@@ -55,11 +57,12 @@
 
 
     <!-- Form per Spendere N Soldi -->
-    <div id="spendMoneyDiv" class="form-container">
-        <h3>Invest Money!</h3>
-        <form id="spendMoneyForm">
-            <label for="amount">Amount to Spend:</label>
-            <input type="number" id="amount" name="amount" required>
+    <div id="refundMoneyDiv" class="form-container">
+        <span class='close-button' id='closeRefundMoney'>&times;</span>
+        <h3>Refund users</h3>
+        <form id="refundMoneyForm">
+            <label for="refundUsername">User to refund:</label>
+            <input type="text" id="refundUsername" name="refundUsername" required>
             <button type="submit" >Confirm</button>
         </form>
     </div>
@@ -67,6 +70,7 @@
 
     <!-- Form per Impostare l'Obiettivo -->
     <div id="setGoalDiv" class="form-container">
+        <span class='close-button' id='closeSetGoal'>&times;</span>
         <h3>Set Goal</h3>
         <form id="setGoalForm">
             <label for="goal">New Goal:</label>
