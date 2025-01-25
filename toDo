@@ -5,14 +5,14 @@ X fatto
 
 Features
 [ / ]    Funzionalità admin    
-[ / ]    Motore ricerca
+[ X ]    Motore ricerca
 [  ]    Blog/newsletter
 [  ]    Informazione sui soldi nel database
 
 Migliorie prioritarie
 [  ]    Spostare lo script di adminPage in file apposito
 [ ? ]   Migliorare errori da adminActinos e getDonors
-[  ]    Rendere output adimn una tabella
+[ X ]    Rendere output adimn una tabella
 
 Migliorie secondarie
 [  ]    Spostare .php contenenti pagine in cartella apposita

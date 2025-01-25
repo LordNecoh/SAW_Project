@@ -14,7 +14,7 @@
     <!--    Stylesheets     -->
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/donazionePopup.css">
-    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <!-- <link rel="icon" type="image/x-icon" href="images/favicon.ico"> -->
 
 </head>
 <body>

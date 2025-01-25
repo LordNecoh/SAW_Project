@@ -48,23 +48,29 @@
         }
 
         function renderResults(data) {
-            let html = '<h3>Query Results:</h3>';
             if (data.donors) {
-                html += '<ul>';
+                // Top Donors Results
+                let table = '<table class="styled-table">';
+                table += '<thead><tr><th>Username</th><th>Email</th><th>Total Donated</th></tr></thead>';
+                table += '<tbody>';
                 data.donors.forEach(donor => {
-                    html += `<li>${donor.username}: ${donor.total_donated}</li>`;
+                    table += `<tr><td>${donor.username}</td><td>${donor.email}</td><td>${donor.total_donated}</td></tr>`;
                 });
-                html += '</ul>';
+                table += '</tbody></table>';
+                return table;
             } else if (data.donations) {
-                html += '<ul>';
+                // User Donations Results
+                let table = '<table class="styled-table">';
+                table += '<thead><tr><th>Donation ID</th><th>Email</th><th>Amount</th><th>Date</th><th>Public</th></tr></thead>';
+                table += '<tbody>';
                 data.donations.forEach(donation => {
-                    html += `<li>${donation.amount}€ - ${donation.date}</li>`;
+                    table += `<tr><td>${donation.id}</td><td>${donation.email}</td><td>${donation.amount}</td><td>${donation.donation_date}</td><td>${donation.public ? 'Yes' : 'No'}</td></tr>`;
                 });
-                html += '</ul>';
+                table += '</tbody></table>';
+                return table;
             } else {
-                html += '<p>No data available.</p>';
+                return '<p>No results found.</p>';
             }
-            return html;
         }
     </script>
 
