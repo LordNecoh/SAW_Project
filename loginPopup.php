@@ -10,6 +10,6 @@
         <input type="password" id="pass" name="pass" required>
         <div id="erroreLogin" class="error-message"></div>
         <input type="submit" name="submit" value="Login">
-        <span>Non hai un account? <a href="formRegistrazione.php">Registrati!</a></span>
+        <span>Don't have an account? <a href="formRegistrazione.php">Register!</a></span>
     </form>
 </div>

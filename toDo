@@ -5,7 +5,8 @@ X fatto
 H bisogno di aiuto
 
 Features
-[  ]    Blog/newsletter
+[ / ]    Blog
+[  ]    Manifest .json
 
 Migliorie prioritarie
 [ ? ]   Migliorare errori da adminActinos e getDonors
@@ -16,6 +17,7 @@ Migliorie secondarie
 [  ]    Allineare meglio popup donazioni
 [  ]    Video di gameplay
 [  ]    Assicurarsi di non avere clone code nei css
+[  ]    Togliere sfondo da immagine .ico
 
 Accessibilità
 [ ? ]    Test Accessibilità
@@ -28,4 +30,9 @@ Sicurezza
 Se avanza tempo
 [ ? ]   Fare in modo che aggiornando i goal rimanga storia di quelli completati
 [ ? ]   Possibilità di cambiare lingua
+[  ]    Animazioni/Transizioni
+
+Da fare, ma alla fine
+[ X ]    Unificare lingua front-end
+[  ]    Unificare lingua codice
 

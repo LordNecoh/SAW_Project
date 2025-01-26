@@ -43,7 +43,6 @@ img {
 }
 
 
-
 .button-area button {
     background-color: #007bff; /* Colore blu */
     color: white;
@@ -75,7 +74,6 @@ img {
     line-height: 1.5; /* Migliora la leggibilità */
     grid-column: 1 / -1; /* Occupano due colonne della griglia */
 }
-
 
 .button-area hr {
     border: 0;

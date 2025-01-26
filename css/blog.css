@@ -1,0 +1,169 @@
+/* Stile generale per la pagina */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f9f9f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Contenitore principale del blog */
+.blog-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Titoli principali */
+h1, h2 {
+    color: #444;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Post individuali */
+.post {
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #f1f1f1;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.post h3 {
+    margin: 0 0 10px;
+    color: #222;
+}
+
+.post p {
+    margin: 0 0 10px;
+}
+
+.post small {
+    color: #777;
+    font-size: 0.9em;
+}
+
+/* Sezione admin */
+.admin-panel {
+    margin-bottom: 40px;
+    padding: 20px;
+    background: #e9f5e9;
+    border: 2px solid #4caf50;
+    border-radius: 8px;
+}
+
+.admin-panel h2 {
+    color: #2e7d32;
+}
+
+.admin-panel form {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.admin-panel input[type="text"]{
+    width: 97%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1em;
+}
+.admin-panel textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1em;
+}
+
+.admin-panel button {
+    align-self: flex-end;
+    padding: 10px 20px;
+    font-size: 1em;
+    color: #fff;
+    background-color: #4caf50;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.admin-panel button:hover {
+    background-color: #45a049;
+}
+
+/* Messaggi di errore o successo */
+.alert {
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+}
+
+.alert-success {
+    background-color: #e7f4e4;
+    color: #2e7d32;
+    border: 1px solid #4caf50;
+}
+
+.alert-error {
+    background-color: #fdecea;
+    color: #d32f2f;
+    border: 1px solid #f44336;
+}
+
+
+.admin-panel-container {
+    margin: 20px 0;
+    text-align: left;
+}
+
+#toggleAdminPanel, #closeAdminPanel {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+#toggleAdminPanel:hover, #closeAdminPanel:hover {
+    background-color: #0056b3;
+}
+
+.admin-panel {
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    max-width: 600px;
+    text-align: left;
+}
+
+
+
+/* Responsività */
+@media (max-width: 600px) {
+    .blog-container {
+        padding: 10px;
+    }
+
+    .admin-panel input[type="text"],
+    .admin-panel textarea {
+        font-size: 0.9em;
+    }
+
+    .admin-panel button {
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
+}

@@ -43,15 +43,15 @@ try {
         $result = "
                 <span class='close-button' id='closeProfilePopup'>&times;</span>
                 <div class='profile-image-wrapper'>
-                    <img src='images/profilePicture.png' alt='Profile Image' title='Pofile Image' class='profile-image'>
+                    <img src='images/profilePicture.png' alt='Profile Image' title='Pofile Image'===== class='profile-image'>
                     $adminBadge
                 </div>
-                <p><strong>Nome:</strong> <span>" . htmlspecialchars($first, ENT_QUOTES) . "</span></p>
-                <p><strong>Cognome:</strong> <span>" . htmlspecialchars($last,ENT_QUOTES) . "</span></p>
+                <p><strong>Name:</strong> <span>" . htmlspecialchars($first, ENT_QUOTES) . "</span></p>
+                <p><strong>Surname:</strong> <span>" . htmlspecialchars($last,ENT_QUOTES) . "</span></p>
                 <p><strong>Username:</strong> <span>" . htmlspecialchars($username, ENT_QUOTES) . "</span></p>
                 <p><strong>Email:</strong> <span>" . htmlspecialchars($email, ENT_QUOTES) . "</span></p>
                 
-                <button id='editProfileButton' class='edit-button'>Modifica Informazioni</button>
+                <button id='editProfileButton' class='edit-button'>Edit informations</button>
                 $adminArea
                 ";
         echo $result;

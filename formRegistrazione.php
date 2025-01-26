@@ -15,17 +15,17 @@
 
     <div class="form-container">
         <form id="registrationForm" method="post" class="registration-form">
-            <h2>Registrati</h2>
+            <h2>Register</h2>
             <div id="loaderWheel" class="loader"></div>
             <div id="errorMessage" class="error-message"></div> 
 
             <label for="username">Username:</label>
             <input type="text" name="username" class="input-text" id="username" required>
             
-            <label for="firstname">Nome:</label>
+            <label for="firstname">Name:</label>
             <input type="text" name="firstname" class="input-text" id="firstname" required>
             
-            <label for="lastname">Cognome:</label>
+            <label for="lastname">Surname:</label>
             <input type="text" name="lastname" class="input-text" id="lastname" required>
             
             <label for="email">Email:</label>
@@ -34,14 +34,14 @@
             <label for="pass">Password:</label>
             <input type="password" name="pass" class="input-password" id="pass" required>
             
-            <label for="confirm">Conferma password:</label>
+            <label for="confirm">Confirm password:</label>
             <input type="password" name="confirm" class="input-password" id="confirm" required>
             
-            <input type="submit" name="register" value="Conferma" class="submit-button">
+            <input type="submit" name="register" value="Confirm" class="submit-button">
         </form>
         <div id="loadingSpinner" class="loading-spinner"></div>
 
-        <a href="index.php">Torna alla home</a>
+        <a href="index.php">Back to the homepage</a>
     </div>
 
     <?php require 'footer.php'; ?>
