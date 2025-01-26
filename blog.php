@@ -18,7 +18,7 @@
     <?php
         require_once 'database/connessioneDB.php';
 
-        $isAdmin = isset($_SESSION['admin'])
+        $isAdmin = isset($_SESSION['admin']);
     ?>
 
     <div class="blog-container">
@@ -42,10 +42,10 @@
 
         <!-- Sezione per visualizzare i post -->
         <div id="blogPosts">
-            <h2>All Posts</h2>
+            <!-- <h2>All Posts</h2> -->
             <?php
-            // Recupera i post dal database
-            $query = $conn->query("SELECT * FROM blog_posts ORDER BY created_at DESC");
+            // Recupera i primi 5 post dal database
+            $query = $conn->query("SELECT * FROM blog_posts ORDER BY created_at DESC LIMIT 5");
             $posts = $query->fetchAll();
 
             if ($posts):

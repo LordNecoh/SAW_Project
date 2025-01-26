@@ -60,4 +60,60 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
         });
     }
+
+
+    const blogPostsContainer = document.getElementById("blogPosts");
+    let offset = 5; // Partiamo dal 5° post (i primi 5 sono già caricati nel PHP)
+    const limit = 5; // Numero di post da caricare per ogni richiesta
+    let loading = false; // Per prevenire richieste duplicate
+
+    // Funzione per caricare i post successivi
+    async function loadMorePosts() {
+        if (loading) return; // Preveniamo richieste multiple
+        loading = true;
+
+        try {
+            //Debug
+            console.log(`Fetching: database/loadMorePosts.php?offset=${offset}&limit=${limit}`); 
+            const response = await fetch(`database/loadMorePosts.php?offset=${offset}&limit=${limit}`);
+            //Debug
+            console.log("Raw response:", response);
+            const data = await response.json();
+            //Debug
+            console.log("Parsed data:", data.posts);
+
+            if (data.success) {
+                data.posts.forEach(post => {
+                    const postDiv = document.createElement('div');
+                    postDiv.classList.add('post');
+                    postDiv.innerHTML = `
+                        <h3>${post.title}</h3>
+                        <div>${post.content}</div>
+                        <small>Posted by ${post.creator} on ${post.created_at}</small>
+                    `;
+                    blogPostsContainer.appendChild(postDiv);
+                });
+
+                offset += limit; // Aggiorna l'offset
+            } else {
+                console.error("Error loading posts:", data.error);
+            }
+        } catch (error) {
+            console.error("Unexpected error:", error);
+        } finally {
+            loading = false;
+        }
+    }
+
+    // Rileva lo scroll vicino al fondo della pagina
+    window.addEventListener("scroll", () => {
+        const scrollPosition = window.innerHeight + window.scrollY;
+        const bottomPosition = document.body.offsetHeight - 100;
+
+        if (scrollPosition >= bottomPosition) {
+            loadMorePosts();
+        }
+    });
 });
+
+
