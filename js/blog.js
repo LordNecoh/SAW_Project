@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     //Ricerca Post
     const searchForm = document.getElementById("searchForm");
     const clearSearch = document.getElementById("clearSearch");
+    let searchedPosts = false; // Per evitare di caricare altri post durante una ricerca
 
     //Caricamento Altri Post
     const blogPostsContainer = document.getElementById("blogPosts");
@@ -23,7 +24,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const limit = 5; // Numero di post da caricare per ogni richiesta
     let loading = false; // Per prevenire richieste duplicate
     let noMorePostsMessageShown = false; // Per evitare di mostrare il messaggio "No more posts to load." più di una volta
-    let searchedPosts = false; // Per evitare di caricare altri post durante una ricerca
 
     //Inizializzazione di TinyMCE
     tinymce.init({
@@ -84,6 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
         searchForm.addEventListener("submit", (e) => {
             e.preventDefault();
             searchedPosts = true;
+            clearSearch.style.display = "flex";
 
             const formData = new FormData(searchForm);
             formData.append('action', 'searchPosts');
@@ -110,6 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
         clearSearch.addEventListener("click", () => {
             searchedPosts = false;
             searchForm.reset();
+            clearSearch.style.display = "none";
             location.reload();
         });
     }

@@ -180,6 +180,8 @@ h1, h2 {
 
 .search-container .close-search{
     background-color: #dc3545;
+    display: none;
+    float: right;
 }
 
 .search-container .close-search:hover {
