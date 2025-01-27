@@ -9,6 +9,7 @@
     <script src="js/blog.js" defer></script>
 
     <link rel="stylesheet" href="css/blog.css">
+    <link rel="stylesheet" href="css/loader.css">
 
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 </head>
@@ -40,6 +41,17 @@
             </div>
         <?php endif; ?>
 
+        <!-- Ricerca Post -->
+        <div class="search-container">
+            <form id="searchForm">
+                <input type="text" id="searchInput" name="search" placeholder="Search posts...">
+                <button type="submit">Search</button>
+                <button id="clearSearch" class="close-search">X</button>
+            </form>
+        </div>
+
+        <!-- Sezione per visualizzare i post -->
+
         <script>
             //Per iniezione variabile PHP in JS
             const isAdmin = <?= $isAdmin ? 'true' : 'false'; ?>;
@@ -68,7 +80,7 @@
             endif;
             ?>
         </div>
-        <div id="loaderWheel" class="loader"></div>
+        <div id="loaderWheel" class="loaderBlog"></div>
     </div>
 
     <?php require 'footer.php'; ?>

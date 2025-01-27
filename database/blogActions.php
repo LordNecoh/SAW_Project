@@ -27,6 +27,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
             break;
 
+        case 'searchPosts':
+            $search = $_POST['search'] ?? '';
+
+            try {
+                $stmt = $conn->prepare("SELECT * FROM blog_posts WHERE title LIKE :search OR content LIKE :search");
+                $stmt->execute(['search' => "%$search%"]);
+                $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                if($posts) {
+                    foreach ($posts as $post) {
+                        ?>
+                        <div class="post">
+                            <h3><?= $post['title'] ?></h3>
+                            <div><?= $post['content'] ?></div>
+                            <small>Posted by <?= htmlspecialchars($post['creator']) ?> on <?= htmlspecialchars($post['created_at']) ?></small>
+                        </div>
+                        <?php
+                    }
+                } else {
+                    echo '<p>No posts found.</p>';
+                }
+            } catch (PDOException $e) {
+                echo '<p>Error loading posts: ' . htmlspecialchars($e->getMessage()) . '</p>';
+            }
+            break;
+
         default:
             echo json_encode(['success' => false, 'error' => 'Invalid action']);
             break;

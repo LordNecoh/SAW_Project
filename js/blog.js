@@ -13,6 +13,18 @@ document.addEventListener("DOMContentLoaded", () => {
     //Caricamento Post
     const loadingTime = 1000;   //Tempo di caricamento dei post in ms
 
+    //Ricerca Post
+    const searchForm = document.getElementById("searchForm");
+    const clearSearch = document.getElementById("clearSearch");
+
+    //Caricamento Altri Post
+    const blogPostsContainer = document.getElementById("blogPosts");
+    let offset = 5; // Partiamo dal 5° post (i primi 5 sono già caricati nel PHP)
+    const limit = 5; // Numero di post da caricare per ogni richiesta
+    let loading = false; // Per prevenire richieste duplicate
+    let noMorePostsMessageShown = false; // Per evitare di mostrare il messaggio "No more posts to load." più di una volta
+    let searchedPosts = false; // Per evitare di caricare altri post durante una ricerca
+
     //Inizializzazione di TinyMCE
     tinymce.init({
         selector: '#postContent',
@@ -66,16 +78,46 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    //    ----  Ricerca Post  ----    //
+    if (searchForm) {
+  
+        searchForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            searchedPosts = true;
 
-    const blogPostsContainer = document.getElementById("blogPosts");
-    let offset = 5; // Partiamo dal 5° post (i primi 5 sono già caricati nel PHP)
-    const limit = 5; // Numero di post da caricare per ogni richiesta
-    let loading = false; // Per prevenire richieste duplicate
-    let noMorePostsMessageShown = false; // Per evitare di mostrare il messaggio "No more posts to load." più di una volta
+            const formData = new FormData(searchForm);
+            formData.append('action', 'searchPosts');
+
+            fetch('database/blogActions.php', {
+
+                method: 'POST',
+                body: formData,
+            })
+                .then(response => response.text())
+                .then(html => {
+                    blogPostsContainer.innerHTML = html;
+                })
+                .catch(error => {
+                    console.error("Unexpected error:", error);
+
+                });
+
+        });
+
+    }
+
+    if(clearSearch){
+        clearSearch.addEventListener("click", () => {
+            searchedPosts = false;
+            searchForm.reset();
+            location.reload();
+        });
+    }
+
 
     // Funzione per caricare i post successivi
     async function loadMorePosts() {
-        if (loading || noMorePostsMessageShown) return; // Preveniamo richieste multiple
+        if (loading || noMorePostsMessageShown || searchedPosts) return; // Preveniamo richieste multiple
         loading = true;
 
         const loader = document.getElementById("loaderWheel");
