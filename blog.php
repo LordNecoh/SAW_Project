@@ -72,8 +72,12 @@
                         <h3><?= htmlspecialchars($post['title']) ?></h3>
                         <div><?= $post['content'] ?></div>
                         <small>Posted by <?= htmlspecialchars($post['creator']) ?> on <?= htmlspecialchars($post['created_at']) ?></small>
+                        <?php if ($isAdmin): ?>
+                            <button class="deletePost" id="<?= $post['id'] ?>">Delete</button>
+                        <?php endif; ?>
                     </div>
             <?php
+                
                 endforeach;
             else:
                 echo "<p>No posts available.</p>";

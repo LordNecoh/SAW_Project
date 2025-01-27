@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const toggleButton = document.getElementById("toggleAdminPanel");
     const closeButton = document.getElementById("closeAdminPanel");
     const adminPanel = document.getElementById("adminPanel");
+    let deletePostButtons = document.getElementsByClassName("deletePost");
 
     //Creazione Post
     const newPostForm = document.getElementById("newPostForm");
@@ -44,8 +45,39 @@ document.addEventListener("DOMContentLoaded", () => {
             adminPanel.style.display = "none";
             toggleButton.style.display = "block";
         });
+
     }
-    // Mostra il pannello
+
+    document.addEventListener("click", (e) => {
+        if (e.target.classList.contains("deletePost")) {
+            //get the id from the button deletePost
+            const postId = e.target.getAttribute("id");
+
+    
+            if (confirm(`Are you sure you want to delete the post "${postId}"?`)) {
+                const formData = new FormData();
+                formData.append('action', 'deletePost');
+                formData.append('id', postId);
+    
+                fetch('database/blogActions.php', {
+                    method: 'POST',
+                    body: formData,
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert("Post deleted successfully!");
+                            location.reload();
+                        } else {
+                            alert("Error: " + data.error);
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Unexpected error:", error);
+                    });
+            }
+        }
+    });
 
 
     //    ----  Creazione Post  ----    //

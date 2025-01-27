@@ -188,6 +188,22 @@ h1, h2 {
     background-color: #c82333;
 }
 
+.deletePost{
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+    float: right;
+}
+
+.deletePost:hover {
+    background-color: #c82333;
+}
+
 
 
 /*  ----    Responsività    ----     */

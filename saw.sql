@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Gen 27, 2025 alle 12:50
+-- Creato il: Gen 27, 2025 alle 16:28
 -- Versione del server: 10.4.32-MariaDB
 -- Versione PHP: 8.2.12
 
@@ -56,7 +56,8 @@ INSERT INTO `blog_posts` (`id`, `title`, `content`, `created_at`, `creator`) VAL
 (15, 'Prova emoji', '<p>????</p>', '2025-01-27 11:36:10', 'Necoh'),
 (16, 'bacio', '<p>😘</p>', '2025-01-27 11:46:12', 'Necoh'),
 (17, 'Secondo Bacio', '<p>😗</p>', '2025-01-27 11:46:33', 'Necoh'),
-(18, 'Emoji funzionanti', '<p>&Egrave; ufficiale: da questo momento in poi le emoji funzionano</p>', '2025-01-27 11:46:57', 'Necoh');
+(18, 'Emoji funzionanti', '<p>&Egrave; ufficiale: da questo momento in poi le emoji funzionano</p>', '2025-01-27 11:46:57', 'Necoh'),
+(19, 'yaay', '<p>😍</p>', '2025-01-27 11:58:57', 'Necoh');
 
 -- --------------------------------------------------------
 
@@ -74,7 +75,7 @@ CREATE TABLE `campaign_info` (
 --
 
 INSERT INTO `campaign_info` (`name`, `amount`) VALUES
-('goal', 3000);
+('goal', 2000);
 
 -- --------------------------------------------------------
 
@@ -87,20 +88,15 @@ CREATE TABLE `donations` (
   `email` varchar(254) DEFAULT NULL,
   `amount` decimal(10,2) NOT NULL,
   `public` tinyint(1) NOT NULL DEFAULT 0,
-  `donation_date` timestamp NOT NULL DEFAULT current_timestamp(),
-  `deleted_user` varchar(254) DEFAULT NULL
+  `donation_date` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dump dei dati per la tabella `donations`
 --
 
-INSERT INTO `donations` (`id`, `email`, `amount`, `public`, `donation_date`, `deleted_user`) VALUES
-(40, 'leonardo.necordi@gmail.com', 100.00, 1, '2025-01-25 12:04:43', NULL),
-(43, 'leonardo.necordi@gmail.com', 20.00, 0, '2025-01-25 12:56:29', NULL),
-(44, 'leonardo.necordi@gmail.com', 10.00, 0, '2025-01-25 14:49:54', NULL),
-(58, 'mariorossi@gmail.com', 50.00, 1, '2025-01-26 14:14:16', NULL),
-(59, 'mariorossi@gmail.com', 30.00, 0, '2025-01-26 14:14:24', NULL);
+INSERT INTO `donations` (`id`, `email`, `amount`, `public`, `donation_date`) VALUES
+(60, 'leonardo.necordi@gmail.com', 150.00, 1, '2025-01-27 15:16:55');
 
 -- --------------------------------------------------------
 
@@ -166,13 +162,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT per la tabella `blog_posts`
 --
 ALTER TABLE `blog_posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT per la tabella `donations`
 --
 ALTER TABLE `donations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- Limiti per le tabelle scaricate
