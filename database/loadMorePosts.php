@@ -4,8 +4,6 @@ require_once 'connessioneDB.php';
 $offset = isset($_GET['offset']) ? (int)$_GET['offset'] : 0;
 $limit = isset($_GET['limit']) ? (int)$_GET['limit'] : 5;
 
-error_log("Offset: $offset, Limit: $limit");    //Debug
-
 try {
     $query = $conn->prepare("SELECT * FROM blog_posts ORDER BY created_at DESC LIMIT :limit OFFSET :offset");
     $query->bindValue(':limit', $limit, PDO::PARAM_INT);

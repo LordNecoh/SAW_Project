@@ -47,7 +47,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $donations = $stmt->fetchAll();
                 echo json_encode([
                     'success' => true,
-                    'donations' => $donations
+                    'donations' => $donations,
+                    'username' => $username
                 ]);
             } catch (PDOException $e) {
                 echo json_encode([
@@ -95,6 +96,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         case 'setGoal':
             $goal = $_POST['goal'];
+
+            //    ---    Validation    ---  //
+
+            if (!is_numeric($goal)) {
+                echo json_encode([
+                    'success' => false,
+                    'error' => 'Goal must be a number'
+                ]);
+                exit;
+            }
+
+            if($goal < 100){
+                echo json_encode([
+                    'success' => false,
+                    'error' => 'Aim for an higher goal!'
+                ]);
+                exit;
+            }
+
+            if($goal > 1000000){
+                echo json_encode([
+                    'success' => false,
+                    'error' => 'Goal must be less than 1,000,000'
+                ]);
+                exit;
+            }
+
             
             //    ---    Query    ---  //
             try{
@@ -112,6 +140,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 ]);
             }
             break;
+
+        case 'singleRefund':
+
+            $donationID = $_POST['donationID'];
+            
+            //    ---    Query    ---  //
+            try{
+                $conn->beginTransaction();
+                $stmt = $conn->prepare("SELECT amount 
+                                        FROM donations 
+                                        WHERE id = :donationID");
+                $stmt->bindParam(':donationID', $donationID, PDO::PARAM_INT);
+                $stmt->execute();
+                $amountRefunded = $stmt->fetchColumn();
+
+                $stmt = $conn->prepare("DELETE FROM donations 
+                                        WHERE id = :donationID");
+                $stmt->bindParam(':donationID', $donationID, PDO::PARAM_INT);
+                $stmt->execute();
+
+                $conn->commit();
+                echo json_encode([
+                    'success' => true,
+                    'amountRefunded' => $amountRefunded
+                ]);
+            } catch (PDOException $e) {
+                $conn->rollBack();
+                echo json_encode([
+                    'success' => false,
+                    'error' => $e->getMessage()
+                ]);
+            }
+            break;
+            
 
         default:
             echo "Azione non riconosciuta.";

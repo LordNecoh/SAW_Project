@@ -12,6 +12,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const closeUserDonations = document.getElementById('closeUserDonations');
     const closeSetGoal = document.getElementById('closeSetGoal');
     const closeRefundMoney = document.getElementById('closeRefundMoney');
+    const resultBox = document.getElementById('result-box');
+    let closeResultBox;
 
     //Submit Forms
     const topDonorsForm = document.getElementById('topDonorsForm');
@@ -44,9 +46,8 @@ document.addEventListener("DOMContentLoaded", () => {
         })
             .then(response => response.json())
             .then(data => {
-                const resultBox = document.getElementById('result-box');
                 if (data.success) {
-                    resultBox.innerHTML = renderResults(data);
+                    renderResults(data);
                     resultBox.classList.add('active');
                 } else {
                     resultBox.innerHTML = `<p style="color: red;">Error: ${data.error}</p>`;
@@ -54,13 +55,39 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             })
             .catch(error => {
-                const resultBox = document.getElementById('result-box');
+                resultBox.innerHTML = `<p style="color: red;">Unexpected error: ${error.message}</p>`;
+                resultBox.classList.add('active');
+            });
+    }
+
+    function processRefund(donationID) {
+        const formData = new FormData();
+        formData.append('action', 'singleRefund');
+        formData.append('donationID', donationID);
+
+        fetch('database/adminActions.php', {
+            method: 'POST',
+            body: formData,
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    //Reload the table
+                    renderResults(data);
+                } else {
+                    resultBox.innerHTML = `<p style="color: red;">Error: ${data.error}</p>`;
+                    resultBox.classList.add('active');
+                }
+            })
+            .catch(error => {
                 resultBox.innerHTML = `<p style="color: red;">Unexpected error: ${error.message}</p>`;
                 resultBox.classList.add('active');
             });
     }
 
     function renderResults(data) {
+        resultBox.innerHTML = '<button id="closeResultBox" class="close-button">&times;</button>';
+        
         if (data.donors) {
             // Top Donors Results
             let table = '<table class="styled-table">';
@@ -70,23 +97,56 @@ document.addEventListener("DOMContentLoaded", () => {
                 table += `<tr><td>${donor.username}</td><td>${donor.email}</td><td>${donor.total_donated}</td></tr>`;
             });
             table += '</tbody></table>';
-            return table;
-        } else if (data.donations) {
-            // User Donations Results
+            resultBox.innerHTML += table;
+
+        } else if (data.donations) { // User Donations Results
+            if(data.username){
+                resultBox.innerHTML += `<h3>Donations for user: ${data.username}</h3>`;
+            }
+            
             let table = '<table class="styled-table">';
-            table += '<thead><tr><th>Donation ID</th><th>Amount</th><th>Date</th><th>Public</th></tr></thead>';
+            table += '<thead><tr><th>Donation ID</th><th>Amount</th><th>Date</th><th>Public</th><th>Refund</th></tr></thead>';
             table += '<tbody>';
             data.donations.forEach(donation => {
-                table += `<tr><td>${donation.id}</td><td>${donation.amount}</td><td>${donation.donation_date}</td><td>${donation.public ? 'Yes' : 'No'}</td></tr>`;
+                table += `<tr>
+                            <td>${donation.id}</td>
+                            <td>${donation.amount}</td>
+                            <td>${donation.donation_date}</td>
+                            <td>${donation.public ? 'Yes' : 'No'}</td>
+                            <td><button class="refund-button" data-id="${donation.id}">Refund</button></td>
+                          </tr>`;
             });
             table += '</tbody></table>';
-            return table;
+            resultBox.innerHTML += table;
+    
+            // Aggiungi il listener ai bottoni "Refund"
+            const refundButtons = document.querySelectorAll('.refund-button');
+            refundButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const donationId = e.target.getAttribute('data-id');
+                    const confirmation = confirm(`Are you sure you want to refund donation ID ${donationId}?`);
+                    if (confirmation) {
+                        processRefund(donationId);
+                    }
+                });
+            });
         } else if(data.newGoal){
-            return `<p>New goal set: <strong>€${data.newGoal}</strong></p>`;
+            resultBox.innerHTML += `<p>New goal set: <strong>€${data.newGoal}</strong></p>`;
         }else if(data.totalRefunded){
-            return `<p>Refunded <strong>${data.totalRefunded}€</strong></p>`;
+            resultBox.innerHTML += `<p>Refunded <strong>${data.totalRefunded}€</strong></p>`;
+        } else if(data.amountRefunded){
+            resultBox.innerHTML += `<p>Refunded <strong>${data.amountRefunded}€</strong></p>`; 
         } else {
-            return '<p>No results found.</p>';
+            resultBox.innerHTML += '<p>No results found.</p>';
+        }
+
+        resultBox.classList.add('active');
+
+        const closeResultBox = document.getElementById('closeResultBox');
+        if (closeResultBox) {
+            closeResultBox.addEventListener('click', () => {
+                resultBox.classList.remove('active');
+            });
         }
     }
 
@@ -142,6 +202,12 @@ document.addEventListener("DOMContentLoaded", () => {
         if (closeRefundMoney) {
             closeRefundMoney.addEventListener('click', () => {
                 document.getElementById('refundMoneyDiv').classList.remove('active');
+            });
+        }
+
+        if(closeResultBox){
+            closeResultBox.addEventListener('click', () => {
+                resultBox.classList.remove('active');
             });
         }
         

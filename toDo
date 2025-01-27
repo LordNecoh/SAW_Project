@@ -5,19 +5,15 @@ X fatto
 H bisogno di aiuto
 
 Features
-[ X ]    Blog
 [  ]    Manifest .json
 
 Migliorie prioritarie
-[ ? ]   Migliorare errori da adminActinos e getDonors
-[  ]    Aggiungere "Visualizzando le donazioni di:"
-[ ? ]   Possibilità di chiudere resultBox in pagina admin
+[ ? ]   Controllare errori
 
 Migliorie secondarie
 [  ]    Allineare meglio popup donazioni
 [  ]    Video di gameplay
 [  ]    Assicurarsi di non avere clone code nei css
-[  ]    Togliere sfondo da immagine .ico
 [ ? ]   Login con Google
 
 Accessibilità
