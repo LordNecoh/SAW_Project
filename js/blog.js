@@ -10,26 +10,31 @@ document.addEventListener("DOMContentLoaded", () => {
     //Creazione Post
     const newPostForm = document.getElementById("newPostForm");
 
+    //Caricamento Post
+    const loadingTime = 1000;   //Tempo di caricamento dei post in ms
+
     //Inizializzazione di TinyMCE
     tinymce.init({
         selector: '#postContent',
-        plugins: 'autolink lists link image charmap preview',
-        toolbar: 'undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent',
+        plugins: 'autolink lists link image charmap preview emoticons',
+        toolbar: 'undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | emoticons',
     });
 
     //    ----  Pannello Admin  ----    //
-
+    if(isAdmin){
+        toggleButton.addEventListener("click", () => {
+            adminPanel.style.display = "block";
+            toggleButton.style.display = "none";
+        });
+    
+        // Nasconde il pannello
+        closeButton.addEventListener("click", () => {
+            adminPanel.style.display = "none";
+            toggleButton.style.display = "block";
+        });
+    }
     // Mostra il pannello
-    toggleButton.addEventListener("click", () => {
-        adminPanel.style.display = "block";
-        toggleButton.style.display = "none";
-    });
 
-    // Nasconde il pannello
-    closeButton.addEventListener("click", () => {
-        adminPanel.style.display = "none";
-        toggleButton.style.display = "block";
-    });
 
     //    ----  Creazione Post  ----    //
     
@@ -66,43 +71,40 @@ document.addEventListener("DOMContentLoaded", () => {
     let offset = 5; // Partiamo dal 5° post (i primi 5 sono già caricati nel PHP)
     const limit = 5; // Numero di post da caricare per ogni richiesta
     let loading = false; // Per prevenire richieste duplicate
+    let noMorePostsMessageShown = false; // Per evitare di mostrare il messaggio "No more posts to load." più di una volta
 
     // Funzione per caricare i post successivi
     async function loadMorePosts() {
-        if (loading) return; // Preveniamo richieste multiple
+        if (loading || noMorePostsMessageShown) return; // Preveniamo richieste multiple
         loading = true;
 
+        const loader = document.getElementById("loaderWheel");
+        loader.style.display = "block"; // Mostra il loader
+
         try {
-            //Debug
-            console.log(`Fetching: database/loadMorePosts.php?offset=${offset}&limit=${limit}`); 
-            const response = await fetch(`database/loadMorePosts.php?offset=${offset}&limit=${limit}`);
-            //Debug
-            console.log("Raw response:", response);
-            const data = await response.json();
-            //Debug
-            console.log("Parsed data:", data.posts);
+                const response = await fetch(`database/loadMorePosts.php?offset=${offset}&limit=${limit}`);
+                const html = await response.text();
 
-            if (data.success) {
-                data.posts.forEach(post => {
-                    const postDiv = document.createElement('div');
-                    postDiv.classList.add('post');
-                    postDiv.innerHTML = `
-                        <h3>${post.title}</h3>
-                        <div>${post.content}</div>
-                        <small>Posted by ${post.creator} on ${post.created_at}</small>
-                    `;
-                    blogPostsContainer.appendChild(postDiv);
-                });
+                await new Promise(resolve => setTimeout(resolve, loadingTime)); // Simula un ritardo di caricamento
 
-                offset += limit; // Aggiorna l'offset
-            } else {
-                console.error("Error loading posts:", data.error);
+                if (html.includes("No more posts to load.")) {
+                    if (!noMorePostsMessageShown) {
+                        blogPostsContainer.innerHTML += '<p class="no-more-posts">No more posts to load.</p>';
+                        noMorePostsMessageShown = true; // Impedisce ulteriori messaggi
+                    }
+                } else {
+                    // Aggiungi i nuovi post
+                    blogPostsContainer.innerHTML += html;
+        
+                    // Aggiorna l'offset
+                    offset += limit;
+                }
+            } catch (error) {
+                console.error("Unexpected error:", error);
+            } finally {
+                loader.style.display = "none";
+                loading = false;
             }
-        } catch (error) {
-            console.error("Unexpected error:", error);
-        } finally {
-            loading = false;
-        }
     }
 
     // Rileva lo scroll vicino al fondo della pagina

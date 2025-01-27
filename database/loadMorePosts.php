@@ -12,18 +12,22 @@ try {
     $query->bindValue(':offset', $offset, PDO::PARAM_INT);
     $query->execute();
 
-    error_log("Posts fetched: " . print_r($posts, true));   //Debug
-
-
     $posts = $query->fetchAll(PDO::FETCH_ASSOC);
 
-    foreach ($posts as $post) {
-        $post['content'] = htmlspecialchars($post['content']); // Escape dell'HTML
+    if ($posts) {
+        foreach ($posts as $post) {
+            ?>
+            <div class="post">
+                <h3><?= $post['title'] ?></h3>
+                <div><?= $post['content'] ?></div>
+                <small>Posted by <?= htmlspecialchars($post['creator']) ?> on <?= htmlspecialchars($post['created_at']) ?></small>
+            </div>
+            <?php
+        }
+    } else {
+        echo '<p>No more posts to load.</p>';
     }
-
-    header('Content-Type: application/json');
-    echo json_encode(['success' => true, 'posts' => $posts]);
 } catch (PDOException $e) {
-    echo json_encode(['success' => false, 'error' => $e->getMessage()]);
+    echo '<p>Error loading posts: ' . htmlspecialchars($e->getMessage()) . '</p>';
 }
 ?>

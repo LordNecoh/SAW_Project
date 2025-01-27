@@ -40,6 +40,11 @@
             </div>
         <?php endif; ?>
 
+        <script>
+            //Per iniezione variabile PHP in JS
+            const isAdmin = <?= $isAdmin ? 'true' : 'false'; ?>;
+        </script>
+
         <!-- Sezione per visualizzare i post -->
         <div id="blogPosts">
             <!-- <h2>All Posts</h2> -->
@@ -63,6 +68,7 @@
             endif;
             ?>
         </div>
+        <div id="loaderWheel" class="loader"></div>
     </div>
 
     <?php require 'footer.php'; ?>
