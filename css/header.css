@@ -1,5 +1,4 @@
-/*  ----    Generali    ----     */
-
+/* ---- Generali ---- */
 header {
     background-color: #2c3e50;
     color: #ecf0f1;
@@ -12,7 +11,7 @@ header {
     font-weight: bold;
 }
 
-body{
+body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
@@ -20,10 +19,12 @@ body{
     color: #333;
 }
 
+/* ---- Navbar ---- */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transition: left 0.3s ease;
 }
 
 .navbar-left .top-left-title {
@@ -35,13 +36,12 @@ body{
 .navbar-right {
     display: flex;
     align-items: center;
-    gap: 15px; 
+    gap: 15px;
     font-size: 20px;
 }
 
-/*  ----   Pulsanti     ----     */
-
-.login-button, .logout-button, .profile-button {
+/* ---- Pulsanti ---- */
+.login-button, .logout-button, .profile-button, .blog-button {
     padding: 8px 16px;
     background-color: #287ab1;
     color: #fff;
@@ -50,14 +50,11 @@ body{
     font-size: 14px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    text-align: center;
 }
 
 .login-button:hover, .logout-button:hover, .profile-button:hover {
     background-color: #1f5a81;
-}
-
-#openProfileBtn {
-    margin-left: 10px;
 }
 
 .blog-button {
@@ -69,18 +66,14 @@ body{
     font-size: 14px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 20px;
-    font-weight: bold;  /*Come visto a lezione, scuro su chiaro sembra più sottile*/
+    font-weight: bold;
 }
 
 .blog-button:hover {
     background-color: #e6b800;
 }
 
-/*  ----    Popup    ----     */
+/* ---- Popup ---- */
 .loginPopup, .profilePopup {
     display: none;
     position: absolute;
@@ -95,7 +88,7 @@ body{
     z-index: 100;
 }
 
-/*  ----    Mobile Toggle Button    ----     */
+/* ---- Mobile Toggle Button ---- */
 .menu-toggle {
     display: none;
     font-size: 24px;
@@ -107,15 +100,12 @@ body{
     color: #fff;
 }
 
-/*  ----    Responsività    ----     */
+/* ---- Responsività ---- */
 @media (max-width: 768px) {
-    .menu-toggle {
-        display: block;
-    }
-
     .navbar {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: stretch;
+        justify-content: flex-start;
         position: fixed;
         top: 0;
         left: -100%;
@@ -123,59 +113,71 @@ body{
         height: 100vh;
         background-color: #2c3e50;
         padding: 20px;
+        overflow-y: auto;
         transition: left 0.3s ease;
     }
-    
+
     .navbar.active {
         left: 0;
     }
 
+    .navbar-left,
+    .navbar-center,
+    .navbar-right {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
 
-    .navbar-left .top-left-title {
-        font-size: 20px;
+    .navbar-left {
+        margin-bottom: 20px;
+        text-align: left;
+    }
+
+    .navbar-center {
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .navbar-right {
+        display: flex;
         flex-direction: column;
-        align-items: flex-start;
         gap: 10px;
+        align-items: stretch;
+    }
+
+    .navbar-right button {
+        width: 100%;
+        margin: 0;
+        padding: 10px;
         font-size: 16px;
+        text-align: center;
+    }
+
+    .menu-toggle {
+        display: block;
     }
 
     .blog-button {
-        position: static;
-        transform: none;
-        margin-top: 20px;
+        margin: 0;
     }
-    .loginPopup, .profilePopup {
-        top: 60px;
-        right: 10px;
-        width: 90%; 
+
+    .login-button,
+    .logout-button,
+    .profile-button {
+        margin: 0;
     }
 }
 
 @media (max-width: 480px) {
-    .navbar-left .top-left-title {
-        font-size: 18px;
-    }
-
     .navbar-right {
-        font-size: 14px;
         gap: 8px;
     }
 
-    .login-button, .logout-button, .profile-button {
-        font-size: 10px;
-        padding: 5px 10px;
-    }
-
-    .blog-button {
-        font-size: 10px;
-        padding: 5px 20px;
-    }
-
-    .loginPopup, .profilePopup {
-        font-size: 14px;
+    .navbar-right button {
         padding: 8px;
+        font-size: 14px;
     }
 }
