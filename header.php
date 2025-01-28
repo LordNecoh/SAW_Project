@@ -5,6 +5,11 @@ if (session_status() === PHP_SESSION_NONE) {
 ?>
 <link rel="stylesheet" href="css/header.css">
 <header>
+
+    <!-- Mobile Toggle Button -->
+    <div class="menu-toggle" id="mobileMenuToggle">
+        ☰
+    </div>
     <nav class="navbar">
         <!-- Sinistra: Titolo -->
         <div class="navbar-left">
@@ -45,3 +50,9 @@ if (session_status() === PHP_SESSION_NONE) {
         </div>
     </nav>
 </header>
+<script>
+    document.getElementById('mobileMenuToggle').addEventListener('click', function() {
+        const navbar = document.getElementById('navbar');
+        navbar.classList.toggle('active');
+    });
+</script>

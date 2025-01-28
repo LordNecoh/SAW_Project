@@ -31,7 +31,7 @@
     <div class="video-container">
         <div class="video-box">
             <video autoplay muted loop id="video">
-                <source src="images/GameplayReveal.mp4" type="video/mp4">
+                <source src="images/gameplayReveal.mp4" type="video/mp4">
                 <p>Your browser does not support the video tag.</p>
             </video>
             <div class="video-controls">
