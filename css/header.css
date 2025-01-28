@@ -12,13 +12,14 @@ header {
     font-weight: bold;
 }
 
-body {
+body{
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f4f4f9;
     color: #333;
 }
+
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -94,4 +95,68 @@ body {
     z-index: 100;
 }
 
+/*  ----    Responsività    ----     */
+@media (max-width: 768px) {
+    header {
+        padding: 15px;
+        text-align: center;
+    }
 
+    .navbar {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .navbar-left .top-left-title {
+        font-size: 20px;
+    }
+
+    .navbar-right {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        font-size: 16px;
+    }
+
+    .login-button, .logout-button, .profile-button {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+
+    .blog-button {
+        padding: 6px 24px;
+        font-size: 12px;
+        bottom: 15px;
+    }
+    .loginPopup, .profilePopup {
+        top: 60px;
+        right: 10px;
+        width: 90%; 
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar-left .top-left-title {
+        font-size: 18px;
+    }
+
+    .navbar-right {
+        font-size: 14px;
+        gap: 8px;
+    }
+
+    .login-button, .logout-button, .profile-button {
+        font-size: 10px;
+        padding: 5px 10px;
+    }
+
+    .blog-button {
+        font-size: 10px;
+        padding: 5px 20px;
+    }
+
+    .loginPopup, .profilePopup {
+        font-size: 14px;
+        padding: 8px;
+    }
+}

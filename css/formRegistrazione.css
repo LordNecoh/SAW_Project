@@ -1,3 +1,5 @@
+/*  ----    Generali    ----     */
+
 .form-container {
     width: 100%;
     max-width: 400px;
@@ -23,6 +25,28 @@
     color: #555;
 }
 
+.form-container a {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.form-container a:hover {
+    color: #0056b3;
+}
+
+.error-message {
+    color: red;
+    font-size: 16px;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+/*  ----    Input    ----     */
+
 .input-text,
 .input-email,
 .input-password {
@@ -43,6 +67,8 @@
     outline: none;
 }
 
+/*  ----    Pulsanti    ----     */
+
 .submit-button {
     width: 100%;
     padding: 12px;
@@ -60,22 +86,62 @@
     background-color: #0056b3;
 }
 
-.form-container a {
-    display: block;
-    text-align: center;
-    margin-top: 15px;
-    color: #007bff;
-    text-decoration: none;
-    transition: color 0.3s;
+
+/*  ----    Responsività    ----     */
+@media (max-width: 768px) {
+    .form-container {
+        margin: 20px auto;
+        padding: 15px;
+        max-width: 90%;
+    }
+
+    .registration-form h2 {
+        font-size: 24px;
+    }
+
+    .input-text,
+    .input-email,
+    .input-password {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .submit-button {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .error-message {
+        font-size: 14px;
+    }
 }
 
-.form-container a:hover {
-    color: #0056b3;
-}
+@media (max-width: 480px) {
+    .form-container {
+        padding: 10px;
+    }
 
-.error-message {
-    color: red;
-    font-size: 16px;
-    margin-bottom: 15px;
-    text-align: left;
+    .registration-form h2 {
+        font-size: 20px;
+    }
+
+    .input-text,
+    .input-email,
+    .input-password {
+        font-size: 12px;
+        padding: 6px;
+    }
+
+    .submit-button {
+        padding: 8px;
+        font-size: 12px;
+    }
+
+    .error-message {
+        font-size: 12px;
+    }
+
+    .form-container a {
+        font-size: 14px;
+    }
 }

@@ -1,17 +1,15 @@
 /*  ----    Generali   ----     */
 
-/* Reset di base */
 body, ul {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Stile generale del body */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f9; /* Colore di sfondo chiaro */
-    color: #333; /* Colore del testo */
+    background-color: #f4f4f9; 
+    color: #333; 
     padding: 20px;
 }
 
@@ -21,7 +19,7 @@ img {
     border-radius: 50%;
     margin: 20px auto;
     display: block;
-    border: 4px solid #2c3e50; /* Aggiunge un bordo visibile di colore verde */
+    border: 4px solid #2c3e50; 
 }
 
 
@@ -36,15 +34,15 @@ img {
     background-color: #f8f9fa;
     max-width: 600px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    display: grid; /* Attiva la griglia */
-    grid-template-columns: repeat(2, 1fr); /* Due colonne con larghezza uniforme */
-    grid-gap: 20px; /* Spaziatura tra i bottoni */
-    justify-items: center; /* Centra i bottoni */
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr); 
+    grid-gap: 20px; 
+    justify-items: center; 
 }
 
 
 .button-area button {
-    background-color: #007bff; /* Colore blu */
+    background-color: #007bff; 
     color: white;
     border: none;
     padding: 10px 20px;
@@ -52,46 +50,46 @@ img {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
-    margin: 10px; /* Spaziatura tra i bottoni */
+    margin: 10px; 
     display: inline-block;
 }
 
 .button-area button:hover {
-    background-color: #0056b3; /* Colore più scuro al passaggio del mouse */
-    transform: scale(1.05); /* Leggera espansione al passaggio del mouse */
+    background-color: #0056b3; 
+    transform: scale(1.05);
 }
 
 .button-area button:active {
-    transform: scale(1); /* Ritorna alla dimensione originale quando cliccato */
+    transform: scale(1); 
 }
 
 .button-area h2 {
     color: #333;
     font-size: 24px;
     font-weight: bold;
-    margin: 0 auto 10px auto; /* Rimuove margini non necessari sopra e centra orizzontalmente */
-    text-align: center; /* Centra il testo orizzontalmente */
-    line-height: 1.5; /* Migliora la leggibilità */
-    grid-column: 1 / -1; /* Occupano due colonne della griglia */
+    margin: 0 auto 10px auto; 
+    text-align: center; 
+    line-height: 1.5; 
+    grid-column: 1 / -1; 
 }
 
 .button-area hr {
     border: 0;
     height: 2px;
-    background-color: #007bff; /* Linea blu */
-    margin: 10px auto; /* Centra la linea */
-    width: 80%; /* Riduce la larghezza */
-    grid-column: 1 / -1; /* Assicura che occupi tutta la larghezza senza influire sulla griglia */
+    background-color: #007bff; 
+    margin: 10px auto; 
+    width: 80%; 
+    grid-column: 1 / -1; 
 }
 
 /*  ----    Forms   ----     */
 .form-container {
-    display: none; /* Nascondi i form per default */
+    display: none; 
     background-color: white;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Leggera ombra */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
     max-width: 500px;
     margin: 0 auto;
     margin-bottom: 50px;
@@ -103,10 +101,10 @@ img {
     cursor: pointer;
     color: #888;
     float: right;
-    background: none; /* Rimuove lo sfondo */
-    border: none; /* Rimuove il bordo */
-    padding: 0; /* Rimuove il padding */
-    margin: 0; /* Rimuove il margine */
+    background: none; 
+    border: none; 
+    padding: 0; 
+    margin: 0; 
 }
 
 .close-button:hover {
@@ -114,7 +112,7 @@ img {
 }
 
 .form-container.active {
-    display: block; /* Mostra il form attivo */
+    display: block; 
 }
 
 .form-container h3 {
@@ -138,7 +136,7 @@ img {
 }
 
 .form-container button[type="submit"] {
-    background-color: #28a745; /* Colore verde per i pulsanti nei form */
+    background-color: #28a745; 
     color: white;
     border: none;
     padding: 10px 20px;
@@ -149,7 +147,7 @@ img {
 }
 
 .form-container button[type="submit"]:hover {
-    background-color: #218838; /* Verde più scuro al passaggio del mouse */
+    background-color: #218838; 
     transform: scale(1.05);
 }
 
@@ -157,39 +155,27 @@ img {
     transform: scale(1);
 }
 
-/* Mobile-friendly layout */
-@media (max-width: 600px) {
-    .button-area li {
-        display: block;
-        margin: 10px 0;
-    }
-
-    .form-container {
-        padding: 15px;
-    }
-}
 
 /*  ----    Output  ----     */
 
 .result-box {
-    display: none; /* Inizialmente nascosto */
-    background-color: #fff; /* Sfondo bianco */
+    display: none; 
+    background-color: #fff; 
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin: 20px auto; /* Spazio sopra e sotto il box, centrato orizzontalmente */
-    max-width: 600px; /* Stessa larghezza del box principale */
+    margin: 20px auto; 
+    max-width: 600px; 
     text-align: center;
 }
 
-
 .result-box + * {
-    margin-top: 20px; /* Spazio aggiuntivo tra il box e gli elementi sotto di esso */
+    margin-top: 20px;
 }
 
 .result-box.active {
-    display: block; /* Mostra il box quando ha risultati */
+    display: block; 
 }
 
 .result-box p {
@@ -203,8 +189,6 @@ img {
 }
 
 
-
-
 /*  ----    Tabelle     ----     */
 
 .styled-table {
@@ -215,8 +199,8 @@ img {
     width: 100%;
     max-width: 600px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 10px; /* Angoli arrotondati */
-    overflow: hidden; /* Assicura che i bordi arrotondati siano visibili */
+    border-radius: 10px;
+    overflow: hidden; 
 }
 
 .styled-table thead tr {
@@ -260,4 +244,43 @@ img {
 
 .refund-button:hover {
     background-color: #ff6666;
+}
+
+/*  ----    Responsività    ----     */
+@media (max-width: 768px) {
+    .button-area {
+        grid-template-columns: 1fr; 
+    }
+
+    .form-container, .result-box, .styled-table {
+        max-width: 100%;
+        margin: 0 10px;
+    }
+
+    .styled-table th, .styled-table td {
+        padding: 10px;
+    }
+
+    .button-area button {
+        width: 100%;
+        margin: 5px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    .button-area {
+        padding: 10px;
+    }
+
+    .form-container, .result-box {
+        padding: 15px;
+    }
+
+    .styled-table th, .styled-table td {
+        padding: 8px;
+    }
 }

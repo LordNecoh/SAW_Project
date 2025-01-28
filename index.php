@@ -10,6 +10,7 @@
     <script src="js/caricaDonazioni.js"></script>
     <script src="js/gestionePopup.js"></script>
     <script src="js/gestionePopupDonazione.js"></script>
+    <script src="js/gestioneVideo.js"></script>
 
     <!--    Stylesheets     -->
     <link rel="stylesheet" href="css/index.css">
@@ -27,6 +28,21 @@
 
     <h1> Welcome to Chuck the Beaver's very unofficial website! </h1>
 
+    <div class="video-container">
+        <div class="video-box">
+            <video autoplay muted loop id="video">
+                <source src="images/GameplayReveal.mp4" type="video/mp4">
+                <p>Your browser does not support the video tag.</p>
+            </video>
+            <div class="video-controls">
+                <button id="playBtn">Play</button>
+                <button id="pauseBtn">Pause</button>
+                <button id="muteBtn">Mute</button>
+                <button id="unmuteBtn">Unmute</button>
+            </div>
+        </div>
+    </div>
+
     <div class="content-container">
         <article class="baseText" id="about">
             <p>Chuck the Beaver is a very exciting tower defense game created for the GMTK GameJam 2024.</p>
@@ -35,11 +51,11 @@
             <p>As the game progresses, the challenges scale up, requiring players to adapt and enhance their strategies to succeed.</p>
             <p>Join Chuck the Beaver in this thrilling adventure and see if you have what it takes to defend your Dam!</p>
         </article>
-
         <img src="images/gameImage.png" alt="Image of the game's protagonist" title="Image of the game's protagonist" class="centeredImage">
     </div>
 
     <div class="content-container">
+        
         <article class="baseText" id="game">
             <p>In the world of Chuck the Beaver, our protagonist is an industrious beaver who is obsessed with upgrading his dam.</p>
             <p>His relentless pursuit of perfection and efficiency has led him to block an important river, disrupting the natural balance of the forest.</p>

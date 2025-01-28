@@ -139,3 +139,74 @@ input[type="text"] {
     border: 1px solid #c3e6cb;
 }
 
+/*  ----    Responsività    ----     */
+@media (max-width: 768px) {
+    .donation-popup-content {
+        padding: 15px;
+    }
+
+    .donation-popup h2 {
+        font-size: 22px;
+    }
+
+    .donation-popup-buttons {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .donation-popup-preset {
+        width: 100%;
+        text-align: center;
+    }
+
+    input[type="number"],
+    input[type="text"] {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    .donation-popup-submit {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    .anonymous-toggle {
+        font-size: 12px;
+    }
+
+    .message-container {
+        width: 90%;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .donation-popup-content {
+        padding: 10px;
+    }
+
+    .donation-popup h2 {
+        font-size: 20px;
+    }
+
+    .donation-popup-preset {
+        font-size: 12px;
+    }
+
+    input[type="number"],
+    input[type="text"] {
+        font-size: 12px;
+    }
+
+    .donation-popup-submit {
+        font-size: 12px;
+    }
+
+    .anonymous-toggle {
+        font-size: 10px;
+    }
+
+    .message-container {
+        font-size: 12px;
+    }
+}

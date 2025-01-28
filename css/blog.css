@@ -1,14 +1,5 @@
 
 /*  ----    Stili principali    ----     */
-body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    background-color: #f9f9f9;
-    color: #333;
-    margin: 0;
-    padding: 0;
-}
-
 .blog-container {
     max-width: 800px;
     margin: 20px auto;

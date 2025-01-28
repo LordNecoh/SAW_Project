@@ -93,3 +93,52 @@
     margin-top: 10px; 
     margin-bottom: 10px; 
 }
+
+/*  ----    Responsività    ----     */
+@media (max-width: 768px) {
+    .loginPopup {
+        justify-content: center;
+        align-items: center;
+    }
+
+    .loginPopup-content {
+        width: 90%;
+        max-width: 350px;
+        margin: 10px;
+    }
+
+    .loginPopup-content input {
+        margin: 10px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .loginPopup-content {
+        padding: 15px;
+    }
+
+    .loginPopup-content h2 {
+        font-size: 20px;
+    }
+
+    .loginPopup-content input {
+        padding: 8px;
+    }
+
+    .loginPopup-content input[type="submit"] {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+
+    .loginPopup-content label {
+        font-size: 14px;
+    }
+
+    .loginPopup-content span {
+        font-size: 12px;
+    }
+
+    .error-message {
+        font-size: 12px;
+    }
+}

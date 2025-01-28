@@ -51,7 +51,7 @@
     color: #7f8c8d;
 }
 
-/*  ----    Buttons     ----    */
+/*  ----    Pulsanti     ----    */
 
 .close-button {
     position: absolute;
@@ -131,7 +131,7 @@
     background-color: #2980b9;
 }
 
-/*  ----    Images  ----    */
+/*  ----    Immagini  ----    */
 
 .edit-button:hover {
     background-color: #219150;
@@ -155,4 +155,70 @@
     position: absolute;
     width: 40px; 
     height: 40px;
+}
+
+/*  ----    Responsività    ----     */
+@media (max-width: 768px) {
+    .profilePopup {
+        justify-content: center;
+        align-items: center;
+    }
+
+    .profilePopup-content {
+        width: 90%;
+        max-width: 350px;
+        margin: 10px;
+    }
+
+    .profilePopup-content p {
+        font-size: 16px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .profilePopup-content p strong {
+        margin-bottom: 5px;
+    }
+
+    .profile-image {
+        width: 120px;
+        height: 120px;
+    }
+
+    .admin-link {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .profilePopup-content {
+        padding: 15px;
+    }
+
+    .profilePopup-content h2 {
+        font-size: 20px;
+    }
+
+    .profilePopup-content p {
+        font-size: 14px;
+    }
+
+    .profilePopup-content input {
+        padding: 8px;
+    }
+
+    .profilePopup-content input[type="submit"] {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+
+    .edit-button, .admin-link {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+
+    .profile-image {
+        width: 100px;
+        height: 100px;
+    }
 }
