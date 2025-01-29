@@ -11,21 +11,20 @@
     justify-content: flex-end;
     align-items: flex-start;
     z-index: 99;
-    padding: 10px; /* Aggiungi padding globale ai lati */
-    box-sizing: border-box; /* Assicura che il padding sia incluso nella larghezza */
+    padding: 10px; 
+    box-sizing: border-box; 
 }
 
 .profilePopup-content {
     background-color: #fff;
     padding: 20px;
-    margin: auto; /* Centro il popup */
     border-radius: 10px;
-    width: 90%; /* Larghezza dinamica per schermi piccoli */
-    max-width: 350px; /* Limite massimo di larghezza */
+    width: 90%; 
+    max-width: 350px;
     text-align: center;
     position: relative;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    box-sizing: border-box; /* Include il padding nella dimensione */
+    box-sizing: border-box; 
 }
 
 .profilePopup-content h2 {
