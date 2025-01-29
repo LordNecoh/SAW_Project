@@ -5,9 +5,10 @@ if (session_status() === PHP_SESSION_NONE) {
 ?>
 <link rel="stylesheet" href="css/header.css">
 <header>
+<div class="menu-toggle" id="mobileMenuToggle">&#9776;</div>
+
     <nav class="navbar" id="navbar">
         <!-- Mobile Menu Toggle -->
-        <div class="menu-toggle" id="mobileMenuToggle">&#9776;</div>
 
         <!-- Sinistra: Titolo -->
         <div class="navbar-left">
@@ -17,7 +18,6 @@ if (session_status() === PHP_SESSION_NONE) {
         <!-- Centro: Blog -->
         <div class="navbar-center">
             <?php
-            // Verifica se la pagina corrente NON è blog.php
             if (basename($_SERVER['PHP_SELF']) !== 'blog.php') {
                 echo '<button type="button" id="blogBtn" class="blog-button" onclick="window.location.href=\'blog.php\'">Check our blog!</button>';
             }
@@ -53,7 +53,9 @@ if (session_status() === PHP_SESSION_NONE) {
 </header>
 <script>
     document.getElementById('mobileMenuToggle').addEventListener('click', function() {
-        const navbar = document.getElementById('navbar');
-        navbar.classList.toggle('active');
-    });
+    const navbar = document.getElementById('navbar');
+    const menuToggle = document.getElementById('mobileMenuToggle');
+    navbar.classList.toggle('active');
+    menuToggle.classList.toggle('active');
+});
 </script>

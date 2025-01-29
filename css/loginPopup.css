@@ -43,9 +43,10 @@
 .loginPopup-content input {
     width: 100%;
     padding: 10px;
-    margin: 10px -10px;
+    margin: 10px 0; /* Rimuovi i margini negativi */
     border: 1px solid #ccc;
     border-radius: 5px;
+    box-sizing: border-box; /* Assicura che padding e bordo siano inclusi nella larghezza */
 }
 
 .loginPopup-content input[type="submit"] {
@@ -115,30 +116,15 @@
 @media (max-width: 480px) {
     .loginPopup-content {
         padding: 15px;
-    }
-
-    .loginPopup-content h2 {
-        font-size: 20px;
+        width: 90%; /* Assicurati che la popup sia sempre visibile */
     }
 
     .loginPopup-content input {
-        padding: 8px;
+        padding: 10px; /* Riduci leggermente il padding per adattarlo meglio */
     }
 
     .loginPopup-content input[type="submit"] {
-        padding: 8px 16px;
+        padding: 10px 16px;
         font-size: 14px;
-    }
-
-    .loginPopup-content label {
-        font-size: 14px;
-    }
-
-    .loginPopup-content span {
-        font-size: 12px;
-    }
-
-    .error-message {
-        font-size: 12px;
     }
 }
