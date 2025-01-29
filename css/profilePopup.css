@@ -9,19 +9,23 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.3);
     justify-content: flex-end;
-    align-items: flex-start; 
+    align-items: flex-start;
     z-index: 99;
+    padding: 10px; /* Aggiungi padding globale ai lati */
+    box-sizing: border-box; /* Assicura che il padding sia incluso nella larghezza */
 }
 
 .profilePopup-content {
     background-color: #fff;
     padding: 20px;
-    margin: 20px;
+    margin: auto; /* Centro il popup */
     border-radius: 10px;
-    width: 350px;
+    width: 90%; /* Larghezza dinamica per schermi piccoli */
+    max-width: 350px; /* Limite massimo di larghezza */
     text-align: center;
     position: relative;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box; /* Include il padding nella dimensione */
 }
 
 .profilePopup-content h2 {
@@ -165,9 +169,10 @@
     }
 
     .profilePopup-content {
-        width: 90%;
+        width: 90%; /* Assicurati che il popup non tocchi i bordi */
         max-width: 350px;
-        margin: 10px;
+        padding: 15px; /* Riduci il padding per schermi medi */
+        margin: 10px; /* Aggiungi margine per ulteriore sicurezza */
     }
 
     .profilePopup-content p {
@@ -179,20 +184,13 @@
     .profilePopup-content p strong {
         margin-bottom: 5px;
     }
-
-    .profile-image {
-        width: 120px;
-        height: 120px;
-    }
-
-    .admin-link {
-        width: 100%;
-    }
 }
 
 @media (max-width: 480px) {
     .profilePopup-content {
+        width: 90%; /* Anche su schermi molto piccoli, lascia spazio ai lati */
         padding: 15px;
+        margin: 10px;
     }
 
     .profilePopup-content h2 {

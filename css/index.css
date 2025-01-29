@@ -171,6 +171,8 @@ h1 {
     display: flex;
     justify-content: center;
     margin: 30px auto;
+    padding: 0 15px; /* Aggiunge spazio ai lati per evitare che tocchi i bordi */
+    box-sizing: border-box; /* Assicura che il padding sia incluso nelle dimensioni */
 }
 
 .video-box {
@@ -185,6 +187,7 @@ h1 {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
     max-width: 600px;
     width: 100%;
+    box-sizing: border-box; /* Include il padding nelle dimensioni */
 }
 
 #video {
@@ -258,8 +261,13 @@ h1 {
         padding: 10px 20px;
     }
 
+    .video-container {
+        padding: 0 10px; 
+    }
+
     .video-box {
         padding: 15px;
+        max-width: 100%;
     }
 
     #video {
@@ -273,17 +281,21 @@ h1 {
 }
 
 @media (max-width: 480px) {
-    .donation-bar {
-        padding: 15px;
+    .video-container {
+        padding: 0 10px; 
     }
 
-    .top-donors-table {
-        padding: 15px;
-        width: 100%;
-    }
-
-    #donor-table th, #donor-table td {
+    .video-box {
         padding: 10px;
+        max-width: 100%;
+    }
+
+    .video-controls {
+        flex-wrap: wrap; 
+    }
+
+    .video-controls button {
         font-size: 14px;
+        padding: 8px 16px;
     }
 }

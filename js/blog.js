@@ -50,7 +50,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.addEventListener("click", (e) => {
         if (e.target.classList.contains("deletePost")) {
-            //get the id from the button deletePost
             const postId = e.target.getAttribute("id");
 
     

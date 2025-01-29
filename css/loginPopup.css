@@ -1,3 +1,5 @@
+/*  ----    Login Popup   ----  */
+
 .loginPopup {
     display: none;
     position: fixed;
@@ -9,6 +11,8 @@
     justify-content: flex-end;
     align-items: flex-start; 
     z-index: 99;
+    padding: 0 15px; /* Aggiunge spazio ai lati per evitare che tocchi i bordi */
+    box-sizing: border-box; /* Assicura che il padding sia incluso nelle dimensioni */
 }
 
 .loginPopup-content {
@@ -20,6 +24,7 @@
     text-align: center;
     position: relative;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box; /* Assicura che il padding sia incluso nelle dimensioni */
 }
 
 .loginPopup-content h2 {
@@ -43,10 +48,10 @@
 .loginPopup-content input {
     width: 100%;
     padding: 10px;
-    margin: 10px 0; /* Rimuovi i margini negativi */
+    margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 5px;
-    box-sizing: border-box; /* Assicura che padding e bordo siano inclusi nella larghezza */
+    box-sizing: border-box;
 }
 
 .loginPopup-content input[type="submit"] {
@@ -95,7 +100,8 @@
     margin-bottom: 10px; 
 }
 
-/*  ----    Responsività    ----     */
+/*   ----   Responsività   ----   */
+
 @media (max-width: 768px) {
     .loginPopup {
         justify-content: center;
@@ -106,6 +112,7 @@
         width: 90%;
         max-width: 350px;
         margin: 10px;
+        box-sizing: border-box; 
     }
 
     .loginPopup-content input {
@@ -116,11 +123,11 @@
 @media (max-width: 480px) {
     .loginPopup-content {
         padding: 15px;
-        width: 90%; /* Assicurati che la popup sia sempre visibile */
+        width: 90%;
     }
 
     .loginPopup-content input {
-        padding: 10px; /* Riduci leggermente il padding per adattarlo meglio */
+        padding: 10px; 
     }
 
     .loginPopup-content input[type="submit"] {

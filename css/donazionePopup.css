@@ -74,13 +74,15 @@
 
 input[type="number"],
 input[type="text"] {
-    width: 90%;
+    width: 100%;  
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
+    box-sizing: border-box; 
 }
+
 
 .donation-popup-submit {
     background: #007bff;
@@ -143,25 +145,23 @@ input[type="text"] {
 @media (max-width: 768px) {
     .donation-popup-content {
         padding: 15px;
-    }
-
-    .donation-popup h2 {
-        font-size: 22px;
+        width: 90%;
     }
 
     .donation-popup-buttons {
-        flex-direction: column;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
         gap: 8px;
     }
 
     .donation-popup-preset {
-        width: 100%;
+        flex: 1 1 calc(33.33% - 10px); /* Imposta 3 pulsanti per riga con margine */
         text-align: center;
     }
 
     input[type="number"],
     input[type="text"] {
-        width: 100%;
         font-size: 14px;
     }
 
@@ -175,7 +175,7 @@ input[type="text"] {
     }
 
     .message-container {
-        width: 90%;
+        width: 100%;
         font-size: 14px;
     }
 }
@@ -183,27 +183,34 @@ input[type="text"] {
 @media (max-width: 480px) {
     .donation-popup-content {
         padding: 10px;
+        width: 95%;
     }
 
     .donation-popup h2 {
         font-size: 20px;
     }
 
+    .donation-popup-buttons {
+        flex-direction: column;
+        gap: 5px;
+    }
+
     .donation-popup-preset {
-        font-size: 12px;
+        width: 100%;
+        font-size: 14px;
     }
 
     input[type="number"],
     input[type="text"] {
-        font-size: 12px;
+        font-size: 14px;
     }
 
     .donation-popup-submit {
-        font-size: 12px;
+        font-size: 14px;
     }
 
     .anonymous-toggle {
-        font-size: 10px;
+        font-size: 12px;
     }
 
     .message-container {
