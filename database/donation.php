@@ -12,12 +12,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     $data = json_decode(file_get_contents('php://input'), true);
+    if (!is_array($data)) {
+        echo json_encode(['success' => false, 'error' => 'Dati JSON non validi.']);
+        exit();
+    }
     $email = $_SESSION["email"];
-    $amount = $data["amount"] ?? null;
+    $amount = filter_var($data["amount"] ?? null, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
     $public = $data["public"] ?? false;
     $public = filter_var($public, FILTER_VALIDATE_BOOLEAN);
     
-    if (empty($amount) || !is_numeric($amount) || $amount <= 0) {
+    if ( $amount === false || $amount <= 0) {
         echo json_encode(['success' => false, 'error' => 'Importo non valido.']);
         exit();
     }

@@ -4,11 +4,14 @@ require 'connessioneDB.php';
 session_start(); 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    //    ----  Validazione  ----  //
+
     $response = [];
 
     if (empty($_POST["firstname"]) || empty($_POST["lastname"]) || 
         empty($_POST["email"]) || empty($_POST["pass"]) || empty($_POST["confirm"])) {
-        $response['error'] = "Uno o più campi sono vuoti. Compila tutti i campi.";
+        $response['error'] = "One or more fields are empty. Please fill in all fields.";
         echo json_encode($response);
         exit();
     }
@@ -21,36 +24,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = !empty($_POST["username"]) ? $_POST["username"] : null; // Campo opzionale per passare i test
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $response['error'] = "L'email non è valida.";
+        $response['error'] = "Email is not valid.";
         echo json_encode($response);
         exit();
     }
 
     if (!preg_match("/^[a-zA-Z\s]+$/", $firstname) || !preg_match("/^[a-zA-Z\s]+$/", $lastname)) {
-        $response['error'] = "Nome e cognome possono contenere solo lettere e spazi.";
+        $response['error'] = "First name and last name can only contain letters and spaces.";
         echo json_encode($response);
         exit();
     }
 
     if ($password !== $confirm) {
-        $response['error'] = "Le password non corrispondono.";
+        $response['error'] = "Passwords do not match.";
         echo json_encode($response);
         exit();
     }
 
     if (strlen($password) < 8) {
-        $response['error'] = "La password deve essere lunga almeno 8 caratteri.";
+        $response['error'] = "Password must be at least 8 characters long.";
         echo json_encode($response);
         exit();
     }
 
     if ($username !== null && (!preg_match("/^[a-zA-Z0-9_]+$/", $username) || strlen($username) < 4 || strlen($username) > 50)) {
-        $response['error'] = "L'username può contenere solo lettere, numeri e underscore ed essere lungo tra 4 e 50 caratteri.";
+        $response['error'] = "Username can only contain letters, numbers, and underscores and must be between 4 and 50 characters long.";
         echo json_encode($response);
         exit();
     }
 
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+    //    ----  Query  ----  //
 
     try {
         $stmt = $conn->prepare("INSERT INTO users (email, firstname, lastname, password, username) VALUES (?, ?, ?, ?, ?)");
@@ -59,19 +64,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION["email"] = $email;
         $_SESSION["username"] = $username;
 
-        $response['success'] = "Registrazione completata con successo!";
+        $response['success'] = "Registration completed successfully!";
         echo json_encode($response);
         exit();
     } catch (PDOException $e) {
-        if ($e->errorInfo[1] == 1062) { // Controllo per duplicati (email o username)
+        if ($e->errorInfo[1] == 1062) { // Duplicate entry check (email or username)
             if (strpos($e->errorInfo[2], 'username') !== false) {
-                $response['error'] = "Errore: l'username è già in uso.";
+                $response['error'] = "Error: username is already in use.";
             } else {
-                $response['error'] = "Errore: l'email è già registrata.";
+                $response['error'] = "Error: email is already registered.";
             }
         } else {
-            error_log("Errore del database: " . $e->getMessage());
-            $response['error'] = "Si è verificato un errore. Riprovare più tardi.";
+            error_log("Database error: " . $e->getMessage());
+            $response['error'] = "An error occurred. Please try again later.";
         }
         echo json_encode($response);
         exit();

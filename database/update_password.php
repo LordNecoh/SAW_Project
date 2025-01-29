@@ -11,29 +11,27 @@ if (!isset($_SESSION["email"])) {
     exit();
 }
 
-
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $newPassword = $_POST['newPassword'] ?? '';
     $confirmPassword = $_POST['confirmPassword'] ?? '';
 
     if (empty($newPassword) || empty($confirmPassword)) {
-        echo json_encode(["success" => false, "message" => "Entrambi i campi password sono obbligatori."]);
+        echo json_encode(["success" => false, "message" => "Both password fields are required."]);
         exit();
     }
 
     if ($newPassword !== $confirmPassword) {
-        echo json_encode(["success" => false, "message" => "Le password non coincidono."]);
+        echo json_encode(["success" => false, "message" => "Passwords do not match."]);
         exit();
     }
 
     if (strlen($newPassword) < 8) {
         echo json_encode([
             "success" => false,
-            "message" => "La password deve contenere almeno 8 caratteri."
+            "message" => "Password must be at least 8 characters long."
         ]);
         exit();
     }
-    
 
     try {
         $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
@@ -41,10 +39,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $stmt = $conn->prepare("UPDATE users SET password = ? WHERE email = ?");
         $stmt->execute([$hashedPassword, $_SESSION["email"]]);
 
-        echo json_encode(["success" => true, "message" => "Password aggiornata con successo!"]);
+        echo json_encode(["success" => true, "message" => "Password updated successfully!"]);
     } catch (PDOException $e) {
-        error_log("Errore del database: " . $e->getMessage());
-        echo json_encode(["success" => false, "message" => "Si è verificato un errore durante l'aggiornamento della password. Riprovare più tardi."]);
+        error_log("Database error: " . $e->getMessage());
+        echo json_encode(["success" => false, "message" => "An error occurred while updating the password. Please try again later."]);
     }
 }
 ?>

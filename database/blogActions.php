@@ -9,14 +9,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     switch ($action) {
         case 'createPost':
-            if (!isset($_SESSION['admin'])) {
+            if (!$isAdmin) {
                 echo json_encode(['success' => false, 'error' => 'Unauthorized']);
                 exit;
             }
 
-            $title = $_POST['title'];
-            $content = $_POST['content'];
+            //    ----  Validazione  ----  //
+            if (empty($_POST['title']) || empty($_POST['content'])) {
+                echo json_encode(['success' => false, 'error' => 'Title and content are required.']);
+                exit;
+            }
+            
+            $title = trim($_POST['title']);
+            $content = trim($_POST['content']);
             $username = $_SESSION['username'];
+
+            //    ----  Query  ----  //
 
             try {
                 $stmt = $conn->prepare("INSERT INTO blog_posts (title, content, creator) 
@@ -40,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     foreach ($posts as $post) {
                         ?>
                         <div class="post">
-                            <h3><?= $post['title'] ?></h3>
+                            <h3><?= htmlspecialchars($post['title']) ?></h3>
                             <div><?= $post['content'] ?></div>
                             <small>Posted by <?= htmlspecialchars($post['creator']) ?> on <?= htmlspecialchars($post['created_at']) ?></small>
                             <?php if ($isAdmin): ?>
@@ -53,17 +61,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     echo '<p>No posts found.</p>';
                 }
             } catch (PDOException $e) {
-                echo '<p>Error loading posts: ' . htmlspecialchars($e->getMessage()) . '</p>';
+                echo '<p>Error loading posts: ' . $e->getMessage() . '</p>';
             }
             break;
 
         case 'deletePost':
-            if (!isset($_SESSION['admin'])) {
+            if (!$isAdmin) {
                 echo json_encode(['success' => false, 'error' => 'Unauthorized']);
                 exit;
             }
 
-            $id = $_POST['id'];
+            $id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
+            if ($id === false || $id <= 0) {
+                echo json_encode(['success' => false, 'error' => 'Invalid post ID.']);
+                exit;
+            }
 
             try {
                 $stmt = $conn->prepare("DELETE FROM blog_posts WHERE id = :id");

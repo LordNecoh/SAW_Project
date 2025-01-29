@@ -13,7 +13,7 @@ if (!isset($_SESSION["email"])) {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["username"]) || empty($_POST["firstname"]) || empty($_POST["lastname"]) || empty($_POST["email"])) {
-        echo json_encode(["success" => false, "message" => "Uno o più campi sono vuoti. Compilare tutti i campi."]);
+        echo json_encode(["success" => false, "message" => "One or more fields are empty. Please fill in all fields."]);
         exit();
     }
     
@@ -23,19 +23,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $lastname = $_POST['lastname'];
     
     if (!preg_match("/^[a-zA-Z0-9_]+$/", $username)) {
-        echo json_encode(["success" => false, "message" => "L'username può contenere solo lettere, numeri e underscore."]);
+        echo json_encode(["success" => false, "message" => "Username can only contain letters, numbers, and underscores."]);
         exit();
     }
     
-    // Verifica se l'email è valida
+    // Verify if the email is valid
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo json_encode(["success" => false, "message" => "L'email non è valida."]);
+        echo json_encode(["success" => false, "message" => "The email is not valid."]);
         exit();
     }
     
-    // Verifica se nome e cognome contengono solo lettere e spazi
+    // Verify if first name and last name contain only letters and spaces
     if (!preg_match("/^[a-zA-Z\s]+$/", $firstname) || !preg_match("/^[a-zA-Z\s]+$/", $lastname)) {
-        echo json_encode(["success" => false, "message" => "Nome e cognome possono contenere solo lettere e spazi."]);
+        echo json_encode(["success" => false, "message" => "First name and last name can only contain letters and spaces."]);
         exit();
     }
     
@@ -46,10 +46,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION["email"] = $email;
         $_SESSION['firstname'] = $firstname;
         $_SESSION['username'] = $username;
-        echo json_encode(["success" => true, "message" => "Modifica completata con successo!"]);
+        echo json_encode(["success" => true, "message" => "Update completed successfully!"]);
     } catch (PDOException $e) {
-        error_log("Errore del database: " . $e->getMessage());
-        echo json_encode(["success" => false, "message" => "Si è verificato un errore durante l'aggiornamento. Riprovare più tardi."]);
+        error_log("Database error: " . $e->getMessage());
+        echo json_encode(["success" => false, "message" => "An error occurred during the update. Please try again later."]);
     }
     
 }

@@ -4,6 +4,9 @@ require 'connessioneDB.php';
 $response = ['success' => false, 'message' => ''];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    //    ----  Validazione  ----  //
+
     if (empty($_POST["email"]) || empty($_POST["pass"])) {
         $response['message'] = "Uno o più campi sono vuoti, compila tutti i campi.";
         echo json_encode($response);
@@ -19,6 +22,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     $password = $_POST['pass'];
+
+    //    ----  Query  ----  //
 
     try {
         $stmt = $conn->prepare("SELECT * FROM users WHERE email = :email");

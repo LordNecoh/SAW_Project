@@ -15,8 +15,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     switch ($action) {
         case 'getTopDonors':
 
+            //    ---    Validazione    ---  //
+            $topN = filter_input(INPUT_POST, 'topN', FILTER_VALIDATE_INT);
+            if ($topN === false || $topN <= 0) {
+                echo json_encode([
+                'success' => false,
+                    'error' => 'Invalid number of top donors.'
+                ]);
+                exit;
+            }
+            
             //    ---    Query    ---  //
-            $topN = $_POST['topN'];
             try{
                 $stmt = $conn->prepare("SELECT u.username, d.email, SUM(d.amount) AS total_donated
                                         FROM donations d
@@ -41,7 +50,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             break;
 
         case 'getUserDonations':
-            $username = $_POST['username'];
+
+            //    ---    Validazione    ---  //
+
+            if (empty($_POST['username']) || !is_string($_POST['username'])) {
+                echo json_encode([
+                    'success' => false,
+                    'error' => 'Invalid username.'
+                ]);
+                exit;
+            }
+            $username = trim($_POST['username']); 
+
             
             //    ---    Query    ---  //
             try{
@@ -67,7 +87,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             break;
 
         case 'refundMoney':
-            $username = $_POST['refundUsername'];
+
+            //    ---    Validazione    ---  //
+            if (empty($_POST['refundUsername']) || !is_string($_POST['refundUsername'])) {
+                echo json_encode([
+                    'success' => false,
+                    'error' => 'Invalid username for refund.'
+                ]);
+                exit;
+            }
+            $username = trim($_POST['refundUsername']);
             
             //    ---    Query    ---  //
             try{
@@ -80,6 +109,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $stmt->bindParam(':username', $username, PDO::PARAM_STR);
                 $stmt->execute();
                 $totalRefunded = $stmt->fetchColumn();
+                $totalRefunded = $stmt->fetchColumn();
+            if ($totalRefunded === false) {
+                echo json_encode([
+                    'success' => false,
+                    'error' => 'No donations found for this user.'
+                ]);
+                exit;
+            }
 
                 $stmt = $conn->prepare("DELETE FROM donations 
                                         WHERE email = (SELECT email 
@@ -103,34 +140,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             break;
 
         case 'setGoal':
-            $goal = $_POST['goal'];
 
-            //    ---    Validation    ---  //
-
-            if (!is_numeric($goal)) {
+            //    ---    Validazione    ---  //
+            $goal = filter_input(INPUT_POST, 'goal', FILTER_VALIDATE_INT);
+            if ($goal === false || $goal < 100 || $goal > 1000000) {
                 echo json_encode([
                     'success' => false,
-                    'error' => 'Goal must be a number'
+                    'error' => 'Goal must be between 100 and 1,000,000'
                 ]);
                 exit;
             }
-
-            if($goal < 100){
-                echo json_encode([
-                    'success' => false,
-                    'error' => 'Aim for an higher goal!'
-                ]);
-                exit;
-            }
-
-            if($goal > 1000000){
-                echo json_encode([
-                    'success' => false,
-                    'error' => 'Goal must be less than 1,000,000'
-                ]);
-                exit;
-            }
-
             
             //    ---    Query    ---  //
             try{
@@ -151,7 +170,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         case 'singleRefund':
 
-            $donationID = $_POST['donationID'];
+            //    ---    Validazione    ---  //
+
+            $donationID = filter_input(INPUT_POST, 'donationID', FILTER_VALIDATE_INT);
+            if ($donationID === false || $donationID <= 0) {
+                echo json_encode([
+                    'success' => false,
+                    'error' => 'Invalid donation ID.'
+                ]);
+                exit;
+            }
             
             //    ---    Query    ---  //
             try{
@@ -162,6 +190,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $stmt->bindParam(':donationID', $donationID, PDO::PARAM_INT);
                 $stmt->execute();
                 $amountRefunded = $stmt->fetchColumn();
+
+                if ($amountRefunded === false) {
+                    echo json_encode([
+                        'success' => false,
+                        'error' => 'No donation found with this ID.'
+                    ]);
+                    exit;
+                }
 
                 $stmt = $conn->prepare("DELETE FROM donations 
                                         WHERE id = :donationID");
