@@ -11,8 +11,8 @@
     justify-content: flex-end;
     align-items: flex-start; 
     z-index: 99;
-    padding: 0 15px; /* Aggiunge spazio ai lati per evitare che tocchi i bordi */
-    box-sizing: border-box; /* Assicura che il padding sia incluso nelle dimensioni */
+    padding: 0 15px; 
+    box-sizing: border-box; 
 }
 
 .loginPopup-content {
@@ -24,7 +24,7 @@
     text-align: center;
     position: relative;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    box-sizing: border-box; /* Assicura che il padding sia incluso nelle dimensioni */
+    box-sizing: border-box; 
 }
 
 .loginPopup-content h2 {
