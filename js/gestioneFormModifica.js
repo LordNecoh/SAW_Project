@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
+
+    //    ----  Variabili  ----    //
     const editProfileBtn = document.getElementById("editProfile");
     const cancelEditBtn = document.getElementById("cancelEdit");
     const saveProfileBtn = document.getElementById("saveProfile");
@@ -24,6 +26,8 @@ document.addEventListener("DOMContentLoaded", () => {
         cancelEditBtn.classList.toggle("hidden", !editable);
         saveProfileBtn.classList.toggle("hidden", !editable);
     };
+
+    //    ----  Event Listeners  ----    //
 
     editProfileBtn.addEventListener("click", () => toggleEditable(true));
 

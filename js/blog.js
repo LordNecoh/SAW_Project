@@ -40,7 +40,6 @@ document.addEventListener("DOMContentLoaded", () => {
             toggleButton.style.display = "none";
         });
     
-        // Nasconde il pannello
         closeButton.addEventListener("click", () => {
             adminPanel.style.display = "none";
             toggleButton.style.display = "block";
@@ -150,28 +149,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Funzione per caricare i post successivi
     async function loadMorePosts() {
-        if (loading || noMorePostsMessageShown || searchedPosts) return; // Preveniamo richieste multiple
+        if (loading || noMorePostsMessageShown || searchedPosts) return; //Prevenzione richieste multiple
         loading = true;
 
         const loader = document.getElementById("loaderWheel");
-        loader.style.display = "block"; // Mostra il loader
+        loader.style.display = "block"; 
 
         try {
                 const response = await fetch(`database/loadMorePosts.php?offset=${offset}&limit=${limit}`);
                 const html = await response.text();
 
-                await new Promise(resolve => setTimeout(resolve, loadingTime)); // Simula un ritardo di caricamento
+                await new Promise(resolve => setTimeout(resolve, loadingTime)); //Caricamento simulato per evidenziare l'infinte scroll
 
                 if (html.includes("No more posts to load.")) {
                     if (!noMorePostsMessageShown) {
                         blogPostsContainer.innerHTML += '<p class="no-more-posts">No more posts to load.</p>';
-                        noMorePostsMessageShown = true; // Impedisce ulteriori messaggi
+                        noMorePostsMessageShown = true; 
                     }
                 } else {
-                    // Aggiungi i nuovi post
                     blogPostsContainer.innerHTML += html;
         
-                    // Aggiorna l'offset
                     offset += limit;
                 }
             } catch (error) {

@@ -1,13 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
     //    ----    Variabili    ----    //
 
-    //Show Forms
+    //Apertura Forms
     const topDonorsButton = document.getElementById('topDonorsButton');
     const userDonationsButton = document.getElementById('userDonationsButton');
     const setGoalButton = document.getElementById('setGoalButton');
     const refundMoneyButton = document.getElementById('refundMoneyButton');
 
-    //Close Forms
+    //Chisura Forms
     const closeTopDonors = document.getElementById('closeTopDonors');
     const closeUserDonations = document.getElementById('closeUserDonations');
     const closeSetGoal = document.getElementById('closeSetGoal');
@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const resultBox = document.getElementById('result-box');
     let closeResultBox;
 
-    //Submit Forms
+    //Invio Forms
     const topDonorsForm = document.getElementById('topDonorsForm');
     const userDonationsForm = document.getElementById('userDonationsForm');
     const setGoalForm = document.getElementById('setGoalForm');
@@ -72,7 +72,6 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    //Reload the table
                     renderResults(data);
                 } else {
                     resultBox.innerHTML = `<p style="color: red;">Error: ${data.error}</p>`;
@@ -88,8 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function renderResults(data) {
         resultBox.innerHTML = '<button id="closeResultBox" class="close-button">&times;</button>';
         
-        if (data.donors) {
-            // Top Donors Results
+        if (data.donors) {  // Risultati top donors
             let table = '<table class="styled-table">';
             table += '<thead><tr><th>Username</th><th>Email</th><th>Total Donated</th></tr></thead>';
             table += '<tbody>';
@@ -99,7 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
             table += '</tbody></table>';
             resultBox.innerHTML += table;
 
-        } else if (data.donations) { // User Donations Results
+        } else if (data.donations) {    // Riusltati donazioni utentes
             if(data.username){
                 resultBox.innerHTML += `<h3>Donations for user: ${data.username}</h3>`;
             }
@@ -119,7 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
             table += '</tbody></table>';
             resultBox.innerHTML += table;
     
-            // Aggiungi il listener ai bottoni "Refund"
+            // Aggiunta event listener ai bottoni di refunds generatis
             const refundButtons = document.querySelectorAll('.refund-button');
             refundButtons.forEach(button => {
                 button.addEventListener('click', (e) => {
@@ -130,11 +128,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 });
             });
-        } else if(data.newGoal){
+        } else if(data.newGoal){    // Risultati setGoal
             resultBox.innerHTML += `<p>New goal set: <strong>€${data.newGoal}</strong></p>`;
-        }else if(data.totalRefunded){
+        }else if(data.totalRefunded){   // Risultati refundMoney
             resultBox.innerHTML += `<p>Refunded <strong>${data.totalRefunded}€</strong></p>`;
-        } else if(data.amountRefunded){
+        } else if(data.amountRefunded){ // Risultati singleRefunds
             resultBox.innerHTML += `<p>Refunded <strong>${data.amountRefunded}€</strong></p>`; 
         } else {
             resultBox.innerHTML += '<p>No results found.</p>';
@@ -153,7 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
         //    ----    Event Listeners    ----    //
 
 
-        // Show Forms
+        // Apertura Forms
 
         if (topDonorsButton) {
             topDonorsButton.addEventListener('click', () => {
@@ -179,7 +177,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
-        // Close Forms
+        // Chiusura Forms
 
         if (closeTopDonors) {
             closeTopDonors.addEventListener('click', () => {
@@ -212,7 +210,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         
 
-        // Submit Forms
+        // Invio Forms
     
         if (topDonorsForm) {
             topDonorsForm.addEventListener('submit', (e) => {
