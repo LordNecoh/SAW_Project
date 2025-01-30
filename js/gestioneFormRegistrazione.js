@@ -8,6 +8,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const formData = new FormData(this);
 
+        if (/^\s|\s$/.test(formData.get('password'))) { //È improbabile che l'utente abbia intenzionalmente inserito spazi bianchi all'inizio o alla fine della password
+            if(!confirm("Password contains balnk spaces. Is it intentional?")) {
+                formData.set('password', formData.get('password').trim());
+            }
+        }
+
         fetch('database/registration.php', {
             method: 'POST',
             body: formData
