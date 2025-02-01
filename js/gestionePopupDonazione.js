@@ -12,8 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     //Form
     const donationForm = document.getElementById("donationForm"); 
-    const donationAmountInput = document.getElementById("donationAmount"); 
-    const anonymousToggle = document.getElementById("anonymousToggle"); 
+    const donationAmountInput = document.getElementById("donationAmount");
     const presetButtons = document.querySelectorAll(".donation-popup-preset"); 
 
     //   ----    Apertura e chiusura Popup Donazione    ----    //
@@ -53,7 +52,8 @@ document.addEventListener("DOMContentLoaded", () => {
             e.preventDefault(); 
 
             const donationAmount = parseFloat(donationAmountInput.value);
-            const anonymous = anonymousToggle.checked;
+            const anonymous = document.getElementById("anonymousToggle").checked;
+
 
             if (!donationAmount || donationAmount <= 0) {
                 alert("Per favore, inserisci un importo valido.");

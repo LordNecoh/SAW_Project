@@ -19,7 +19,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_SESSION["email"];
     $amount = filter_var($data["amount"] ?? null, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
     $public = $data["public"] ?? false;
-    $public = filter_var($public, FILTER_VALIDATE_BOOLEAN);
+    $public = filter_var($public, FILTER_VALIDATE_BOOL);
+
+    //Senza questo su localhost va ma su server no
+    if($public === null) {
+        echo json_encode(['success' => false, 'error' => 'Valore pubblico non valido.']);
+        exit();
+    }else if($public === true){
+        $public = 1;
+    }else{
+        $public = 0;
+    }
+
     
     if ( $amount === false || $amount <= 0) {
         echo json_encode(['success' => false, 'error' => 'Importo non valido.']);
@@ -34,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     } catch (PDOException $e) {
         error_log("Errore del database: " . $e->getMessage());
-        echo json_encode(['success' => false, 'error' => 'Errore durante la registrazione della donazione.']);
+        echo json_encode(['success' => false, 'error' => 'Errore durante la registrazione della donazione : ' . $e->getMessage()]);
         exit();
     }
 } else {
