@@ -59,6 +59,8 @@ body {
 }
 
 .blog-button {
+    position: absolute;
+    left: 50%;
     padding: 8px 32px;
     background-color: #ffcc00;
     color: #333;
@@ -68,6 +70,7 @@ body {
     cursor: pointer;
     transition: background-color 0.3s ease;
     font-weight: bold;
+    transform: translateY(-50%);
 }
 
 .blog-button:hover {
