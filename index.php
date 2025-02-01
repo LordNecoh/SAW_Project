@@ -10,7 +10,7 @@
     <script src="js/caricaDonazioni.js"></script>
     <script src="js/gestionePopup.js"></script>
     <script src="js/gestionePopupDonazione.js"></script>
-    <script src="js/gestioneVideo.js"></script>
+    <script src="js/gestioneIndex.js"></script>
 
     <!--    Stylesheets     -->
     <link rel="stylesheet" href="css/index.css">
@@ -71,6 +71,7 @@
 
     <div class="donation-bar" id="support">
         <h2>Support Chuck the Beaver!</h2>
+        <p id="countdown-timer">Time left: Loading...</p>
         <div class="donation-container">
             <div class="donation-progress" id="donationProgress"></div>
         </div>
