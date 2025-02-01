@@ -10,7 +10,7 @@
 
     <script src="js/adminActions.js" defer></script>
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
-    <libnk rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/footer.css">
 
 
 </head>
