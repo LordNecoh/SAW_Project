@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/donazionePopup.css">
     <link rel="stylesheet" href="css/loader.css">
+    <link rel="stylesheet" href="css/footer.css">
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 
 </head>

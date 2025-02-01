@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" href="css/formRegistrazione.css">
     <link rel="stylesheet" href="css/loader.css">
+    <link rel="stylesheet" href="css/footer.css">
 
 
     <script src="js/gestioneFormRegistrazione.js"></script>
