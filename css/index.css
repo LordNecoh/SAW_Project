@@ -133,13 +133,17 @@ h1 {
     font-size: 18px;
     margin-bottom: 20px;
 }
-
+#donors-section{
+    margin-bottom: 80px;
+}
 #donor-table {
     width: 100%;
     border-spacing: 0;
     text-align: left;
     margin-top: 20px;
+    margin-bottom: 60px;
 }
+
 
 #donor-table th, #donor-table td {
     padding: 12px 15px;
