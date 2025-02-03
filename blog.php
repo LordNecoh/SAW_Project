@@ -33,7 +33,9 @@
                 <div class="admin-panel" id="adminPanel" style="display: none;">
                     <h2>Create a new post</h2>
                     <form id="newPostForm">
+                        <label for="postTitle">Title:</label>
                         <input type="text" id="postTitle" name="title" placeholder="Post Title" required>
+                        <label for="postContent">Content:</label>
                         <textarea id="postContent" name="content"></textarea>
                         <button type="submit">Publish</button>
                     </form>
