@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/adminPage.css">
+    <link rel="stylesheet" href="css/footer.css">
 
     <title>Admin Page</title>
 
@@ -83,6 +84,10 @@
             <button type="submit">Set</button>
         </form>
     </div>
+
+    <?php
+        require_once 'footer.php';
+    ?>
 
 </body>
 </html>
