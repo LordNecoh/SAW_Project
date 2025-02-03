@@ -56,6 +56,11 @@ h2 {
 
 /*  ----    Form    ----     */
 
+#newPassword, #confirmPassword {
+    width: 100%;
+}
+
+
 .form-group {
     display: grid;
     grid-template-columns: 100px 1fr; 
@@ -64,7 +69,17 @@ h2 {
     align-items: center; 
 }
 
-.form-group label {
+.form-group-pw{
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 15px; 
+    margin-bottom: 20px;
+    align-items: center; 
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.form-group label, .form-group-pw label {
     text-align: right;
     font-weight: bold;
     color: #333;
@@ -72,7 +87,7 @@ h2 {
     padding-right: 5px; 
 }
 
-.form-group input {
+.form-group input, .form-group-pw input {
     width: 100%;
     padding: 10px;
     margin-top: 5px;
@@ -127,7 +142,6 @@ button:hover {
     .container {
         gap: 15px;
         padding: 0 50px; 
-
     }
 
     .mainImage {
@@ -144,12 +158,12 @@ button:hover {
         margin-bottom: 15px;
     }
 
-    .form-group {
+    .form-group, .form-group-pw {
         grid-template-columns: 1fr;
         gap: 10px;
     }
 
-    .form-group label {
+    .form-group label, .form-group-pw label {
         text-align: left;
         padding-right: 0;
     }
@@ -167,8 +181,8 @@ button:hover {
 @media (max-width: 480px) {
     .container {
         padding: 0 30px; 
-
     }
+
     .mainImage {
         width: 100px;
     }
@@ -181,7 +195,7 @@ button:hover {
         font-size: 20px;
     }
 
-    .form-group input {
+    .form-group input, .form-group-pw input {
         font-size: 14px;
         padding: 8px;
     }

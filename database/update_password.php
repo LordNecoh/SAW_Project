@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         exit();
     }
     
-    if (!preg_match("/^[0-9A-Za-z!@&%$*#]+$/", $password)) {
+    if (!preg_match("/^[0-9A-Za-z!@&%$*#]+$/", $newPassword)) {
     $response['error'] = "Password must contain only letters, numbers, and the special characters !, @, &, %, $, *, #.";
     echo json_encode($response);
     exit();

@@ -67,7 +67,7 @@
         <div class="password-section">
             <button id="editPassword">Change Password</button>
                 <form id="passwordForm" class="hidden">
-                    <div class="form-group">
+                    <div class="form-group-pw">
                         <input type="password" id="newPassword" name="newPassword" placeholder="New Password" required>
                         <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required>
                     </div>
