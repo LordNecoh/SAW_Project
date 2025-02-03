@@ -4,14 +4,15 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 if (!isset($_SESSION["email"])) {
-    header("Location: ./index.php");
+    header("Location: ../index.php");
     exit();
 }
-include("connessioneDB.php");
+require_once "connessioneDB.php";
 
-$email = $_SESSION["email"];
 
 try {
+    $email = $_SESSION["email"];
+
     $query = "SELECT username, firstname, lastname, email FROM users WHERE email = :email";
     
     $stmt = $conn->prepare($query);

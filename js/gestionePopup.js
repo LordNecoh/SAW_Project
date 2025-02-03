@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const logToReg = document.getElementById("logToReg");
     const closeLoginPopup = document.getElementById("closeLoginPopup");
     const loginPopup = document.getElementById("loginPopup");
-    const loginForm = loginPopup ? loginPopup.querySelector("form") : null; // Form di login
+    const loginForm = loginPopup ? loginPopup.querySelector("form") : null; 
     const errorElement = loginPopup ? document.createElement("div") : null;
 
 

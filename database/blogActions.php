@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             try {
                 $stmt = $conn->prepare("SELECT * FROM blog_posts WHERE title LIKE :search OR content LIKE :search");
                 $stmt->execute(['search' => "%$search%"]);
-                $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                $posts = $stmt->fetchAll();
 
                 if($posts) {
                     foreach ($posts as $post) {

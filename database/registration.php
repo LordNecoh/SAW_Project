@@ -1,11 +1,11 @@
 <?php
-require 'connessioneDB.php'; 
+require_once 'connessioneDB.php'; 
 
 session_start(); 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    //    ----  Validazione  ----  //
+    // ---- Validazione ---- //
 
     $response = [];
 
@@ -46,16 +46,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo json_encode($response);
         exit();
     }
-
-    if ($username !== null && (!preg_match("/^[a-zA-Z0-9_]+$/", $username) || strlen($username) < 4 || strlen($username) > 50)) {
-        $response['error'] = "Username can only contain letters, numbers, and underscores and must be between 4 and 50 characters long.";
+    
+    // Controllo: la password deve contenere solo lettere o numeri.
+    if (!preg_match("/^[a-zA-Z0-9]+$/", $password)) {
+        $response['error'] = "Password must contain only letters and numbers.";
         echo json_encode($response);
         exit();
     }
 
+    if ($username !== null) {
+        // Controllo per spazi nell'username e solo lettere, numeri e underscore.
+        if (preg_match("/\s/", $username)) {
+            $response['error'] = "Username cannot contain spaces.";
+            echo json_encode($response);
+            exit();
+        }
+        if (!preg_match("/^[a-zA-Z0-9_]+$/", $username) || strlen($username) < 4 || strlen($username) > 50) {
+            $response['error'] = "Username can only contain letters, numbers, and underscores and must be between 4 and 50 characters long.";
+            echo json_encode($response);
+            exit();
+        }
+    }
+
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    //    ----  Query  ----  //
+    // ---- Query ---- //
 
     try {
         $stmt = $conn->prepare("INSERT INTO users (email, firstname, lastname, password, username) VALUES (?, ?, ?, ?, ?)");
@@ -68,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo json_encode($response);
         exit();
     } catch (PDOException $e) {
-        if ($e->errorInfo[1] == 1062) { // Duplicate entry check (email or username)
+        if ($e->errorInfo[1] == 1062) { 
             if (strpos($e->errorInfo[2], 'username') !== false) {
                 $response['error'] = "Error: username is already in use.";
             } else {

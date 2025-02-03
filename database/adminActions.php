@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ]);
         exit;
     }
-    require 'connessioneDB.php';
+    require_once 'connessioneDB.php';
 
     $action = $_POST['action'];
 

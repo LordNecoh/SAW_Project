@@ -19,3 +19,4 @@ try {
     die("Impossibile connettersi al database. Riprova più tardi.");
 }
 ?>
+

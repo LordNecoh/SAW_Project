@@ -14,7 +14,7 @@ try {
     $query->bindValue(':offset', $offset, PDO::PARAM_INT);
     $query->execute();
 
-    $posts = $query->fetchAll(PDO::FETCH_ASSOC);
+    $posts = $query->fetchAll();
 
     if ($posts) {
         foreach ($posts as $post) {

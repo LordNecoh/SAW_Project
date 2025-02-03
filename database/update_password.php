@@ -1,6 +1,6 @@
 <?php
 
-require 'connessioneDB.php'; 
+require_once 'connessioneDB.php'; 
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -27,8 +27,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if (strlen($newPassword) < 8) {
         echo json_encode([
-            "success" => false,
-            "message" => "Password must be at least 8 characters long."
+            "success" => false, "message" => "Password must be at least 8 characters long."
+        ]);
+        exit();
+    }
+    
+    // Controllo: la password non deve contenere spazi
+    if (preg_match("/\s/", $newPassword)) {
+        echo json_encode([
+            "success" => false, "message" => "Password cannot contain spaces."
         ]);
         exit();
     }

@@ -1,6 +1,6 @@
 <?php
 
-require 'connessioneDB.php'; 
+require_once 'connessioneDB.php'; 
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
