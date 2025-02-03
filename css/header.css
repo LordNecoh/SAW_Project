@@ -127,13 +127,7 @@ body {
 /* ---- Responsività ---- */
 
 @media (max-width: 1000px) {
-   
-    .navbar-center {
-        position: static;
-        transform: none;
-        margin: 10px auto; 
-    }
-
+    
     .navbar-right .welcome {
         display: none;
     }
