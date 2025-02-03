@@ -25,7 +25,7 @@ img {
     text-align: center;
     margin: 30px auto;
     padding: 20px;
-    border: 2px solid #007bff;
+    border: 2px solid #0056b3;
     border-radius: 10px;
     background-color: #f8f9fa;
     max-width: 600px;
@@ -38,7 +38,7 @@ img {
 
 
 .button-area button {
-    background-color: #007bff; 
+    background-color: #0056b3; 
     color: white;
     border: none;
     padding: 10px 20px;
@@ -51,7 +51,7 @@ img {
 }
 
 .button-area button:hover {
-    background-color: #0056b3; 
+    background-color: #003f7f; 
     transform: scale(1.05);
 }
 
@@ -72,7 +72,7 @@ img {
 .button-area hr {
     border: 0;
     height: 2px;
-    background-color: #007bff; 
+    background-color: #0056b3; 
     margin: 10px auto; 
     width: 80%; 
     grid-column: 1 / -1; 

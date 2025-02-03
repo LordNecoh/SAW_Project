@@ -29,13 +29,15 @@
     display: block;
     text-align: center;
     margin-top: 15px;
-    color: #007bff;
+    color: #0056b3;
     text-decoration: none;
     transition: color 0.3s;
+    font-size: 18px;
+    font-weight: bold;
 }
 
 .form-container a:hover {
-    color: #0056b3;
+    color: #003f7f;
 }
 
 .error-message {
@@ -88,18 +90,18 @@
 .submit-button {
     width: 100%;
     padding: 12px;
-    background-color: #007bff;
+    background-color: #0056b3;
     border: none;
     border-radius: 4px;
     color: white;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
 .submit-button:hover {
-    background-color: #0056b3;
+    background-color: #004494;
 }
 
 

@@ -51,7 +51,7 @@
 
 .profilePopup-content p span {
     font-weight: normal;
-    color: #7f8c8d;
+    color: #2c3e50;
 }
 
 /*  ----    Pulsanti     ----    */
@@ -103,7 +103,7 @@
 .edit-button {
     margin-top: 20px;
     padding: 10px 20px;
-    background-color: #27ae60;
+    background-color: #1e8449;
     color: white;
     border: none;
     border-radius: 5px;
@@ -117,7 +117,7 @@
 .admin-link {
     margin-top: 40px;
     padding: 10px 20px;
-    background-color: #3498db;
+    background-color: #0056b3;
     color: white;
     border: none;
     border-radius: 5px;
@@ -131,13 +131,13 @@
 }
 
 .admin-link:hover {
-    background-color: #2980b9;
+    background-color: #003f7f;
 }
 
 /*  ----    Immagini  ----    */
 
 .edit-button:hover {
-    background-color: #219150;
+    background-color: #1a6b3a;
 }
 
 .profile-image {

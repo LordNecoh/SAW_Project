@@ -45,6 +45,7 @@
         <!-- Ricerca Post -->
         <div class="search-container">
             <form id="searchForm">
+                <label for="searchInput" class="searchLabel">Search posts:</label>
                 <input type="text" id="searchInput" name="search" placeholder="Search posts...">
                 <button type="submit">Search</button>
                 <button id="clearSearch" class="close-search">X</button>

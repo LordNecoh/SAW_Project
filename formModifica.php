@@ -22,13 +22,13 @@
 
     <div class="container">
         <div class="profile-image-wrapper">
-            <img src="images/profilePicture.png" alt="User Icon" title="User Icon" id="profileImage" class="mainImage">
+            <img src="images/profilePicture.png" alt="Cute beaver with a yellow elmet and an axe" title="User Icon" id="profileImage" class="mainImage">
 
             <?php 
                 if (session_status() === PHP_SESSION_NONE) {
                     session_start();
                 }
-                if(isset($_SESSION['admin'])) echo "<img src='images/star.png' class='admin-badge' alt='AdminBadge' title='AdminBadge'>"; 
+                if(isset($_SESSION['admin'])) echo "<img src='images/star.png' class='admin-badge' alt='Little yellow star' title='AdminBadge'>"; 
             ?>
         </div>
 

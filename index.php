@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
 
     <meta charset="UTF-8">
@@ -31,7 +31,7 @@
 
     <div class="video-container">
         <div class="video-box">
-            <video autoplay muted loop id="video">
+            <video autoplay muted loop id="video" alt="Video of how the game plays">
                 <source src="images/gameplayReveal.mp4" type="video/mp4">
                 <p>Your browser does not support the video tag.</p>
             </video>
@@ -52,7 +52,7 @@
             <p>As the game progresses, the challenges scale up, requiring players to adapt and enhance their strategies to succeed.</p>
             <p>Join Chuck the Beaver in this thrilling adventure and see if you have what it takes to defend your Dam!</p>
         </article>
-        <img src="images/gameImage.png" alt="Image of the game's protagonist" title="Image of the game's protagonist" class="centeredImage">
+        <img src="images/gameImage.png" alt="A 3D beaver in a yellow helmet holds an axe, surrounded by logs and trees"  title="Image of the game's protagonist" class="centeredImage">
     </div>
 
     <div class="content-container">
