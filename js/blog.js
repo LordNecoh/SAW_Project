@@ -156,7 +156,10 @@ document.addEventListener("DOMContentLoaded", () => {
         loader.style.display = "block"; 
 
         try {
-                const response = await fetch(`database/loadMorePosts.php?offset=${offset}&limit=${limit}`);
+                const response = await fetch(`database/loadMorePosts.php?offset=${offset}&limit=${limit}`, {
+                    method: 'POST'
+                }
+                );
                 const html = await response.text();
 
                 await new Promise(resolve => setTimeout(resolve, loadingTime)); //Caricamento simulato per evidenziare l'infinte scroll

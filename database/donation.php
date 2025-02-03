@@ -2,7 +2,7 @@
 require_once 'connessioneDB.php'; 
 
 header('Content-Type: application/json'); 
-
+if($_SERVER["REQUEST_METHOD"] == "POST") {
     session_start();
 
     if (!isset($_SESSION["email"])) {
@@ -47,4 +47,8 @@ header('Content-Type: application/json');
         echo json_encode(['success' => false, 'error' => 'Errore durante la registrazione della donazione : ' . $e->getMessage()]);
         exit();
     }
+}else{
+    echo json_encode(['success' => false, 'error' => 'Metodo non consentito']);
+    exit();
+}
 

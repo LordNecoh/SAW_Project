@@ -3,6 +3,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 if (!isset($_SESSION["email"])) {
     header("Location: ../index.php");
     exit();
@@ -35,5 +36,6 @@ try {
 } catch (PDOException $e) {
     error_log("Database error: " . $e->getMessage());
     exit("Something went wrong, visit us later");
+}
 }
 ?>

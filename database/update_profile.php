@@ -13,17 +13,17 @@ if (!isset($_SESSION["email"])) {
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (empty($_POST["username"]) || empty($_POST["firstname"]) || empty($_POST["lastname"]) || empty($_POST["email"])) {
+    if ( empty($_POST["firstname"]) || empty($_POST["lastname"]) || empty($_POST["email"])) {
         echo json_encode(["success" => false, "message" => "One or more fields are empty. Please fill in all fields."]);
         exit();
     }
     
-    $username = $_POST['username'];
+    $username = $_POST['username'] ?? null;
     $email = $_POST['email'];
     $firstname = $_POST['firstname'];
     $lastname = $_POST['lastname'];
     
-    if (!preg_match("/^[a-zA-Z0-9_]+$/", $username)) {
+    if ($username!=null&& !preg_match("/^[a-zA-Z0-9_]+$/", $username)) {
         echo json_encode(["success" => false, "message" => "Username can only contain letters, numbers, and underscores."]);
         exit();
     }

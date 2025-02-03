@@ -4,7 +4,7 @@ header {
     color: #ecf0f1;
     font-family: 'Roboto', sans-serif;
     z-index: 10;
-    position: sticky; 
+    position: relative; /* Contesto per il posizionamento assoluto */
     top: 0; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
@@ -26,12 +26,21 @@ body {
     justify-content: space-between;
     align-items: center;
     transition: left 0.3s ease;
+    position: relative; /* Può essere utile per altri posizionamenti interni */
 }
 
 .navbar-left .top-left-title {
     font-size: 24px;
     margin: 0;
     color: #fff;
+}
+
+/* Posizionamento desktop: la sezione centrale (con il bottone) è assoluta */
+.navbar-center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .navbar-right {
@@ -41,8 +50,16 @@ body {
     font-size: 20px;
 }
 
+/* Stile per il messaggio di benvenuto */
+.navbar-right .welcome {
+    display: inline; /* Visibile di default */
+}
+
 /* ---- Pulsanti ---- */
-.login-button, .logout-button, .profile-button, .blog-button {
+.login-button,
+.logout-button,
+.profile-button,
+.blog-button {
     padding: 8px 16px;
     background-color: #287ab1;
     color: #fff;
@@ -54,13 +71,14 @@ body {
     text-align: center;
 }
 
-.login-button:hover, .logout-button:hover, .profile-button:hover {
+.login-button:hover,
+.logout-button:hover,
+.profile-button:hover {
     background-color: #1f5a81;
 }
 
+/* Bottone "Check our blog!" */
 .blog-button {
-    position: absolute;
-    left: 50%;
     padding: 8px 32px;
     background-color: #ffcc00;
     color: #333;
@@ -70,7 +88,6 @@ body {
     cursor: pointer;
     transition: background-color 0.3s ease;
     font-weight: bold;
-    transform: translateY(-50%);
 }
 
 .blog-button:hover {
@@ -78,7 +95,8 @@ body {
 }
 
 /* ---- Popup ---- */
-.loginPopup, .profilePopup {
+.loginPopup,
+.profilePopup {
     display: none;
     position: absolute;
     top: 50px;
@@ -108,6 +126,20 @@ body {
 }
 
 /* ---- Responsività ---- */
+
+@media (max-width: 1000px) {
+   
+    .navbar-center {
+        position: static;
+        transform: none;
+        margin: 10px auto; 
+    }
+
+    .navbar-right .welcome {
+        display: none;
+    }
+}
+
 @media (max-width: 768px) {
     .navbar {
         flex-direction: column;
@@ -170,18 +202,15 @@ body {
         color: #fff;
         background: transparent;
         border: none;
-        position:absolute;  
+        position: absolute;  
         top: 4px;
-        left:8px;  
+        left: 8px;  
         transition: transform 0.3s ease;
-
     }
 
-    
     .menu-toggle.active {
         transform: rotate(90deg); 
     }
-    
 
     .blog-button {
         margin: 0;

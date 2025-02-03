@@ -1,5 +1,4 @@
 <?php
-
 $configFile = __DIR__ . '/config.php';
 
 if (!file_exists($configFile)) {
@@ -7,7 +6,6 @@ if (!file_exists($configFile)) {
 }
 
 require_once $configFile;
-
 try {
     $dsn = "mysql:host=" . DB_SERVER . ";dbname=" . DB_NAME . ";charset=utf8mb4";
     $conn = new PDO($dsn, DB_USER, DB_PASSWORD);

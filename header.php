@@ -35,7 +35,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     echo '<div id="profilePopup" class="profilePopup">';
                     include 'profilePopup.php';
                     echo '</div>';
-                    echo '<span>Welcome, ' . htmlspecialchars($_SESSION['username']) . '!</span>';
+                    echo '<span class="welcome">Welcome, ' . htmlspecialchars($_SESSION['username']) . '!</span>';
                     echo '<button type="button" id="openProfileBtn" class="profile-button">Profile</button>';
                     echo '<button type="button" id="logoutBtn" class="login-button">Logout</button>';
                 } else {
