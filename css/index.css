@@ -66,7 +66,7 @@ h1 {
 }
 
 .donation-progress {
-    width: 0%; /* Cambia dinamicamente tramite JS */
+    width: 0%; 
     height: 100%;
     background-color: #007bff;
     border-radius: 10px;
@@ -171,8 +171,8 @@ h1 {
     display: flex;
     justify-content: center;
     margin: 30px auto;
-    padding: 0 15px; /* Aggiunge spazio ai lati per evitare che tocchi i bordi */
-    box-sizing: border-box; /* Assicura che il padding sia incluso nelle dimensioni */
+    padding: 0 15px; 
+    box-sizing: border-box;
 }
 
 .video-box {
@@ -187,7 +187,7 @@ h1 {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
     max-width: 600px;
     width: 100%;
-    box-sizing: border-box; /* Include il padding nelle dimensioni */
+    box-sizing: border-box; 
 }
 
 #video {

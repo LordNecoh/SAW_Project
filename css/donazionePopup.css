@@ -156,7 +156,7 @@ input[type="text"] {
     }
 
     .donation-popup-preset {
-        flex: 1 1 calc(33.33% - 10px); /* Imposta 3 pulsanti per riga con margine */
+        flex: 1 1 calc(33.33% - 10px); 
         text-align: center;
     }
 

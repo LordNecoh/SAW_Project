@@ -6,8 +6,8 @@
     align-items: center;
     gap: 20px;
     margin-top: 20px;
-    padding: 0 100px; /* Padding laterale */
-    box-sizing: border-box; /* Garantisce che il padding sia incluso nella larghezza */
+    padding: 0 100px; 
+    box-sizing: border-box;
 }
 
 .mainImage {
