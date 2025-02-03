@@ -32,13 +32,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         exit();
     }
     
-    // Controllo: la password non deve contenere spazi
-    if (preg_match("/\s/", $newPassword)) {
-        echo json_encode([
-            "success" => false, "message" => "Password cannot contain spaces."
-        ]);
-        exit();
-    }
+    if (!preg_match("/^[0-9A-Za-z!@&%$*#]+$/", $password)) {
+    $response['error'] = "Password must contain only letters, numbers, and the special characters !, @, &, %, $, *, #.";
+    echo json_encode($response);
+    exit();
+}
+
 
     try {
         $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);

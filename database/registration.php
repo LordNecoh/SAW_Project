@@ -47,12 +47,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         exit();
     }
     
-    // Controllo: la password deve contenere solo lettere o numeri.
-    if (!preg_match("/^[a-zA-Z0-9]+$/", $password)) {
-        $response['error'] = "Password must contain only letters and numbers.";
+    if (!preg_match("/^[0-9A-Za-z!@&%$*#]+$/", $password)) {
+        $response['error'] = "Password must contain only letters, numbers, and the special characters !, @, &, %, $, *, #.";
         echo json_encode($response);
         exit();
     }
+    
 
     if ($username !== null) {
         // Controllo per spazi nell'username e solo lettere, numeri e underscore.
