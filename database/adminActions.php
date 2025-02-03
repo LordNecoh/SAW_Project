@@ -109,7 +109,6 @@
                     $stmt->bindParam(':username', $username, PDO::PARAM_STR);
                     $stmt->execute();
                     $totalRefunded = $stmt->fetchColumn();
-                    $totalRefunded = $stmt->fetchColumn();
                 if ($totalRefunded === false) {
                     echo json_encode([
                         'success' => false,

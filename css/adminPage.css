@@ -262,6 +262,13 @@ img {
         width: 100%;
         margin: 5px 0;
     }
+
+    .styled-table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
 }
 
 @media (max-width: 480px) {
