@@ -1,5 +1,7 @@
 <?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+if ($_SERVER["REQUEST_METHOD"] == "POST"){
+    
     require_once 'connessioneDB.php';
 
     session_start();
@@ -91,4 +93,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             break;
     }
 }
+
 ?>

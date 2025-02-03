@@ -11,6 +11,7 @@ if (!isset($_SESSION["email"])) {
     exit();
 }
 
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["username"]) || empty($_POST["firstname"]) || empty($_POST["lastname"]) || empty($_POST["email"])) {
         echo json_encode(["success" => false, "message" => "One or more fields are empty. Please fill in all fields."]);

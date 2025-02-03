@@ -3,7 +3,7 @@ require_once 'connessioneDB.php';
 
 session_start(); 
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
     // ---- Validazione ---- //
 
@@ -95,6 +95,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         echo json_encode($response);
         exit();
+    
     }
 }
 ?>

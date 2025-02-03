@@ -8,7 +8,9 @@ function fetchDonations(donationAmountElement) {
     let goal = 0;
 
     function loadGoal() {
-        return fetch("database/getGoal.php")
+        return fetch("database/getGoal.php", {
+            method: "POST"
+        })
             .then((response) => response.json())
             .then((data) => {
                 if (data.success) {
@@ -26,7 +28,10 @@ function fetchDonations(donationAmountElement) {
     }
 
     function loadDonations() {
-        fetch("database/getDonations.php")
+        fetch("database/getDonations.php", {
+            method: "POST"
+        }
+        )
             .then((response) => response.json())
             .then((data) => {
                 if (data.success) {

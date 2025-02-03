@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const formData = new FormData(document.getElementById("userForm"));
         fetch("database/update_profile.php", {
             method: "POST",
-            body: formData,
+            body: formData
         })
             .then((res) => res.json())
             .then((data) => {
